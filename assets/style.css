@@ -30,7 +30,7 @@ pre code {
   top: 0;
   left: 0;
   right: 0;
-  height: 200px;*/
+  height: 200px;
   /*background-image: url("images/books.jpg");*/
   /*background-color: #193a5c;*/
 }
@@ -38,7 +38,7 @@ pre code {
 .hero-image {
   width: 100%;
   height: 80%;
-  bject-fit: cover;
+  /*object-fit: cover;*/
 }
 
 .page-inner {
