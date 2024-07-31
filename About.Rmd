@@ -7,14 +7,13 @@
 |Credits|Names|
 |-------|-----|
 |**Pedagogy**|
-| Instructor | [Rajiv McCoy] |
-| Content Author | [Stephanie Yan] |
-| Content Author | [Kate Weaver] |
+| Instructor | [Andrew Bortvin] |
+| Content Author | [Andrew Bortvin] |
 |**Website**|
 | Template | [Jeff Leek] & [The Johns Hopkins Data Science Lab]|
-| Design Inspiration | [Ali Madooei] & [JHU Data Structures] |
+| Design Inspiration | [Stephanie Yan] & [Ali Madooei] & [JHU Data Structures] |
 |**Funding**|
-| JHU Center for Educational Resources | Techology Fellowship Grant |
+| JHU Dean’s Teaching Fellowship  |
 
 &nbsp;
 
@@ -23,7 +22,8 @@ devtools::session_info()
 ```
 
 <!-- Author information -->
- 
+
+[Andrew Bortvin]: https://andrew-bortvin.github.io/
 [Rajiv McCoy]: https://mccoy-lab.org/
 [Kate Weaver]: https://kweav.github.io/
 [Stephanie Yan]: https://stephaniemyan.github.io/
