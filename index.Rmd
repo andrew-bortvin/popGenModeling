@@ -12,7 +12,7 @@ output:
       toc: true
 ---
 
-# Homepage
+# Homepage 
   
 This is the course homepage and digital textbook for Population Genetics Modeling (`AS.020.369`).
 
