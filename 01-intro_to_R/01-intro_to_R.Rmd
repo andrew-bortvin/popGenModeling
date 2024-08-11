@@ -7,6 +7,8 @@ knitr::opts_knit$set(root.dir = '01-intro_to_R')
 
 R is a programming language developed primarily for use by statisticians, and it is a common tool in the field for data exploration, analysis, visualization, etc. We will be using it throughout the course to manipulate, view, and interpret data. 
 
+In this module, we wil ***xxx***
+
 ## Data types
 
 R has the ability to manipulate multiple different types of data. The primary data types we will use in this course are: 
