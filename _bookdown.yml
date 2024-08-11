@@ -2,7 +2,7 @@ book_filename: "popGenModeling"
 chapter_name: ""
 repo: https://github.com/andrew-bortvin/popGenModeling
 rmd_files: ["index.Rmd",
-            #"01-igv/01-igv.Rmd",
+            "01-intro_to_R/01-intro_to_R.Rmd",
             "About.Rmd"]
 delete_merged_file: true
 # new_session: yes
