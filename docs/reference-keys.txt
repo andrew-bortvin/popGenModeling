@@ -1,3 +1,5 @@
 homepage
 instructor
 schedule-logistics
+introduction-to-r
+data-types
