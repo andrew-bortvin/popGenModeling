@@ -19,14 +19,35 @@ Please note that input data is available on the course Posit cloud page - please
 
 The bread and butter of R is the dataframe, a tabular data structure which contains data of multiple types. 
 
-R has a few built-in functions that allow for easy and efficient import of data. We'll learn a lot more nuances of how they work as we go on, but for now, we can import a tidy, well-formatted bit of data as such: 
+R has a few built-in functions that allow for easy and efficient import of data. As we go on, we'll learn a lot of nuances about how these work, but for now we'll start with a tidy, well-behaved dataset that is easy to work with.
+
+We would like for R to import our data and save it into memory. We also want to give it a name, so that we can refer to it later. 
+
+In R, we use the assignment operator `<-` to associate a name with some data. The general syntax for this is: 
+
+`variableName <- value`
+
+Where **left - name right -> value**
+
+**if you know python or c or something, "+" is equivalent**
+
+**lets test it out**
 
 ```{r, include = TRUE}
-print("test")
+populationData <- read.table("hare_lynx.csv", sep = ",", header = TRUE)
 ```
 
+Let's break down what's happening here.
 
-## Data types
+On the left of the `<-`, we have the text `populationData` 
+
+
+
+```{r}
+head(populationData)
+```
+
+## The Data Frame
 
 R has the ability to manipulate multiple different types of data. The primary data types we will use in this course are: 
 
