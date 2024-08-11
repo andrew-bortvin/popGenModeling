@@ -7,7 +7,24 @@ knitr::opts_knit$set(root.dir = '01-intro_to_R')
 
 R is a programming language developed primarily for use by statisticians, and it is a common tool in the field for data exploration, analysis, visualization, etc. We will be using it throughout the course to manipulate, view, and interpret data. 
 
-In this module, we wil ***xxx***
+In this module, we will learn the basics of R by manipulating some real-world data. In particular, we'll look at data from the Hudson Bay looking at the size of the hare and lynx populations. 
+
+We'll talk a lot more about this dataset when we study predator-prey models in a few weeks, but for now, let's make some exploratory plots. 
+
+Data adapted from here: http://people.whitman.edu/~hundledr/courses/M250F03/M250.html
+
+Please note that input data is available on the course Posit cloud page - please feel free to work alongside this page! 
+
+## Data import 
+
+The bread and butter of R is the dataframe, a tabular data structure which contains data of multiple types. 
+
+R has a few built-in functions that allow for easy and efficient import of data. We'll learn a lot more nuances of how they work as we go on, but for now, we can import a tidy, well-formatted bit of data as such: 
+
+```{r, include = TRUE}
+print("test")
+```
+
 
 ## Data types
 
