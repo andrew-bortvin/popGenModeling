@@ -15,6 +15,10 @@ Data adapted from here: http://people.whitman.edu/~hundledr/courses/M250F03/M250
 
 Please note that input data is available on the course Posit cloud page - please feel free to work alongside this page! 
 
+## Variables in R
+
+
+
 ## Data import 
 
 The bread and butter of R is the dataframe, a tabular data structure which contains data of multiple types. 
