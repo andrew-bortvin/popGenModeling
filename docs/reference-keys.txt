@@ -3,5 +3,6 @@ instructor
 schedule-logistics
 course-syllabus
 introduction-to-r
+variables-in-r
 data-import
-data-types
+the-data-frame
