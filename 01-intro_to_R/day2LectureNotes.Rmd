@@ -34,15 +34,19 @@ How do we fix this? Along with the essential argument of the file location, we c
 
 Let's inform R that our data is split by commas. We can do this using the `sep` (short for "separator") argument.
 
-```{r}
+```{r, eval=FALSE}
 read.table("hare_lynx.csv", sep = ",")
 ```
 
+***ADD IMAGE***
+
 Now we correctly have three columns of data! We now have to tell R that the first row is a header. There is an optional argument `header` which can be set to `TRUE` or `FALSE` (case sensitive - more on this later).
 
-```{r}
+```{r, eval=FALSE}
 read.table("hare_lynx.csv", sep = ",", header = TRUE)
 ```
+
+***ADD IMAGE***
 
 Looks good! Now, a couple nuances:
 
@@ -62,6 +66,36 @@ read.table("hare_lynx.csv",
 ```
 
 This does not impact how data is evaluated.
+
+Now that we read in the data correctly, the last thing to do is to save it as a **variable**. This means that rather than just reading in the data and printing it out, we truly save it in the computer's memory and assign it a name. 
+
+The general syntax for saving a variable in R is:
+
+`variableName <- value`
+
+For example:
+
+```{r}
+hareLynxData <- read.table("hare_lynx.csv", 
+           sep = ",", 
+           header = TRUE)
+```
+
+Now, when we refer to `hareLynxData`, we are referring to the data we have just imported. 
+
+For example we can use the `head` function, which displays the first 10 rows of our data: 
+
+```{r}
+head(hareLynxData)
+```
+
+### DataFrames
+
+### Data Manipulation
+
+### Subsetting
+
+### Logical subsetting
 
 ```{r}
 library(ggplot2)
