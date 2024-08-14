@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Introduction to R | Population Genetics Modeling</title>
+  <title>4.2 Variables | Population Genetics Modeling</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.39.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Introduction to R | Population Genetics Modeling" />
+  <meta property="og:title" content="4.2 Variables | Population Genetics Modeling" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Description of Course" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Introduction to R | Population Genetics Modeling" />
+  <meta name="twitter:title" content="4.2 Variables | Population Genetics Modeling" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/pig.jpg" type="image/x-icon" />
-<link rel="prev" href="course-syllabus.html"/>
-<link rel="next" href="variables-in-r.html"/>
+<link rel="prev" href="data-types.html"/>
+<link rel="next" href="authors.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -196,14 +196,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container">
   <img class="hero-image" src="assets/ilum.jpg">
 </div>
-<div id="introduction-to-r" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Introduction to R<a href="introduction-to-r.html#introduction-to-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>R is a programming language developed primarily for use by statisticians, and it is a common tool in the field for data exploration, analysis, visualization, etc. We will be using it throughout the course to manipulate, view, and interpret data.</p>
-<p>In this module, we will learn the basics of R by manipulating some real-world data. In particular, we’ll look at data from the Hudson Bay looking at the size of the hare and lynx populations.</p>
-<p>We’ll talk a lot more about this dataset when we study predator-prey models in a few weeks, but for now, let’s make some exploratory plots.</p>
-<p>Data adapted from here: <a href="http://people.whitman.edu/~hundledr/courses/M250F03/M250.html" class="uri">http://people.whitman.edu/~hundledr/courses/M250F03/M250.html</a></p>
-<p>Please note that input data is available on the course Posit cloud page - please feel free to work alongside this page!</p>
+<div id="variables" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Variables<a href="variables.html#variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Variables allow us to store data in memory, associated with a name.</p>
+<p>We create a variable using the assignment operator <code>&lt;-</code> or <code>=</code>:</p>
+<pre><code>variable_name &lt;- value</code></pre>
+<p>For our purposes, these are interchangeable. For example:</p>
+<p>• <code>composer &lt;- "buxtehude"</code><br />
+• <code>year = 1637</code></p>
+<p>The variable name can be almost anything. Here are some general rules to consider when naming a variable:</p>
+<p>• Variable names start with a letter and consist of letters, numbers, <code>.</code>, and <code>_</code><br />
+• Some words are considered “reserved” - i.e. they are already used by R to mean something and therefore cannot be a variable name. These include <code>TRUE</code>, <code>if</code>, <code>NULL</code>, etc. For a full list, check <a href="https://www.datamentor.io/r-programming/reserved-words">here</a>.<br />
+</p>
+
 </div>
+<!-- </div> -->
 <hr>
 <center> 
   <div class="footer">
@@ -217,8 +224,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="course-syllabus.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="variables-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-types.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="authors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

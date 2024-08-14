@@ -16,3 +16,6 @@ dataframes
 data-manipulation
 subsetting
 logical-subsetting
+r-guidebook
+data-types
+variables
