@@ -5,6 +5,8 @@ rmd_files: ["index.Rmd",
             "syllabus.Rmd",
             "01-intro_to_R/01-intro_to_R.Rmd",
             "01-intro_to_R/day2LectureNotes.Rmd",
+            "R_guidebook/guidebook_intro.Rmd",
+            "R_guidebook/variables.Rmd", 
             "About.Rmd"]
 delete_merged_file: true
 # new_session: yes
