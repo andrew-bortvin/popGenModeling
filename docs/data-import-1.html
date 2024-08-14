@@ -185,10 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-import-1" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Data import<a href="data-import-1.html#data-import-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Our data is available as a comma-delimited text file, or <code>csv</code>. Here’s the top of it as it appears in a text editor:</p>
-<div class="float">
-<img src="01-intro_to_R/img/csv_head.png" alt="text view of our data" />
-<div class="figcaption">text view of our data</div>
-</div>
+<p><img src="01-intro_to_R/img/csv_head.png" /></p>
 <p>The first thing we have to do to work with it is to import it into R. R has a few built-in functions that allow for easy and efficient import of data. As we go on, we’ll learn a lot of nuances about how these work, but for now we’ll start with a tidy, well-behaved dataset that is easy to work with. The <code>read.table</code> function will be our workhorse for reading in data.</p>
 <p>Let’s try it out. To run this function, we need to provide one <strong>argument</strong>: the location of the data we want to load.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-import-1.html#cb4-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>)</span></code></pre></div>
