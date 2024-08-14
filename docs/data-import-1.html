@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.4 Data import | Population Genetics Modeling</title>
+  <title>3.5 Data import | Population Genetics Modeling</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.39.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.4 Data import | Population Genetics Modeling" />
+  <meta property="og:title" content="3.5 Data import | Population Genetics Modeling" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Description of Course" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.4 Data import | Population Genetics Modeling" />
+  <meta name="twitter:title" content="3.5 Data import | Population Genetics Modeling" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -28,7 +28,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/pig.jpg" type="image/x-icon" />
-<link rel="prev" href="the-data-frame.html"/>
+<link rel="prev" href="lecture-notes.html"/>
 <link rel="next" href="authors.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -148,7 +148,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="variables-in-r.html"><a href="variables-in-r.html"><i class="fa fa-check"></i><b>3.1</b> Variables in R</a></li>
 <li class="chapter" data-level="3.2" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>3.2</b> Data import</a></li>
 <li class="chapter" data-level="3.3" data-path="the-data-frame.html"><a href="the-data-frame.html"><i class="fa fa-check"></i><b>3.3</b> The Data Frame</a></li>
-<li class="chapter" data-level="3.4" data-path="data-import-1.html"><a href="data-import-1.html"><i class="fa fa-check"></i><b>3.4</b> Data import</a></li>
+<li class="chapter" data-level="3.4" data-path="lecture-notes.html"><a href="lecture-notes.html"><i class="fa fa-check"></i><b>3.4</b> Lecture Notes</a></li>
+<li class="chapter" data-level="3.5" data-path="data-import-1.html"><a href="data-import-1.html"><i class="fa fa-check"></i><b>3.5</b> Data import</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i>Authors</a></li>
 <li class="divider"></li>
@@ -181,10 +182,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container">
   <img class="hero-image" src="assets/ilum.jpg">
 </div>
-<div id="data-import-1" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Data import<a href="data-import-1.html#data-import-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-import-1" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Data import<a href="data-import-1.html#data-import-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Our data is available as a comma-delimited text file, or <code>csv</code>. Here’s the top of it as it appears in a text editor:</p>
-<p><img src="img/csv_head.png" /></p>
+<div class="float">
+<img src="01-intro_to_R%20/img/csv_head.png" alt="text view of our data" />
+<div class="figcaption">text view of our data</div>
+</div>
 <p>The first thing we have to do to work with it is to import it into R. R has a few built-in functions that allow for easy and efficient import of data. As we go on, we’ll learn a lot of nuances about how these work, but for now we’ll start with a tidy, well-behaved dataset that is easy to work with. The <code>read.table</code> function will be our workhorse for reading in data.</p>
 <p>Let’s try it out. To run this function, we need to provide one <strong>argument</strong>: the location of the data we want to load.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-import-1.html#cb4-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>)</span></code></pre></div>
@@ -778,7 +782,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="the-data-frame.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lecture-notes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="authors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

@@ -10,4 +10,5 @@ introduction-to-r
 variables-in-r
 data-import
 the-data-frame
+lecture-notes
 data-import-1
