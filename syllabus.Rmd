@@ -19,13 +19,18 @@ The size, composition, and genetics of populations fluctuate over time. These fl
 
 By the end of this course, students will be able to:
 
-• outline, using biology theory and terms, how populations grow and interact with each other • describe the external factors that can cause changes in genetic diversity and use this information to predict how specific demographic scenarios would impact a population • manipulate, analyze, and visualize data using R programming • describe and interpret common formats used to store genomic data, and implement standard analytic protocols used to analyze these data types
+• outline, using biology theory and terms, how populations grow and interact with each other\
+• describe the external factors that can cause changes in genetic diversity and use this information to predict how specific demographic scenarios would impact a population\
+• manipulate, analyze, and visualize data using the R programming language\
+• describe and interpret common formats used to store genomic data, and implement standard analytic protocols used to analyze these data types
 
 ### Grading
 
-30% Participation 40% Weekly Assignments 30% Final Project
+30% Participation\
+40% Weekly Assignments\
+30% Final Project
 
-\*\*Weekly Assignments
+**Weekly Assignments**
 
 Class sessions will consist of a lecture in which theory is introduced, instructor-led live-coding sessions that implement the models studied in class, and time for students to work independently on assignments that further develop the models designed in class. There will be one assignment per week, assigned each Thursday and due the following Thursday. After submission, students will receive feedback from the instructor on each assignment and will have until the end of the semester to submit any revisions necessary.
 
