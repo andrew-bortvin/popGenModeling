@@ -203,190 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The first thing we have to do to work with it is to import it into R. R has a few built-in functions that allow for easy and efficient import of data. As we go on, we’ll learn a lot of nuances about how these work, but for now we’ll start with a tidy, well-behaved dataset that is easy to work with. The <code>read.table</code> function will be our workhorse for reading in data.</p>
 <p>Let’s try it out. To run this function, we need to provide one <strong>argument</strong>: the location of the data we want to load.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="lecture-notes.html#cb4-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>)</span></code></pre></div>
-<pre><code>##                     V1
-## 1   Year,Species,Count
-## 2      1845,Hare,19.58
-## 3       1846,Hare,19.6
-## 4      1847,Hare,19.61
-## 5      1848,Hare,11.99
-## 6      1849,Hare,28.04
-## 7         1850,Hare,58
-## 8       1851,Hare,74.6
-## 9      1852,Hare,75.09
-## 10     1853,Hare,88.48
-## 11     1854,Hare,61.28
-## 12     1855,Hare,74.67
-## 13     1856,Hare,88.06
-## 14     1857,Hare,68.51
-## 15     1858,Hare,32.19
-## 16     1859,Hare,12.64
-## 17     1860,Hare,21.49
-## 18     1861,Hare,30.35
-## 19      1862,Hare,2.18
-## 20    1863,Hare,152.65
-## 21    1864,Hare,148.36
-## 22     1865,Hare,85.81
-## 23     1866,Hare,41.41
-## 24     1867,Hare,14.75
-## 25      1868,Hare,2.28
-## 26      1869,Hare,5.91
-## 27      1870,Hare,9.95
-## 28     1871,Hare,10.44
-## 29     1872,Hare,70.64
-## 30     1873,Hare,50.12
-## 31     1874,Hare,50.13
-## 32    1875,Hare,101.25
-## 33     1876,Hare,97.12
-## 34     1877,Hare,86.51
-## 35     1878,Hare,72.17
-## 36     1879,Hare,38.32
-## 37     1880,Hare,10.11
-## 38      1881,Hare,7.74
-## 39      1882,Hare,9.67
-## 40     1883,Hare,43.12
-## 41     1884,Hare,52.21
-## 42    1885,Hare,134.85
-## 43    1886,Hare,134.86
-## 44    1887,Hare,103.79
-## 45      1888,Hare,46.1
-## 46     1889,Hare,15.03
-## 47      1890,Hare,24.2
-## 48     1891,Hare,41.65
-## 49     1892,Hare,52.34
-## 50     1893,Hare,53.78
-## 51      1894,Hare,70.4
-## 52     1895,Hare,85.81
-## 53     1896,Hare,56.69
-## 54     1897,Hare,16.59
-## 55      1898,Hare,6.16
-## 56       1899,Hare,2.3
-## 57     1900,Hare,12.82
-## 58      1901,Hare,4.72
-## 59      1902,Hare,4.73
-## 60     1903,Hare,37.22
-## 61     1904,Hare,69.72
-## 62     1905,Hare,57.78
-## 63     1906,Hare,28.68
-## 64     1907,Hare,23.37
-## 65     1908,Hare,21.54
-## 66     1909,Hare,26.34
-## 67      1910,Hare,53.1
-## 68     1911,Hare,68.48
-## 69     1912,Hare,75.58
-## 70     1913,Hare,57.92
-## 71     1914,Hare,40.97
-## 72     1915,Hare,24.95
-## 73     1916,Hare,12.59
-## 74      1917,Hare,4.97
-## 75       1918,Hare,4.5
-## 76     1919,Hare,11.21
-## 77      1920,Hare,56.6
-## 78     1921,Hare,69.63
-## 79     1922,Hare,77.74
-## 80     1923,Hare,80.53
-## 81     1924,Hare,73.38
-## 82     1925,Hare,36.93
-## 83      1926,Hare,4.64
-## 84      1927,Hare,2.54
-## 85       1928,Hare,1.8
-## 86      1929,Hare,2.39
-## 87      1930,Hare,4.23
-## 88     1931,Hare,19.52
-## 89     1932,Hare,82.11
-## 90     1933,Hare,89.76
-## 91     1934,Hare,81.66
-## 92     1935,Hare,15.76
-## 93     1845,Lynx,30.09
-## 94     1846,Lynx,45.15
-## 95     1847,Lynx,49.15
-## 96     1848,Lynx,39.52
-## 97     1849,Lynx,21.23
-## 98      1850,Lynx,8.42
-## 99      1851,Lynx,5.56
-## 100     1852,Lynx,5.08
-## 101    1853,Lynx,10.17
-## 102     1854,Lynx,19.6
-## 103    1855,Lynx,32.91
-## 104    1856,Lynx,34.38
-## 105    1857,Lynx,29.59
-## 106     1858,Lynx,21.3
-## 107    1859,Lynx,13.69
-## 108     1860,Lynx,7.65
-## 109     1861,Lynx,4.08
-## 110     1862,Lynx,4.09
-## 111    1863,Lynx,14.33
-## 112    1864,Lynx,38.22
-## 113    1865,Lynx,60.78
-## 114    1866,Lynx,70.77
-## 115    1867,Lynx,72.77
-## 116    1868,Lynx,42.68
-## 117    1869,Lynx,16.39
-## 118     1870,Lynx,9.83
-## 119      1871,Lynx,5.8
-## 120     1872,Lynx,5.26
-## 121    1873,Lynx,18.91
-## 122    1874,Lynx,30.95
-## 123    1875,Lynx,31.18
-## 124    1876,Lynx,46.34
-## 125    1877,Lynx,45.77
-## 126    1878,Lynx,44.15
-## 127    1879,Lynx,36.33
-## 128    1880,Lynx,12.03
-## 129     1881,Lynx,12.6
-## 130    1882,Lynx,18.34
-## 131    1883,Lynx,35.14
-## 132    1884,Lynx,43.77
-## 133    1885,Lynx,65.69
-## 134    1886,Lynx,79.35
-## 135    1887,Lynx,51.65
-## 136    1888,Lynx,32.59
-## 137    1889,Lynx,22.45
-## 138    1890,Lynx,16.16
-## 139    1891,Lynx,14.12
-## 140    1892,Lynx,20.38
-## 141    1893,Lynx,33.33
-## 142       1894,Lynx,46
-## 143    1895,Lynx,51.41
-## 144    1896,Lynx,46.43
-## 145    1897,Lynx,33.68
-## 146    1898,Lynx,18.01
-## 147     1899,Lynx,8.86
-## 148     1900,Lynx,7.13
-## 149     1901,Lynx,9.47
-## 150    1902,Lynx,14.86
-## 151    1903,Lynx,31.47
-## 152    1904,Lynx,60.57
-## 153    1905,Lynx,63.51
-## 154     1906,Lynx,54.7
-## 155      1907,Lynx,6.3
-## 156     1908,Lynx,3.41
-## 157     1909,Lynx,5.44
-## 158    1910,Lynx,11.65
-## 159    1911,Lynx,20.35
-## 160    1912,Lynx,32.88
-## 161    1913,Lynx,39.55
-## 162    1914,Lynx,43.36
-## 163    1915,Lynx,40.83
-## 164    1916,Lynx,30.36
-## 165    1917,Lynx,17.18
-## 166     1918,Lynx,6.82
-## 167     1919,Lynx,3.19
-## 168     1920,Lynx,3.52
-## 169     1921,Lynx,9.94
-## 170     1922,Lynx,20.3
-## 171    1923,Lynx,31.99
-## 172    1924,Lynx,42.36
-## 173    1925,Lynx,49.08
-## 174    1926,Lynx,53.99
-## 175    1927,Lynx,52.25
-## 176     1928,Lynx,37.7
-## 177    1929,Lynx,19.14
-## 178     1930,Lynx,6.98
-## 179     1931,Lynx,8.31
-## 180    1932,Lynx,16.01
-## 181    1933,Lynx,24.82
-## 182     1934,Lynx,29.7
-## 183     1935,Lynx,35.4</code></pre>
+<p><strong><em>ADD IMAGE HERE</em></strong></p>
 <p>A couple things went wrong here:</p>
 <ol style="list-style-type: decimal">
 <li>The data is imported as a single column - we want R to know that there are multiple columns delimited by commas</li>
@@ -394,34 +211,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>How do we fix this? Along with the essential argument of the file location, we can provide <code>read.table</code> with many <strong>optional arguments</strong>. Because there are many possibilities for what our second argument may be, we need to explicitly reference the name of our optional arguments.</p>
 <p>Let’s inform R that our data is split by commas. We can do this using the <code>sep</code> (short for “separator”) argument.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="lecture-notes.html#cb6-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="lecture-notes.html#cb5-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 <p><strong><em>ADD IMAGE</em></strong></p>
 <p>Now we correctly have three columns of data! We now have to tell R that the first row is a header. There is an optional argument <code>header</code> which can be set to <code>TRUE</code> or <code>FALSE</code> (case sensitive - more on this later).</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="lecture-notes.html#cb7-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="lecture-notes.html#cb6-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><strong><em>ADD IMAGE</em></strong></p>
 <p>Looks good! Now, a couple nuances:</p>
 <ol style="list-style-type: decimal">
 <li>The order <strong>named arguments</strong> (here, <code>sep</code> and <code>header</code> doesn’t matter. The following lines of code are equivalent:</li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="lecture-notes.html#cb8-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb8-2"><a href="lecture-notes.html#cb8-2" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="lecture-notes.html#cb7-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-2"><a href="lecture-notes.html#cb7-2" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>For better legibility, we can add line breaks after commas, like so:</li>
 </ol>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="lecture-notes.html#cb9-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, </span>
-<span id="cb9-2"><a href="lecture-notes.html#cb9-2" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, </span>
-<span id="cb9-3"><a href="lecture-notes.html#cb9-3" tabindex="-1"></a>           <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="lecture-notes.html#cb8-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, </span>
+<span id="cb8-2"><a href="lecture-notes.html#cb8-2" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, </span>
+<span id="cb8-3"><a href="lecture-notes.html#cb8-3" tabindex="-1"></a>           <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>This does not impact how data is evaluated.</p>
 <p>Now that we read in the data correctly, the last thing to do is to save it as a <strong>variable</strong>. This means that rather than just reading in the data and printing it out, we truly save it in the computer’s memory and assign it a name.</p>
 <p>The general syntax for saving a variable in R is:</p>
 <p><code>variableName &lt;- value</code></p>
 <p>For example:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="lecture-notes.html#cb10-1" tabindex="-1"></a>hareLynxData <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, </span>
-<span id="cb10-2"><a href="lecture-notes.html#cb10-2" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, </span>
-<span id="cb10-3"><a href="lecture-notes.html#cb10-3" tabindex="-1"></a>           <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="lecture-notes.html#cb9-1" tabindex="-1"></a>hareLynxData <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, </span>
+<span id="cb9-2"><a href="lecture-notes.html#cb9-2" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, </span>
+<span id="cb9-3"><a href="lecture-notes.html#cb9-3" tabindex="-1"></a>           <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Now, when we refer to <code>hareLynxData</code>, we are referring to the data we have just imported.</p>
 <p>For example we can use the <code>head</code> function, which displays the first 10 rows of our data:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="lecture-notes.html#cb11-1" tabindex="-1"></a><span class="fu">head</span>(hareLynxData)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="lecture-notes.html#cb10-1" tabindex="-1"></a><span class="fu">head</span>(hareLynxData)</span></code></pre></div>
 <pre><code>##   Year Species Count
 ## 1 1845    Hare 19.58
 ## 2 1846    Hare 19.60
@@ -441,7 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="logical-subsetting" class="section level3 hasAnchor" number="3.4.5">
 <h3><span class="header-section-number">3.4.5</span> Logical subsetting<a href="lecture-notes.html#logical-subsetting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="lecture-notes.html#cb13-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="lecture-notes.html#cb12-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 
 </div>
 </div>
