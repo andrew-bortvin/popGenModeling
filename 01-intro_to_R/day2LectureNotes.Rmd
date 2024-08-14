@@ -11,7 +11,7 @@ We'll talk a lot more about this dataset and the biology it represents when we s
 
 Data adapted from here: <http://people.whitman.edu/~hundledr/courses/M250F03/M250.html>
 
-## Data import
+### Data import
 
 Our data is available as a comma-delimited text file, or `csv`. Here's the top of it as it appears in a text editor:
 
@@ -62,3 +62,8 @@ read.table("hare_lynx.csv",
 ```
 
 This does not impact how data is evaluated.
+
+```{r}
+library(ggplot2)
+
+```
