@@ -45,8 +45,6 @@ Let's break down what's happening here.
 
 On the left of the `<-`, we have the text `populationData` 
 
-
-
 ```{r}
 head(populationData)
 ```
