@@ -15,7 +15,7 @@ Data adapted from here: <http://people.whitman.edu/~hundledr/courses/M250F03/M25
 
 Our data is available as a comma-delimited text file, or `csv`. Here's the top of it as it appears in a text editor:
 
-![text view of our data](01-intro_to_R	/img/csv_head.png)
+![text view of our data](01-intro_to_R/img/csv_head.png)
 
 The first thing we have to do to work with it is to import it into R. R has a few built-in functions that allow for easy and efficient import of data. As we go on, we'll learn a lot of nuances about how these work, but for now we'll start with a tidy, well-behaved dataset that is easy to work with. The `read.table` function will be our workhorse for reading in data.
 
