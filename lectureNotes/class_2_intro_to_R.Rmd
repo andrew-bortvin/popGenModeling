@@ -1,0 +1,68 @@
+---
+title: "Intro to R"
+author: "Andrew Bortvin"
+date: "2024-08-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+In this module, we will learn the basics of R by manipulating some real-world data. In particular, we'll work with data from the Hudson Bay looking at the size of historical hare and lynx populations.
+
+We'll talk a lot more about this dataset and the biology it represents when we study predator-prey models, but for now let's use it to make some exploratory plots.
+
+Data adapted from here: <http://people.whitman.edu/~hundledr/courses/M250F03/M250.html>
+
+## Data import
+
+Our data is available as a comma-delimited text file, or `csv`. Here's the top of it as it appears in a text editor:
+
+![](/Users/andrew/popGenModeling/01-intro_to_R/img/csv_head.png)
+
+The first thing we have to do to work with it is to import it into R. R has a few built-in functions that allow for easy and efficient import of data. As we go on, we'll learn a lot of nuances about how these work, but for now we'll start with a tidy, well-behaved dataset that is easy to work with. The `read.table` function will be our workhorse for reading in data.
+
+Let's try it out. To run this function, we need to provide one **argument**: the location of the data we want to load.
+
+```{r}
+read.table("~/popGenModeling/01-intro_to_R/hare_lynx.csv")
+```
+
+A couple things went wrong here:
+
+1.  The data is imported as a single column - we want R to know that there are multiple columns delimited by commas
+2.  The header (`Year,Species,Count`) was imported as the first row of our data - we would instead like R to recognize that this is a header rather than a row of data
+
+How do we fix this? Along with the essential argument of the file location, we can provide `read.table` with many **optional arguments**. Because there are many possibilities for what our second argument may be, we need to explicitly reference the name of our optional arguments.
+
+Let's inform R that our data is split by commas. We can do this using the `sep` (short for "separator") argument.
+
+```{r}
+read.table("~/popGenModeling/01-intro_to_R/hare_lynx.csv", sep = ",")
+```
+
+Now we correctly have three columns of data! We now have to tell R that the first row is a header. There is an optional argument `header` which can be set to `TRUE` or `FALSE` (case sensitive - more on this later).
+
+```{r}
+read.table("~/popGenModeling/01-intro_to_R/hare_lynx.csv", sep = ",", header = TRUE)
+```
+
+Looks good! Now, a couple nuances:
+
+1.  The order **named arguments** (here, `sep` and `header` doesn't matter. The following lines of code are equivalent:
+
+```{r, eval = FALSE}
+read.table("~/popGenModeling/01-intro_to_R/hare_lynx.csv", sep = ",", header = TRUE)
+read.table("~/popGenModeling/01-intro_to_R/hare_lynx.csv", header = TRUE, sep = ",")
+```
+
+2.  For better legibility, we can add line breaks after commas, like so:
+
+```{r, eval = FALSE}
+read.table("~/popGenModeling/01-intro_to_R/hare_lynx.csv", 
+           sep = ",", 
+           header = TRUE)
+```
+
+This does not impact how data is evaluated.
