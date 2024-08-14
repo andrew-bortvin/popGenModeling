@@ -12,3 +12,7 @@ data-import
 the-data-frame
 lecture-notes
 data-import-1
+dataframes
+data-manipulation
+subsetting
+logical-subsetting
