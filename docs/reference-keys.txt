@@ -2,7 +2,12 @@ homepage
 instructor
 schedule-logistics
 course-syllabus
+course-description
+learning-goals
+grading
+schedule
 introduction-to-r
 variables-in-r
 data-import
 the-data-frame
+data-import-1
