@@ -47,14 +47,14 @@ Looks good! Now, a couple nuances:
 1.  The order **named arguments** (here, `sep` and `header` doesn't matter. The following lines of code are equivalent:
 
 ```{r, eval = FALSE}
-read.table("~/popGenModeling/01-intro_to_R/hare_lynx.csv", sep = ",", header = TRUE)
-read.table("~/popGenModeling/01-intro_to_R/hare_lynx.csv", header = TRUE, sep = ",")
+read.table("hare_lynx.csv", sep = ",", header = TRUE)
+read.table("hare_lynx.csv", header = TRUE, sep = ",")
 ```
 
 2.  For better legibility, we can add line breaks after commas, like so:
 
 ```{r, eval = FALSE}
-read.table("~/popGenModeling/01-intro_to_R/hare_lynx.csv", 
+read.table("hare_lynx.csv", 
            sep = ",", 
            header = TRUE)
 ```
