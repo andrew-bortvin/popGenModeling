@@ -21,9 +21,11 @@ The first thing we have to do to work with it is to import it into R. R has a fe
 
 Let's try it out. To run this function, we need to provide one **argument**: the location of the data we want to load.
 
-```{r}
+```{r, eval=FALSE}
 read.table("hare_lynx.csv")
 ```
+
+***ADD IMAGE HERE***
 
 A couple things went wrong here:
 
