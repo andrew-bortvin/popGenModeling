@@ -1,0 +1,26 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+## Data Types
+
+R allows us to work with many different types of data. The crucial ones for us are: 
+
+**Numeric** data are all numbers. For example:\
+ • `78`\
+ •  `3.2`\
+ • `-9.8`
+ 
+**Characters** are any text enclosed by single or double quotation marks. For example:\
+• `My Grandpa's deck has no pathetic cards`\
+• `"85.3"`
+
+Note that `85.3` - no quotes - is numeric data; `"85.3"` is character data.
+
+**Logical** data has three possible values: `TRUE`, `FALSE`, and `NA` for missing data. These are case sensitive and lack quotes (`"TRUE"` would be character data).
+
+**Factors** are characters with associated **levels**, i.e. an order. When we work with numeric data, it is sorted in ascending/descending order. When we work with character data, there is no comparable way to order our data so we can use factors to manually create an order for our data. If this is a bit abstract right now, it'll make more sense in practice once we work with real data.
+
+## Variables
+
+lorem ipsum
