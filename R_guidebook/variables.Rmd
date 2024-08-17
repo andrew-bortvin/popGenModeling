@@ -7,11 +7,15 @@ ottrpal::set_knitr_image_path()
 R allows us to work with many different types of data. The crucial ones for us are: 
 
 **Numeric** data are all numbers. For example:\
+
+***FIX INDENT***
  • `78`\
  •  `3.2`\
  • `-9.8`
  
 **Characters** are any text enclosed by single or double quotation marks. For example:\
+
+***FIX INDENT***
 • `My Grandpa's deck has no pathetic cards`\
 • `"85.3"`
 
@@ -41,3 +45,4 @@ The variable name can be almost anything. Here are some general rules to conside
 • Variable names start with a letter and consist of letters, numbers, `.`, and `_`\
 • Some words are considered "reserved" - i.e. they are already used by R to mean something and therefore cannot be a variable name. These include `TRUE`, `if`, `NULL`, etc. For a full list, check [here](https://www.datamentor.io/r-programming/reserved-words). \
 
+***Variable overwrighting***
