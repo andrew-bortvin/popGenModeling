@@ -19,3 +19,4 @@ logical-subsetting
 r-guidebook
 data-types
 variables
+lecture-slides
