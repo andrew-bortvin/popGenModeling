@@ -4,4 +4,4 @@ ottrpal::set_knitr_image_path()
 
 # Lecture Slides
 
-Slides from all class session will behosted on this page. 
+Slides from all class session will be hosted on this page. 
