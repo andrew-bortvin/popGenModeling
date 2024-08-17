@@ -224,29 +224,69 @@ Course website: <a href="https://andrew-bortvin.github.io/popGenModeling/" class
 <p>Class sessions will consist of a lecture in which theory is introduced, instructor-led live-coding sessions that implement the models studied in class, and time for students to work independently on assignments that further develop the models designed in class. There will be one assignment per week, assigned each Thursday and due the following Thursday. After submission, students will receive feedback from the instructor on each assignment and will have until the end of the semester to submit any revisions necessary.</p>
 <p>Each assignment will consist of a set of required exercises that can be completed by students of any coding background. These will be followed by optional, more computationally-focused exercises, which will allow students to leverage their computational knowledge in creative application to genomic questions.</p>
 <p>Work will be graded on reasonable completion–that is to say, code that demonstrates an understanding of an algorithm and its general implementation will receive full marks, regardless of whether output is exactly correct. Students will also be assessed on the clarity and interpretability of the data visualizations that their code outputs and the accuracy of their responses to short questions prompting biological interpretation of their results.</p>
-<p><strong>Googling and AI</strong></p>
+<p><strong>Google and AI</strong></p>
 <p>Googling is always an acceptable way to find answers or help, and I encourage you to utilize it extensively. If you adopt a solution following a Google search, make sure you understand what you incorporate, rather than just copy/paste without comprehension of the logic or code. Google is also a good way to learn more about any error messages you encounter in your code.</p>
 <p>You may be familiar with ChatGPT and other large language models. After trying each problem/assignment/task on your own, if you’re still running into issues, feel free to use ChatGPT as you would any other online resource (Google, stack overflow, etc.). Learning how to succinctly describe exactly what you want to accomplish is a skillset in itself, so this can be good practice. If you find code that seems to work (e.g., from Google) but you’re not sure how exactly it works, you can also type it into ChatGPT and ask it to explain what’s happening. As always, please do not submit any code if you are not familiar entirely with how it works; flag it and ask an instructor for assistance. Be aware that ChatGPT might confidently offer an answer that is not correct; so always check the output on your own.</p>
 </div>
 <div id="schedule" class="section level3 hasAnchor" number="2.0.4">
 <h3><span class="header-section-number">2.0.4</span> Schedule<a href="course-syllabus.html#schedule" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Week 1: Introduction to Python Python Fundamentals: Variables, arithmetic, built-in functions, loops and conditionals, plotting Creating and maintaining a Git repository</p>
-<p>Unit 1: Population Biology</p>
-<p>Week 2: One Population Models Exponential growth Growth with limited resources: the logistic growth model Age-structured population dynamics</p>
-<p>Week 3: Multi-population models Competition, cooperation Predator-Prey Interactions and Lotka-Volterra Dynamics</p>
-<p>Week 4: Advanced multi-population models Host-Parasite Interactions and the Nicholson-Bailey model Disease modeling: the SEIR model and community spread</p>
-<p>Unit 2: Population Genetics – Theory and Simulation</p>
-<p>Week 5: Introduction to Population Genetics The Wright-Fisher model and evolutionarily neutral scenarios</p>
-<p>Week 6: Mutation and Natural Selection The Wright-Fisher model with mutation and selection</p>
-<p>Week 7: Population Structure and Genetics Population Size Changes Non-random mating</p>
-<p>Week 8: Spatial Modeling Migration and local adaptation</p>
-<p>Unit 3: Studying Genetic Variation – Data Analysis</p>
-<p>Week 9: Quantifying Variation Measures of genome-wide genetic diversity The Site Frequency Spectrum</p>
-<p>Week 10: Measuring Selection Tests for selection Local adaptation and adaptive introgression</p>
-<p>Week 11: Population Structure Quantification of population structure Measuring admixture and admixture mapping</p>
-<p>Week 12: Phylogenetics and Historical Genetics Inferring the timing of selection – coalescent modeling</p>
-<p>Week 13: Independent Projects Small-group work sessions In-class presentations</p>
-<p><strong><em>DATE:</em></strong> ALL REVISIONS DUE</p>
+<p><strong>First Week - Introduction to Population Genetics Modeling</strong></p>
+<p>August 27: Welcom;, Course Overview</p>
+<p>August 29: Introduction to R Programming - Working with Data, Plotting</p>
+<p><strong>Unit 1: Population Biology</strong>  
+How do population sizes change? Models for one and two populations. Cooperation, Competition, and predation.</p>
+<p><strong>Week Two: One Population Models</strong><br />
+September 3: The Exponential and Logistic Growth Models</p>
+<p>September 5: Density-Dependent Growth</p>
+<p><strong>Week Three: Multiple Populations</strong><br />
+September 10: Lotka-Volterra dynamics 1: Competition and Cooperation</p>
+<p>September 12: Lotka-Volterra dynamics 2: Predation and Parasitism</p>
+<p><strong>Week Four: Advanced Topics in </strong><br />
+September 17: Spatial Models</p>
+<p>September 19: Social Evolution and Game Theory <strong><em>(?)</em></strong></p>
+<p><strong>Unit Two: Population Genetics</strong><br />
+How do we measure the genetic relationships between individuals? Between Populations? Between Species?<br />
+What determines the fate of a genetic element in a population?  
+How does the size and demographic history of a population impact its genetic composition?<br />
+Biological Simulation</p>
+<p><strong>Week Five: The Wright Fisher Model</strong><br />
+September 24: The Wright-Fisher Model: Evolutionary Neutrality</p>
+<p>September 26: The Wright-Fisher Mode 2: Types of Selection, Selective Sweeps</p>
+<p><strong>Week Six: Multiple Loci - Measures of Genetic Variation</strong><br />
+October 1: Nucleotide Diversity, the Site Frequency Spectrum</p>
+<p>October 3: F statistics</p>
+<p><strong>Week Seven: Biological Simulation and Population Size Changes</strong><br />
+October 8: The SLiM Programming Language and <code>slimr</code></p>
+<p>October 10: Population Bottlenecks, Population Expansion, and Genetic Diversity</p>
+<p><strong>Week Eight:Biological Simulation and Population Size Changes Continued</strong><br />
+October 15: Population Size Changes and the Site Frequency Spectrum</p>
+<p>October 17: Fall Break</p>
+<p><strong>Week Nine: Multiple Populations and Genetic Relatedness</strong><br />
+October 22:Simulation with Multiple Populations - Migration</p>
+<p>October 24:Simulation with Multiple Populations - Admixture, Local Adaptation</p>
+<p><strong>Unit Three: Analyzing Genetic Data</strong><br />
+How are population-scale genetic variants represented?
+How do we quantify relatedness between populations?
+Tests for selection, association testing, fine mapping.
+Phylogeny</p>
+<p><strong>Week Ten: Association Testing</strong><br />
+October 29: The Variant Call Format and population-scale data</p>
+<p>October 31: GWAS, linkage disequilbrium, Fine Mapping</p>
+<p><strong>Week Eleven: Population Structure and Phylogeny</strong><br />
+November 5: Population structure: PCA, STRUCTURE, and clustering methods</p>
+<p>November 7: The Coalescent - Inferring Timing of Selection</p>
+<p><strong>Week Twelve: Constructing and Interpreting Phylogenies</strong><br />
+November 12: Working with Phylogenetic Trees - the <code>ape</code> and <code>phytools</code> packages</p>
+<p>November 14: Tree Comparison Methods, Advanced trees</p>
+<p><strong>Week Thirteen: Independent/Small Group Projects</strong><br />
+November 19: Work on Independent/Small Group Projects</p>
+<p>November 21: Work on Independent/Small Group Projects</p>
+<p><strong>Week Fourteen:</strong><br />
+December 3: Semester Retrospective Discussion
+Evolutionary Methods in Other Fields (Linguistics, Economics, etc.)
+Current Directions in Population Genetics</p>
+<p>December 5: Project Presentations and Discussion</p>
+<p><strong>December 19</strong>: All revisions for assignments due</p>
 
 </div>
 </div>
