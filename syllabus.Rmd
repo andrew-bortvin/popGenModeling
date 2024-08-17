@@ -38,7 +38,7 @@ Each assignment will consist of a set of required exercises that can be complete
 
 Work will be graded on reasonable completion--that is to say, code that demonstrates an understanding of an algorithm and its general implementation will receive full marks, regardless of whether output is exactly correct. Students will also be assessed on the clarity and interpretability of the data visualizations that their code outputs and the accuracy of their responses to short questions prompting biological interpretation of their results.
 
-**Googling and AI**
+**Google and AI**
 
 Googling is always an acceptable way to find answers or help, and I encourage you to utilize it extensively. If you adopt a solution following a Google search, make sure you understand what you incorporate, rather than just copy/paste without comprehension of the logic or code. Google is also a good way to learn more about any error messages you encounter in your code.
 
@@ -46,36 +46,92 @@ You may be familiar with ChatGPT and other large language models. After trying e
 
 ### Schedule
 
-Week 1: Introduction to Python Python Fundamentals: Variables, arithmetic, built-in functions, loops and conditionals, plotting Creating and maintaining a Git repository
+**First Week - Introduction to Population Genetics Modeling**
 
-Unit 1: Population Biology
+August 27: Welcom;, Course Overview
 
-Week 2: One Population Models Exponential growth Growth with limited resources: the logistic growth model Age-structured population dynamics
+August 29: Introduction to R Programming - Working with Data, Plotting
 
-Week 3: Multi-population models Competition, cooperation Predator-Prey Interactions and Lotka-Volterra Dynamics
+**Unit 1: Population Biology** \ 
+How do population sizes change? Models for one and two populations. Cooperation, Competition, and predation. 
 
-Week 4: Advanced multi-population models Host-Parasite Interactions and the Nicholson-Bailey model Disease modeling: the SEIR model and community spread
+**Week Two: One Population Models** \
+September 3: The Exponential and Logistic Growth Models 
 
-Unit 2: Population Genetics -- Theory and Simulation
+September 5: Density-Dependent Growth
 
-Week 5: Introduction to Population Genetics The Wright-Fisher model and evolutionarily neutral scenarios
+**Week Three: Multiple Populations** \
+September 10: Lotka-Volterra dynamics 1: Competition and Cooperation
 
-Week 6: Mutation and Natural Selection The Wright-Fisher model with mutation and selection
+September 12: Lotka-Volterra dynamics 2: Predation and Parasitism  
 
-Week 7: Population Structure and Genetics Population Size Changes Non-random mating
+**Week Four: Advanced Topics in **\
+September 17: Spatial Models
 
-Week 8: Spatial Modeling Migration and local adaptation
+September 19: Social Evolution and Game Theory ***(?)***
 
-Unit 3: Studying Genetic Variation -- Data Analysis
+**Unit Two: Population Genetics**\
+How do we measure the genetic relationships between individuals? Between Populations? Between Species? \
+What determines the fate of a genetic element in a population?  \ 
+How does the size and demographic history of a population impact its genetic composition? \
+Biological Simulation 
 
-Week 9: Quantifying Variation Measures of genome-wide genetic diversity The Site Frequency Spectrum
+**Week Five: The Wright Fisher Model**\
+September 24: The Wright-Fisher Model: Evolutionary Neutrality
 
-Week 10: Measuring Selection Tests for selection Local adaptation and adaptive introgression
+September 26: The Wright-Fisher Mode 2: Types of Selection, Selective Sweeps 
 
-Week 11: Population Structure Quantification of population structure Measuring admixture and admixture mapping
+**Week Six: Multiple Loci - Measures of Genetic Variation**\
+October 1: Nucleotide Diversity, the Site Frequency Spectrum
 
-Week 12: Phylogenetics and Historical Genetics Inferring the timing of selection -- coalescent modeling
+October 3: F statistics
 
-Week 13: Independent Projects Small-group work sessions In-class presentations
+**Week Seven: Biological Simulation and Population Size Changes**\
+October 8: The SLiM Programming Language and `slimr`
 
-***DATE:*** ALL REVISIONS DUE
+October 10: Population Bottlenecks, Population Expansion, and Genetic Diversity 
+
+**Week Eight:Biological Simulation and Population Size Changes Continued**\
+October 15: Population Size Changes and the Site Frequency Spectrum
+
+October 17: Fall Break
+
+**Week Nine: Multiple Populations and Genetic Relatedness**\
+October 22:Simulation with Multiple Populations - Migration
+
+October 24:Simulation with Multiple Populations - Admixture, Local Adaptation 
+
+**Unit Three: Analyzing Genetic Data**\
+How are population-scale genetic variants represented? 
+How do we quantify relatedness between populations?
+Tests for selection, association testing, fine mapping. 
+Phylogeny
+
+**Week Ten: Association Testing**\
+October 29: The Variant Call Format and population-scale data 
+
+October 31: GWAS, linkage disequilbrium, Fine Mapping 
+
+**Week Eleven: Population Structure and Phylogeny**\
+November 5: Population structure: PCA, STRUCTURE, and clustering methods
+
+November 7: The Coalescent - Inferring Timing of Selection
+
+**Week Twelve: Constructing and Interpreting Phylogenies**\
+November 12: Working with Phylogenetic Trees - the `ape` and `phytools` packages
+
+November 14: Tree Comparison Methods, Advanced trees
+
+**Week Thirteen: Independent/Small Group Projects**\
+November 19: Work on Independent/Small Group Projects
+
+November 21: Work on Independent/Small Group Projects
+
+**Week Fourteen:**\
+December 3: Semester Retrospective Discussion
+Evolutionary Methods in Other Fields (Linguistics, Economics, etc.)
+Current Directions in Population Genetics
+
+December 5: Project Presentations and Discussion
+
+**December 19**: All revisions for assignments due 
