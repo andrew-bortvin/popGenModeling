@@ -32,9 +32,9 @@ By the end of this course, students will be able to:
 
 **Weekly Assignments**
 
-Class sessions will consist of a lecture in which theory is introduced, instructor-led live-coding sessions that implement the models studied in class, and time for students to work independently on assignments that further develop the models designed in class. There will be one assignment per week, assigned each Thursday and due the following Thursday. After submission, students will receive feedback from the instructor on each assignment and will have until the end of the semester to submit any revisions necessary.
+Class sessions will consist of a lecture in which theory is introduced, instructor-led live-coding sessions that implement the models studied in class, and time for students to work independently on assignments that further develop the models designed in class. Most weeks, there will be a take-home assignment that extends concepts studied in class. Students will have a week to complete problem sets. After submission, students will receive feedback from the instructor on each assignment and will have until the end of the semester to submit any revisions necessary.
 
-Each assignment will consist of a set of required exercises that can be completed by students of any coding background. These will be followed by optional, more computationally-focused exercises, which will allow students to leverage their computational knowledge in creative application to genomic questions.
+Each assignment will consist of a set of required exercises that can be completed by students of any coding background. These will be followed by optional, more computationally-focused exercises, which will allow students to examine more intricate evolutionary scenarios and implement more complicated computational models. 
 
 Work will be graded on reasonable completion--that is to say, code that demonstrates an understanding of an algorithm and its general implementation will receive full marks, regardless of whether output is exactly correct. Students will also be assessed on the clarity and interpretability of the data visualizations that their code outputs and the accuracy of their responses to short questions prompting biological interpretation of their results.
 
@@ -44,7 +44,7 @@ Googling is always an acceptable way to find answers or help, and I encourage yo
 
 You may be familiar with ChatGPT and other large language models. After trying each problem/assignment/task on your own, if you're still running into issues, feel free to use ChatGPT as you would any other online resource (Google, stack overflow, etc.). Learning how to succinctly describe exactly what you want to accomplish is a skillset in itself, so this can be good practice. If you find code that seems to work (e.g., from Google) but you're not sure how exactly it works, you can also type it into ChatGPT and ask it to explain what's happening. As always, please do not submit any code if you are not familiar entirely with how it works; flag it and ask an instructor for assistance. Be aware that ChatGPT might confidently offer an answer that is not correct; so always check the output on your own.
 
-### Schedule
+### Tentative Schedule
 
 **First Week - Introduction to Population Genetics Modeling**
 
@@ -52,7 +52,7 @@ August 27: Welcom;, Course Overview
 
 August 29: Introduction to R Programming - Working with Data, Plotting
 
-**Unit 1: Population Biology** \ 
+**Unit 1: Population Biology** \
 How do population sizes change? Models for one and two populations. Cooperation, Competition, and predation. 
 
 **Week Two: One Population Models** \
@@ -65,10 +65,10 @@ September 10: Lotka-Volterra dynamics 1: Competition and Cooperation
 
 September 12: Lotka-Volterra dynamics 2: Predation and Parasitism  
 
-**Week Four: Advanced Topics in **\
+**Week Four: Advanced Topics in Population Biology**\
 September 17: Spatial Models
 
-September 19: Social Evolution and Game Theory ***(?)***
+September 19: Social Evolution and Game Theory 
 
 **Unit Two: Population Genetics**\
 How do we measure the genetic relationships between individuals? Between Populations? Between Species? \
@@ -102,9 +102,9 @@ October 22:Simulation with Multiple Populations - Migration
 October 24:Simulation with Multiple Populations - Admixture, Local Adaptation 
 
 **Unit Three: Analyzing Genetic Data**\
-How are population-scale genetic variants represented? 
-How do we quantify relatedness between populations?
-Tests for selection, association testing, fine mapping. 
+How are population-scale genetic variants represented? \
+How do we quantify relatedness between populations? \
+Tests for selection, association testing, fine mapping. \ 
 Phylogeny
 
 **Week Ten: Association Testing**\
@@ -128,10 +128,10 @@ November 19: Work on Independent/Small Group Projects
 November 21: Work on Independent/Small Group Projects
 
 **Week Fourteen:**\
-December 3: Semester Retrospective Discussion
-Evolutionary Methods in Other Fields (Linguistics, Economics, etc.)
-Current Directions in Population Genetics
+December 3: Semester Retrospective Discussion \
+Evolutionary Methods in Other Fields (Linguistics, Economics, etc.) \
+Current Directions in Population Genetics \
 
 December 5: Project Presentations and Discussion
 
-**December 19**: All revisions for assignments due 
+**December 19**: All revisions for weekly assignments due 
