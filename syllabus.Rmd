@@ -48,7 +48,7 @@ You may be familiar with ChatGPT and other large language models. After trying e
 
 **First Week - Introduction to Population Genetics Modeling**
 
-August 27: Welcom;, Course Overview
+August 27: Welcome; Course Overview
 
 August 29: Introduction to R Programming - Working with Data, Plotting
 
