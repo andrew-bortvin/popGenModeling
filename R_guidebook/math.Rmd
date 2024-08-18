@@ -1,0 +1,38 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+## Math 
+
+A lot of mathematical operations in R are straightforward. Here are some of the basic operations we can perform:
+
+• + and -: addition and subtraction \
+• * and /: multiplication and division \
+• **: exponentials \
+• We can perform mathematical operations on values directly: \
+
+```{r}
+print(2 + 3)
+```
+
+Or we can operate on variables:
+
+```{r}
+x <- 5 
+print(5**3)
+```
+
+We can save the output of an expression as a variable:
+
+```{r}
+my_product <- 2 * 10
+print(my_product)
+```
+
+### Order of Operations
+
+R follows the usual mathematical order of operations. And like in math, we can use parentheses `()` to enforce a specific order.
+
+```{r}
+print(2 * (2 + 2))
+```
