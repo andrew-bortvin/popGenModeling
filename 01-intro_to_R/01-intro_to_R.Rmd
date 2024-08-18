@@ -51,5 +51,5 @@ head(populationData)
 
 R has the ability to manipulate multiple different types of data. The primary data types we will use in this course are: 
 
-**Numeric** are whole numbers. For example:
+
 
