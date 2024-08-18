@@ -6,11 +6,11 @@ course-description
 learning-goals
 grading
 tentative-schedule
+lecture-notes
 introduction-to-r
-variables-in-r
 data-import
 the-data-frame
-lecture-notes
+lecture-notes-1
 data-import-1
 dataframes
 data-manipulation
@@ -21,4 +21,6 @@ data-types
 variables
 overwriting-variables
 vectors
+indexing
+adding-to-vectors
 lecture-slides
