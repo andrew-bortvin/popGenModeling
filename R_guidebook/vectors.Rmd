@@ -28,11 +28,25 @@ We will often want to take a larger vector and extract specific data points from
 
 `vectorName[itemPosition]`
 
-As a reminder, here is our `plants` vector:
+The position of the first item in the list is 1, and so on (in other words, R is 1-indexed). Let's try indexing using our `plants` vector, made above
 
-```{r, include=FALSE}
+```{r}
 print(plants)
 ```
+
+To extract `"Ivy"`, we would do:
+
+```{r}
+plants[2]
+```
+
+We can also use a colon to extract multiple subsequent elements:
+
+```{r}
+plants[1:2]
+```
+
+`plants` is a short vector, but often we will want to extract elements close to the end of a long vector. 
 
 ### Adding to Vectors
 
