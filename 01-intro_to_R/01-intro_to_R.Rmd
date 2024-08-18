@@ -3,7 +3,9 @@ ottrpal::set_knitr_image_path()
 knitr::opts_knit$set(root.dir = '01-intro_to_R')
 ```
 
-# Introduction to R 
+# Lecture Notes
+
+## Introduction to R 
 
 R is a programming language developed primarily for use by statisticians, and it is a common tool in the field for data exploration, analysis, visualization, etc. We will be using it throughout the course to manipulate, view, and interpret data. 
 
@@ -15,13 +17,9 @@ Data adapted from here: http://people.whitman.edu/~hundledr/courses/M250F03/M250
 
 Please note that input data is available on the course Posit cloud page - please feel free to work alongside this page! 
 
-## Variables in R
+### Data import 
 
-
-
-## Data import 
-
-The bread and butter of R is the dataframe, a tabular data structure which contains data of multiple types. 
+The bread and butter of R is the data frame, a tabular data structure which can contain data of multiple types. 
 
 R has a few built-in functions that allow for easy and efficient import of data. As we go on, we'll learn a lot of nuances about how these work, but for now we'll start with a tidy, well-behaved dataset that is easy to work with.
 
@@ -49,7 +47,7 @@ On the left of the `<-`, we have the text `populationData`
 head(populationData)
 ```
 
-## The Data Frame
+### The Data Frame
 
 R has the ability to manipulate multiple different types of data. The primary data types we will use in this course are: 
 
