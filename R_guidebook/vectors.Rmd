@@ -22,6 +22,20 @@ print(beetles)
 
 Here, we mix character and numeric data. Notice that when we print the vector, the numeric `5` is converted to the string `"5"`.
 
+### Indexing
+
+We will often want to take a larger vector and extract specific data points from it. To do this, we **index** our vector using the general syntax: 
+
+`vectorName[itemPosition]`
+
+As a reminder, here is our `plants` vector:
+
+```{r, include=FALSE}
+print(plants)
+```
+
+### Adding to Vectors
+
 
 
 
