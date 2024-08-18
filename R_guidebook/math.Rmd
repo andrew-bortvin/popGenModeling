@@ -9,7 +9,8 @@ A lot of mathematical operations in R are straightforward. Here are some of the 
 • + and -: addition and subtraction \
 • * and /: multiplication and division \
 • **: exponentials \
-• We can perform mathematical operations on values directly: \
+
+We can perform mathematical operations on values directly: \
 
 ```{r}
 print(2 + 3)
