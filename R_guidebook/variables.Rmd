@@ -8,14 +8,12 @@ R allows us to work with many different types of data. The crucial ones for us a
 
 **Numeric** data are all numbers. For example:
 
-***FIX INDENT***
  • `78`\
  •  `3.2`\
  • `-9.8`
  
 **Characters** are any text enclosed by single or double quotation marks. For example:
 
-***FIX INDENT***
 • `My Grandpa's deck has no pathetic cards`\
 • `"85.3"`
 
@@ -45,4 +43,26 @@ The variable name can be almost anything. Here are some general rules to conside
 • Variable names start with a letter and consist of letters, numbers, `.`, and `_`\
 • Some words are considered "reserved" - i.e. they are already used by R to mean something and therefore cannot be a variable name. These include `TRUE`, `if`, `NULL`, etc. For a full list, check [here](https://www.datamentor.io/r-programming/reserved-words). \
 
-***Variable overwrighting***
+### Overwriting Variables
+
+In the following code example, we assign two different values to the same variable name:
+
+```{r, eval = FALSE}
+myData <- 3
+myData <- "marigold"
+```
+
+What is the value of `myData`? It will be `"marigold"`. In the first line of code, we set `myData` equal to `3`, but then in the next line, we overwrite that value and set `myData` equal to `"margiold"`. The previous value of `myData` is erased and it is set to the new value. 
+
+Note that in doing so, we change not just the value of `myData`, but also the *data type* - it goes from numeric to character data.
+
+We can also do this to update the value of a variable:
+
+```{r}
+a_number <- 5 
+a_number <- a_number + 10
+print(a_number)
+```
+
+Here, we set the variable `a_number` equal to 5. In the next line, we add 10 to its value, storing the result under the same name. `a_number` is now equal to 15. 
+
