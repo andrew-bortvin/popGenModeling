@@ -4,4 +4,28 @@ ottrpal::set_knitr_image_path()
 
 ## Vectors
 
-Add text here!
+Usually, we don't want to work with just a single data point - we will typically have multiple values that we want to store together. The most convenient way of doing this in R is using **vectors**. A vector stores multiple data points, preserving their order. 
+
+We create a vector using the `c()` function. For example: 
+
+```{r}
+plants <- c("Feverfew", "Ivy", "Willow")
+print(plants)
+```
+
+The data within a vector may be of any type, but all elements of a vector **must be of the same data type**. What happens if we try to create a vector with multiple data types? 
+
+```{r}
+beetles <- c("Weevil", "Firefly", 5)
+print(beetles)
+```
+
+Here, we mix character and numeric data. Notice that when we print the vector, the numeric `5` is converted to the string `"5"`.
+
+
+
+
+
+
+
+
