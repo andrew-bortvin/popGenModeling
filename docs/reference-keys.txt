@@ -20,6 +20,8 @@ r-guidebook
 data-types
 variables
 overwriting-variables
+math
+order-of-operations
 vectors
 indexing
 modifying-vecotrs
