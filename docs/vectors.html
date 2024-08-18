@@ -223,7 +223,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.3.1</span> Indexing<a href="vectors.html#indexing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We will often want to take a larger vector and extract specific data points from it. To do this, we <strong>index</strong> our vector using the general syntax:</p>
 <p><code>vectorName[itemPosition]</code></p>
-<p>As a reminder, here is our <code>plants</code> vector:</p>
+<p>The position of the first item in the list is 1, and so on (in other words, R is 1-indexed). Let’s try indexing using our <code>plants</code> vector, made above</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="vectors.html#cb21-1" tabindex="-1"></a><span class="fu">print</span>(plants)</span></code></pre></div>
+<pre><code>## [1] &quot;Feverfew&quot; &quot;Ivy&quot;      &quot;Willow&quot;</code></pre>
+<p>To extract <code>"Ivy"</code>, we would do:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="vectors.html#cb23-1" tabindex="-1"></a>plants[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Ivy&quot;</code></pre>
+<p>We can also use a colon to extract multiple subsequent elements:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="vectors.html#cb25-1" tabindex="-1"></a>plants[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Feverfew&quot; &quot;Ivy&quot;</code></pre>
+<p><code>plants</code> is a short vector, but often we will want to extract elements close to the end of a long vector.</p>
 </div>
 <div id="adding-to-vectors" class="section level3 hasAnchor" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Adding to Vectors<a href="vectors.html#adding-to-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
