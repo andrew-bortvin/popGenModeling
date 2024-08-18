@@ -7,6 +7,7 @@ rmd_files: ["index.Rmd",
             "01-intro_to_R/day2LectureNotes.Rmd",
             "R_guidebook/guidebook_intro.Rmd",
             "R_guidebook/variables.Rmd", 
+            "R_guidebook/vectors.Rmd",
             "lectureSlides/lectureSlides.Rmd",
             "About.Rmd"]
 delete_merged_file: true
