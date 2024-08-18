@@ -6,14 +6,14 @@ ottrpal::set_knitr_image_path()
 
 R allows us to work with many different types of data. The crucial ones for us are: 
 
-**Numeric** data are all numbers. For example:\
+**Numeric** data are all numbers. For example:
 
 ***FIX INDENT***
  • `78`\
  •  `3.2`\
  • `-9.8`
  
-**Characters** are any text enclosed by single or double quotation marks. For example:\
+**Characters** are any text enclosed by single or double quotation marks. For example:
 
 ***FIX INDENT***
 • `My Grandpa's deck has no pathetic cards`\
