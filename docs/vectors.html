@@ -172,7 +172,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>4.3</b> Vectors</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="vectors.html"><a href="vectors.html#indexing"><i class="fa fa-check"></i><b>4.3.1</b> Indexing</a></li>
-<li class="chapter" data-level="4.3.2" data-path="vectors.html"><a href="vectors.html#adding-to-vectors"><i class="fa fa-check"></i><b>4.3.2</b> Adding to Vectors</a></li>
+<li class="chapter" data-level="4.3.2" data-path="vectors.html"><a href="vectors.html#modifying-vecotrs"><i class="fa fa-check"></i><b>4.3.2</b> Modifying Vecotrs</a></li>
+<li class="chapter" data-level="4.3.3" data-path="vectors.html"><a href="vectors.html#adding-to-vectors"><i class="fa fa-check"></i><b>4.3.3</b> Adding to Vectors</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="lecture-slides.html"><a href="lecture-slides.html"><i class="fa fa-check"></i><b>5</b> Lecture Slides</a></li>
@@ -232,10 +233,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can also use a colon to extract multiple subsequent elements:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="vectors.html#cb25-1" tabindex="-1"></a>plants[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Feverfew&quot; &quot;Ivy&quot;</code></pre>
-<p><code>plants</code> is a short vector, but often we will want to extract elements close to the end of a long vector.</p>
+<p>We often want to extract elements near the end of a vector. <code>plants</code> is short and we can count to the end of it easily, but most of the data we will work with is a lot longer. One easy way to index items near the end of a vector is to use the <code>length()</code> function. We can index the final entry in plants as so:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="vectors.html#cb27-1" tabindex="-1"></a>plants[<span class="fu">length</span>(plants)]</span></code></pre></div>
+<pre><code>## [1] &quot;Willow&quot;</code></pre>
+<p><code>length(plants)</code> is 3, so writing <code>plants[length(plants)]</code> is equivalent to writing <code>plants[3]</code></p>
+<p>Likewise, we can index the second element by doing some math:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="vectors.html#cb29-1" tabindex="-1"></a>plants[<span class="fu">length</span>(plants) <span class="sc">-</span> <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Ivy&quot;</code></pre>
 </div>
-<div id="adding-to-vectors" class="section level3 hasAnchor" number="4.3.2">
-<h3><span class="header-section-number">4.3.2</span> Adding to Vectors<a href="vectors.html#adding-to-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="modifying-vecotrs" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Modifying Vecotrs<a href="vectors.html#modifying-vecotrs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="adding-to-vectors" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Adding to Vectors<a href="vectors.html#adding-to-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
 </div>
 </div>

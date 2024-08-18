@@ -22,5 +22,6 @@ variables
 overwriting-variables
 vectors
 indexing
+modifying-vecotrs
 adding-to-vectors
 lecture-slides
