@@ -1,0 +1,44 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+## Data Frames 
+
+The Data Frame is a tabular data structure which can contain data of multiple types. It is conceptually similar to an Excel spreadsheet and is by far the most important data structure in R programming.  
+
+In a dataframe, each column is a vector. This is to say, all elements within a column will be of the same data type. However, different columns can be of different data types. 
+
+Here's a data frame with a handful of writers, their birth years, and wether or not they were poets. 
+
+```{r}
+writers <- data.frame (
+  Name = c("Plath", "Tolstoy", "Milton", "Woolf", "Farid ud-Din Attar"),
+  BirthYear = c(1932, 1828, 1608, 1882, 1145),
+  Poet = c(TRUE, FALSE, TRUE, FALSE, TRUE)
+)
+
+print(writers)
+```
+Note that when we set the names of our columns, we *must* use the equals sign - we cannot use the assignment `<-` as that is only used for variable assignment (i.e. we cannot do `Poet <- c(TRUE, FALSE, TRUE, FALSE, TRUE)`)
+
+### Subsetting Data Frames
+
+When we indexed vectors, we used the bracket notation `vector[index]` to extract information. We can do the same for data frames, but now we must provide two values - one for the row index and one for the column index, so the syntax is `dataFrame[row, column]`. For example, to pull out the value `1608` from `writers`, we would do: 
+
+```{r}
+writers[3,2]
+```
+
+However, there is an easier way of extracting infromation from a data frame - we can take advantage of row names. We can pull out individual vectors from a data frame using the syntax `dataFrame$columnName`. For example, we can extract the `Name` vector from `writers` using:
+
+```{r}
+writers$Name
+```
+
+And then we can index the `Name` as we would any other vector:
+
+```{r}
+writers$Name[2]
+```
+
+### Logical Indexing

@@ -46,6 +46,12 @@ We can also use a colon to extract multiple subsequent elements:
 plants[1:2]
 ```
 
+We can also provide a vector to index multiple values:
+
+```{r}
+plants[c(1,3)]
+```
+
 We often want to extract elements near the end of a vector. `plants` is short and we can count to the end of it easily, but most of the data we will work with is a lot longer. One easy way to index items near the end of a vector is to use the `length()` function. We can index the final entry in plants as so:
 
 ```{r}
