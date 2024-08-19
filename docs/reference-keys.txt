@@ -24,9 +24,10 @@ math
 order-of-operations
 vectors
 indexing
-modifying-vecotrs
+logical-indexing
+modifying-vectors
 adding-to-vectors
 data-frames
 subsetting-data-frames
-logical-indexing
+logical-indexing-1
 lecture-slides
