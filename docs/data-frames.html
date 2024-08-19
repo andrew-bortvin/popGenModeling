@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Lecture Slides | Population Genetics Modeling</title>
+  <title>4.5 Data Frames | Population Genetics Modeling</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.39.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Lecture Slides | Population Genetics Modeling" />
+  <meta property="og:title" content="4.5 Data Frames | Population Genetics Modeling" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Description of Course" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Lecture Slides | Population Genetics Modeling" />
+  <meta name="twitter:title" content="4.5 Data Frames | Population Genetics Modeling" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/pig.jpg" type="image/x-icon" />
-<link rel="prev" href="data-frames.html"/>
-<link rel="next" href="authors.html"/>
+<link rel="prev" href="vectors.html"/>
+<link rel="next" href="lecture-slides.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -217,11 +217,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container">
   <img class="hero-image" src="assets/ilum.jpg">
 </div>
-<div id="lecture-slides" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">5</span> Lecture Slides<a href="lecture-slides.html#lecture-slides" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Slides from all class session will be hosted on this page.</p>
+<div id="data-frames" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Data Frames<a href="data-frames.html#data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Data Frame is a tabular data structure which can contain data of multiple types. It is conceptually similar to an Excel spreadsheet and is by far the most important data structure in R programming.</p>
+<p>In a dataframe, each column is a vector. This is to say, all elements within a column will be of the same data type. However, different columns can be of different data types.</p>
+<p>Here’s a data frame with a handful of writers, their birth years, and wether or not they were poets.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-frames.html#cb41-1" tabindex="-1"></a>writers <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (</span>
+<span id="cb41-2"><a href="data-frames.html#cb41-2" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;Plath&quot;</span>, <span class="st">&quot;Tolstoy&quot;</span>, <span class="st">&quot;Milton&quot;</span>, <span class="st">&quot;Woolf&quot;</span>, <span class="st">&quot;Farid ud-Din Attar&quot;</span>),</span>
+<span id="cb41-3"><a href="data-frames.html#cb41-3" tabindex="-1"></a>  <span class="at">BirthYear =</span> <span class="fu">c</span>(<span class="dv">1932</span>, <span class="dv">1828</span>, <span class="dv">1608</span>, <span class="dv">1882</span>, <span class="dv">1145</span>),</span>
+<span id="cb41-4"><a href="data-frames.html#cb41-4" tabindex="-1"></a>  <span class="at">Poet =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb41-5"><a href="data-frames.html#cb41-5" tabindex="-1"></a>)</span>
+<span id="cb41-6"><a href="data-frames.html#cb41-6" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="data-frames.html#cb41-7" tabindex="-1"></a><span class="fu">print</span>(writers)</span></code></pre></div>
+<pre><code>##                 Name BirthYear  Poet
+## 1              Plath      1932  TRUE
+## 2            Tolstoy      1828 FALSE
+## 3             Milton      1608  TRUE
+## 4              Woolf      1882 FALSE
+## 5 Farid ud-Din Attar      1145  TRUE</code></pre>
+<p>Note that when we set the names of our columns, we <em>must</em> use the equals sign - we cannot use the assignment <code>&lt;-</code> as that is only used for variable assignment (i.e. we cannot do <code>Poet &lt;- c(TRUE, FALSE, TRUE, FALSE, TRUE)</code>)</p>
+<div id="subsetting-data-frames" class="section level3 hasAnchor" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Subsetting Data Frames<a href="data-frames.html#subsetting-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When we indexed vectors, we used the bracket notation <code>vector[index]</code> to extract information. We can do the same for data frames, but now we must provide two values - one for the row index and one for the column index, so the syntax is <code>dataFrame[row, column]</code>. For example, to pull out the value <code>1608</code> from <code>writers</code>, we would do:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="data-frames.html#cb43-1" tabindex="-1"></a>writers[<span class="dv">3</span>,<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 1608</code></pre>
+<p>As with vectors, we can extract multiple elements at once:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="data-frames.html#cb45-1" tabindex="-1"></a>writers[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>), <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]</span></code></pre></div>
+<pre><code>##      Name BirthYear
+## 2 Tolstoy      1828
+## 3  Milton      1608</code></pre>
+<p>What if we want to subset the rows, but keep all the columns of our data frame? We can leave a field blank to not subset it at all. For example, pulling out all columns for rows 2 and 3:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="data-frames.html#cb47-1" tabindex="-1"></a>writers[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>), ]</span></code></pre></div>
+<pre><code>##      Name BirthYear  Poet
+## 2 Tolstoy      1828 FALSE
+## 3  Milton      1608  TRUE</code></pre>
+<p>However, there is an easier way of extracting infromation from a data frame - we can take advantage of row names. We can pull out individual vectors from a data frame using the syntax <code>dataFrame$columnName</code>. For example, we can extract the <code>Name</code> vector from <code>writers</code> using:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="data-frames.html#cb49-1" tabindex="-1"></a>writers<span class="sc">$</span>Name</span></code></pre></div>
+<pre><code>## [1] &quot;Plath&quot;              &quot;Tolstoy&quot;            &quot;Milton&quot;            
+## [4] &quot;Woolf&quot;              &quot;Farid ud-Din Attar&quot;</code></pre>
+<p>And then we can index the <code>Name</code> as we would any other vector:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="data-frames.html#cb51-1" tabindex="-1"></a>writers<span class="sc">$</span>Name[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Tolstoy&quot;</code></pre>
+</div>
+<div id="logical-indexing" class="section level3 hasAnchor" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Logical Indexing<a href="data-frames.html#logical-indexing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We saw above that we can use vectors of indeces to extract multiple rows and columns from our data frame.</p>
 
 </div>
+</div>
+<!-- </div> -->
 <hr>
 <center> 
   <div class="footer">
@@ -235,8 +279,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="data-frames.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="authors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="vectors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lecture-slides.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

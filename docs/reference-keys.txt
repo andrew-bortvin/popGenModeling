@@ -26,4 +26,7 @@ vectors
 indexing
 modifying-vecotrs
 adding-to-vectors
+data-frames
+subsetting-data-frames
+logical-indexing
 lecture-slides
