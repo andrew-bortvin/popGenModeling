@@ -9,7 +9,7 @@ rmd_files: ["index.Rmd",
             "R_guidebook/variables.Rmd", 
             "R_guidebook/math.Rmd",
             "R_guidebook/vectors.Rmd",
-            "add R_guidebook/dataFrames.Rmd",
+            "R_guidebook/dataFrames.Rmd",
             "lectureSlides/lectureSlides.Rmd",
             "About.Rmd"]
 delete_merged_file: true
