@@ -221,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="vectors" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Vectors<a href="vectors.html#vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Usually, we don’t want to work with just a single data point - we will typically have multiple values that we want to store together. The most convenient way of doing this in R is using <strong>vectors</strong>. A vector stores multiple data points, preserving their order.</p>
-<p>We create a vector using the <code>c()</code> function. For example:</p>
+<p>We create a vector using the <code>c()</code> (short for “concatenate”) function. For example:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="vectors.html#cb25-1" tabindex="-1"></a>plants <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Feverfew&quot;</span>, <span class="st">&quot;Ivy&quot;</span>, <span class="st">&quot;Willow&quot;</span>)</span>
 <span id="cb25-2"><a href="vectors.html#cb25-2" tabindex="-1"></a><span class="fu">print</span>(plants)</span></code></pre></div>
 <pre><code>## [1] &quot;Feverfew&quot; &quot;Ivy&quot;      &quot;Willow&quot;</code></pre>
@@ -281,7 +281,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="adding-to-vectors" class="section level3 hasAnchor" number="4.4.4">
 <h3><span class="header-section-number">4.4.4</span> Adding to Vectors<a href="vectors.html#adding-to-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>plants &lt;- c(plants, “Philodendron”)</p>
+<p>We can add to vectors using the concatenate function:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="vectors.html#cb52-1" tabindex="-1"></a>plants <span class="ot">&lt;-</span> <span class="fu">c</span>(plants, <span class="st">&quot;Philodendron&quot;</span>)</span>
+<span id="cb52-2"><a href="vectors.html#cb52-2" tabindex="-1"></a><span class="fu">print</span>(plants)</span></code></pre></div>
+<pre><code>## [1] &quot;Feverfew&quot;     &quot;Ivy&quot;          &quot;Willow&quot;       &quot;Philodendron&quot;</code></pre>
 
 </div>
 </div>
