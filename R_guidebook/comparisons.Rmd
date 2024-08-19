@@ -1,0 +1,60 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+## Comparisons
+
+In R, comparisons will always return Logical data, i.e. either `TRUE` or `False`. We can use the following syntax to compare values:
+
+• < and >: greater than, less than \
+• <= and >=: greater than or equal to, less than or equal to 
+
+For example:
+
+```{r}
+print(5.3 < 17)
+```
+
+```{r}
+print(4 >= (8/2))
+```
+
+• `==` checks if two values are equal. `!=` checks if two values are different.
+
+```{r}
+print(2 == (10 - 8))
+```
+
+Note that a single equals sign = can be used to assign values. However, a double equals sign == is used to compare values.
+
+### AND and OR
+
+We can evaluate multiple conditions using the logical AND and OR operators. 
+
+#### AND
+
+AND statements are represented using the operator `&`. Two AND statements evaluate as `TRUE` only if **both** are `TRUE`. For example:
+
+```{r}
+(5 > 2) & (7 + 2 == 9)
+```
+
+If **either** statement is `FALSE`, the entire expression is `FALSE`:
+
+```{r}
+(5 > 2) & (12 == 2)
+```
+
+#### OR
+
+OR statements are represented using the operator `|`. Two OR statements evaluate as `TRUE` if **either** statement is `TRUE`. For example:
+
+```{r}
+(5 > 2) | (7 + 2 == 9)
+```
+
+If **either** statement is `TRUE`, the entire expression is `TRUE`:
+
+```{r}
+(5 > 2) | (12 == 2)
+```
