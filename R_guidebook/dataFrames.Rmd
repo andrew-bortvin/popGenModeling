@@ -29,6 +29,18 @@ When we indexed vectors, we used the bracket notation `vector[index]` to extract
 writers[3,2]
 ```
 
+As with vectors, we can extract multiple elements at once:
+
+```{r}
+writers[c(2,3), c(1, 2)]
+```
+
+What if we want to subset the rows, but keep all the columns of our data frame? We can leave a field blank to not subset it at all. For example, pulling out all columns for rows 2 and 3: 
+
+```{r}
+writers[c(2,3), ]
+```
+
 However, there is an easier way of extracting infromation from a data frame - we can take advantage of row names. We can pull out individual vectors from a data frame using the syntax `dataFrame$columnName`. For example, we can extract the `Name` vector from `writers` using:
 
 ```{r}
@@ -42,3 +54,5 @@ writers$Name[2]
 ```
 
 ### Logical Indexing
+
+We saw above that we can use vectors of indeces to extract multiple rows and columns from our data frame. 
