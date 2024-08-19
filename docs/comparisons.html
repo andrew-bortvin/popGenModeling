@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Lecture Notes | Population Genetics Modeling</title>
+  <title>4.4 Comparisons | Population Genetics Modeling</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.39.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Lecture Notes | Population Genetics Modeling" />
+  <meta property="og:title" content="4.4 Comparisons | Population Genetics Modeling" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Description of Course" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Lecture Notes | Population Genetics Modeling" />
+  <meta name="twitter:title" content="4.4 Comparisons | Population Genetics Modeling" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/pig.jpg" type="image/x-icon" />
-<link rel="prev" href="course-syllabus.html"/>
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="math.html"/>
+<link rel="next" href="vectors.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -222,8 +222,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container">
   <img class="hero-image" src="assets/ilum.jpg">
 </div>
-<div id="lecture-notes" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Lecture Notes<a href="lecture-notes.html#lecture-notes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="comparisons" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Comparisons<a href="comparisons.html#comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In R, comparisons will always return Logical data, i.e. either <code>TRUE</code> or <code>False</code>. We can use the following syntax to compare values:</p>
+<p>• &lt; and &gt;: greater than, less than<br />
+• &lt;= and &gt;=: greater than or equal to, less than or equal to</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="comparisons.html#cb25-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fl">5.3</span> <span class="sc">&lt;</span> <span class="dv">17</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="comparisons.html#cb27-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">4</span> <span class="sc">&gt;=</span> (<span class="dv">8</span><span class="sc">/</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>• <code>==</code> checks if two values are equal. <code>!=</code> checks if two values are different.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="comparisons.html#cb29-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">2</span> <span class="sc">==</span> (<span class="dv">10</span> <span class="sc">-</span> <span class="dv">8</span>))</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>Note that a single equals sign = can be used to assign values. However, a double equals sign == is used to compare values.</p>
+<div id="and-and-or" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> AND and OR<a href="comparisons.html#and-and-or" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can evaluate multiple conditions using the logical AND and OR operators.</p>
+<div id="and" class="section level4 hasAnchor" number="4.4.1.1">
+<h4><span class="header-section-number">4.4.1.1</span> AND<a href="comparisons.html#and" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>AND statements are represented using the operator <code>&amp;</code>. Two AND statements evaluate as <code>TRUE</code> only if <strong>both</strong> are <code>TRUE</code>. For example:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="comparisons.html#cb31-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">&amp;</span> (<span class="dv">7</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">9</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>If <strong>either</strong> statement is <code>FALSE</code>, the entire expression is <code>FALSE</code>:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="comparisons.html#cb33-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">&amp;</span> (<span class="dv">12</span> <span class="sc">==</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="or" class="section level4 hasAnchor" number="4.4.1.2">
+<h4><span class="header-section-number">4.4.1.2</span> OR<a href="comparisons.html#or" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>OR statements are represented using the operator <code>|</code>. Two OR statements evaluate as <code>TRUE</code> if <strong>either</strong> statement is <code>TRUE</code>. For example:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="comparisons.html#cb35-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">|</span> (<span class="dv">7</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">9</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>If <strong>either</strong> statement is <code>TRUE</code>, the entire expression is <code>TRUE</code>:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="comparisons.html#cb37-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">|</span> (<span class="dv">12</span> <span class="sc">==</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+
+</div>
+</div>
 </div>
 <hr>
 <center> 
@@ -238,8 +273,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="course-syllabus.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-to-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="math.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vectors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

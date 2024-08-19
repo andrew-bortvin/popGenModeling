@@ -22,6 +22,10 @@ variables
 overwriting-variables
 math
 order-of-operations
+comparisons
+and-and-or
+and
+or
 vectors
 indexing
 logical-indexing
