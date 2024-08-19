@@ -55,4 +55,9 @@ writers$Name[2]
 
 ### Logical Indexing
 
+As with vectors, we can use logic and comparison operators to subset data frames. For example, we can subset our data frame just to writers who are poets:
 
+```{r}
+poetsVector <- writers$Poet == TRUE # Get the positions of writers who are poets
+writers[poetsVector, ]
+```
