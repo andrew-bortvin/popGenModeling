@@ -6,7 +6,7 @@ ottrpal::set_knitr_image_path()
 
 Usually, we don't want to work with just a single data point - we will typically have multiple values that we want to store together. The most convenient way of doing this in R is using **vectors**. A vector stores multiple data points, preserving their order. 
 
-We create a vector using the `c()` function. For example: 
+We create a vector using the `c()` (short for "concatenate") function. For example: 
 
 ```{r}
 plants <- c("Feverfew", "Ivy", "Willow")
@@ -110,9 +110,11 @@ print(myNumbers)
 
 ### Adding to Vectors
 
+We can add to vectors using the concatenate function: 
 
+```{r}
 plants <- c(plants, "Philodendron")
-
-
+print(plants)
+```
 
 
