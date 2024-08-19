@@ -8,7 +8,7 @@ The Data Frame is a tabular data structure which can contain data of multiple ty
 
 In a dataframe, each column is a vector. This is to say, all elements within a column will be of the same data type. However, different columns can be of different data types. 
 
-Here's a data frame with a handful of writers, their birth years, and wether or not they were poets. 
+Here's a data frame with a handful of writers, their birth years, and whether or not they were poets. 
 
 ```{r}
 writers <- data.frame (
@@ -55,4 +55,4 @@ writers$Name[2]
 
 ### Logical Indexing
 
-We saw above that we can use vectors of indeces to extract multiple rows and columns from our data frame. 
+

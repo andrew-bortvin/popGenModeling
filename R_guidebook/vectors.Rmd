@@ -66,14 +66,52 @@ Likewise, we can index the second element by doing some math:
 plants[length(plants) - 1]
 ```
 
-### Modifying Vecotrs
+### Logical Indexing
 
+We often want to subset our data not by the position of elements, but based on whether or not they meet a certain criterion. For example, below I have generated a short list of numbers:
+
+```{r}
+myNumbers <- c(1, 54, 12.2, 70, 18, 24, 94)
+```
+
+Let's say we want to extract just the values that are greater than 15 from this list. We can use any of our comparative operators with a vector to compare *all* values within the vector:
+
+```{r}
+myNumbers > 15
+```
+
+This generates a logical vector. We can provide this vector as an index to `myNumbers` to pull out the elements that are `TRUE`.
+
+```{r}
+myNumbers[myNumbers > 15]
+```
+
+We can use the logical AND (`&`) and OR (`|`) operators to combine conditions. For example, extracting values greater than 15 and less than 30: 
+
+```{r}
+myNumbers[(myNumbers > 15) & (myNumbers < 30)]
+```
+
+### Modifying Vectors
+
+Once we point to elements within a vector, we can modify them using the assignment operator. For example, making the second item in myNumbers equal to 200:
+
+```{r}
+myNumbers[2] <- 200
+print(myNumbers)
+```
+
+We can also modify multiple elements at once. For example, making every value less than 50 equal to 0:
+
+```{r}
+myNumbers[myNumbers < 50] <- 0
+print(myNumbers)
+```
 
 ### Adding to Vectors
 
 
-
-
+plants <- c(plants, "Philodendron")
 
 
 
