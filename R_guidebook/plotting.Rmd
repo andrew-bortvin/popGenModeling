@@ -17,9 +17,72 @@ For a simple dataset to plot, I’ve saved the temperature in Fahrenheit in Balt
 ```{r}
 temperatures = data.frame(
   hours = seq(1,7),
-  tempBaltimore = c(74, 73, 72, 71, 75, 79, 87),
-  tempWommels = c(59, 60, 62, 65, 69, 72, 67)
+  temperature = c(74, 73, 72, 71, 75, 79, 87, 59, 60, 62, 65, 69, 72, 67),
+  city = c(rep("Baltimore", 7), rep("Wommels", 7))
 )
 
 head(temperatures)
+```
+
+```{r}
+ggplot(temperatures)
+```
+
+```{r}
+ggplot(temperatures, aes(x = hours, y = temperature))
+```
+
+```{r}
+ggplot(temperatures, aes(x = hours, y = temperature)) + 
+  geom_point() 
+```
+
+```{r}
+ggplot(temperatures, aes(x = hours, y = temperature, color = city)) + 
+  geom_point() 
+```
+
+```{r}
+ggplot(temperatures, aes(x = hours, y = temperature, color = city)) + 
+  geom_point() + 
+  geom_line()
+```
+
+```{r}
+ggplot(temperatures, aes(x = hours, y = temperature, color = city)) + 
+  geom_point() + 
+  geom_line() +
+  xlab("Time (Hours)") + 
+  ylab("Temperature (F)") +
+  ggtitle("Projected Temperatures for the next Six Hours")
+```
+
+```{r}
+ggplot(temperatures, aes(x = hours, y = temperature, color = city)) + 
+  geom_point() + 
+  geom_line() +
+  xlab("Time (Hours)") + 
+  ylab("Temperature (F)") +
+  ggtitle("Projected Temperatures for the next Six Hours") + 
+  theme_classic()
+```
+
+```{r}
+ggplot(temperatures, aes(x = hours, y = temperature, color = city)) + 
+  geom_point() + 
+  geom_line() +
+  xlab("Time (Hours)") + 
+  ylab("Temperature (F)") +
+  ggtitle("Projected Temperatures for the next Six Hours") + 
+  theme_minimal()
+```
+
+```{r}
+ggplot(temperatures, aes(x = hours, y = temperature, color = city)) + 
+  geom_point() + 
+  geom_line() +
+  xlab("Time (Hours)") + 
+  ylab("Temperature (F)") +
+  ggtitle("Projected Temperatures for the next Six Hours") + 
+  theme_bw()
 ```
