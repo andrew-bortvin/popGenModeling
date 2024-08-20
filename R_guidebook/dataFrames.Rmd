@@ -59,5 +59,7 @@ As with vectors, we can use logic and comparison operators to subset data frames
 
 ```{r}
 poetsVector <- writers$Poet == TRUE # Get the positions of writers who are poets
-writers[poetsVector, ]
+writers[poetsVector, ] # Subset our data
 ```
+
+Notice how here, we save the logical vector as its own variable (`poetsVector`). We're doing the equivalent of `writers[writers$Poet == TRUE]`, but you may find dividing this process into multiple lines easier, especially as logic gets more complex.
