@@ -34,4 +34,5 @@ adding-to-vectors
 data-frames
 subsetting-data-frames
 logical-indexing-1
+plotting
 lecture-slides
