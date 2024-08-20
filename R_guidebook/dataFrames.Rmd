@@ -11,7 +11,7 @@ In a dataframe, each column is a vector. This is to say, all elements within a c
 Here's a data frame with a handful of writers, their birth years, and whether or not they were poets. 
 
 ```{r}
-writers <- data.frame (
+writers <- data.frame(
   Name = c("Plath", "Tolstoy", "Milton", "Woolf", "Farid ud-Din Attar"),
   BirthYear = c(1932, 1828, 1608, 1882, 1145),
   Poet = c(TRUE, FALSE, TRUE, FALSE, TRUE)
