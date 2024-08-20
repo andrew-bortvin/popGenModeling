@@ -11,6 +11,7 @@ rmd_files: ["index.Rmd",
             "R_guidebook/comparisons.Rmd",
             "R_guidebook/vectors.Rmd",
             "R_guidebook/dataFrames.Rmd",
+            "R_guidebook/plotting.Rmd",
             "lectureSlides/lectureSlides.Rmd",
             "About.Rmd"]
 delete_merged_file: true
