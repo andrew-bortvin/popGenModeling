@@ -1,0 +1,25 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+## Plotting
+
+The base R programming language comes with some pretty robust tools for plotting. However, most R users instead use the external library `ggplot2`, which simplifies plotting and allows for more elaborate data visualization. 
+
+Your Posit cloud accounts have `ggplot2` pre-installed. However, at the start of each script where you plot, you must let R know that you will use an external package with the line:
+
+```{r}
+library(ggplot2)
+```
+
+For a simple dataset to plot, I’ve saved the temperature in Fahrenheit in Baltimore, MD and Wommels, Netherlands for the next seven hours:
+
+```{r}
+temperatures = data.frame(
+  hours = seq(1,7),
+  tempBaltimore = c(74, 73, 72, 71, 75, 79, 87),
+  tempWommels = c(59, 60, 62, 65, 69, 72, 67)
+)
+
+head(temperatures)
+```
