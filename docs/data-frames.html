@@ -227,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The Data Frame is a tabular data structure which can contain data of multiple types. It is conceptually similar to an Excel spreadsheet and is by far the most important data structure in R programming.</p>
 <p>In a dataframe, each column is a vector. This is to say, all elements within a column will be of the same data type. However, different columns can be of different data types.</p>
 <p>Here’s a data frame with a handful of writers, their birth years, and whether or not they were poets.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="data-frames.html#cb68-1" tabindex="-1"></a>writers <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (</span>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="data-frames.html#cb68-1" tabindex="-1"></a>writers <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb68-2"><a href="data-frames.html#cb68-2" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;Plath&quot;</span>, <span class="st">&quot;Tolstoy&quot;</span>, <span class="st">&quot;Milton&quot;</span>, <span class="st">&quot;Woolf&quot;</span>, <span class="st">&quot;Farid ud-Din Attar&quot;</span>),</span>
 <span id="cb68-3"><a href="data-frames.html#cb68-3" tabindex="-1"></a>  <span class="at">BirthYear =</span> <span class="fu">c</span>(<span class="dv">1932</span>, <span class="dv">1828</span>, <span class="dv">1608</span>, <span class="dv">1882</span>, <span class="dv">1145</span>),</span>
 <span id="cb68-4"><a href="data-frames.html#cb68-4" tabindex="-1"></a>  <span class="at">Poet =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
@@ -266,6 +266,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="logical-indexing-1" class="section level3 hasAnchor" number="4.6.2">
 <h3><span class="header-section-number">4.6.2</span> Logical Indexing<a href="data-frames.html#logical-indexing-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As with vectors, we can use logic and comparison operators to subset data frames. For example, we can subset our data frame just to writers who are poets:</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="data-frames.html#cb80-1" tabindex="-1"></a>poetsVector <span class="ot">&lt;-</span> writers<span class="sc">$</span>Poet <span class="sc">==</span> <span class="cn">TRUE</span> <span class="co"># Get the positions of writers who are poets</span></span>
+<span id="cb80-2"><a href="data-frames.html#cb80-2" tabindex="-1"></a>writers[poetsVector, ] <span class="co"># Subset our data</span></span></code></pre></div>
+<pre><code>##                 Name BirthYear Poet
+## 1              Plath      1932 TRUE
+## 3             Milton      1608 TRUE
+## 5 Farid ud-Din Attar      1145 TRUE</code></pre>
+<p>Notice how here, we save the logical vector as its own variable (<code>poetsVector</code>). We’re doing the equivalent of <code>writers[writers$Poet == TRUE]</code>, but you may find dividing this process into multiple lines easier, especially as logic gets more complex.</p>
 
 </div>
 </div>
