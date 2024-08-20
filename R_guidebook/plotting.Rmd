@@ -24,23 +24,35 @@ temperatures = data.frame(
 head(temperatures)
 ```
 
+We can initialize a blank canvas with a call to the `ggplot()` function. The first argument that this function takes is the dataset you wish to plot, which in our case is `temperatures`. 
+
 ```{r}
 ggplot(temperatures)
 ```
 
+Next, we have to define the axes, groups of data, and other aesthetics. This is done with the `aes` argument. For our data, it makes sense to have time be the x axis and temperature to be the y axis:
+
 ```{r}
 ggplot(temperatures, aes(x = hours, y = temperature))
 ```
+
+We now have a blank plot with axes. Notice that the scales of our axes are automatically set by the scales of our data (hours ranges from 0 to 7; temperature ranges approximately from 60 to 90).
+
+Now to add some data to our plot. Because `ggplot` already knows our input data and how the axes are laid out, all we need to do is to say that type of visualization we want (e.g. points, lines, etc.). Let's start by adding points to our plot:
 
 ```{r}
 ggplot(temperatures, aes(x = hours, y = temperature)) + 
   geom_point() 
 ```
 
+This plots our data correctly, but notice that we can't distinguish between the two cities visually. We can group our data points by coloring them differently. To do this, we can add another argument (`color`) to our `aes` statement:
+
 ```{r}
 ggplot(temperatures, aes(x = hours, y = temperature, color = city)) + 
   geom_point() 
 ```
+
+This is a pretty clear, interpretable plot! We can pretty easily make a few changes to make it look nicer, though. First, let's also add a line by adding a `geom_line()` statement: 
 
 ```{r}
 ggplot(temperatures, aes(x = hours, y = temperature, color = city)) + 
@@ -48,14 +60,7 @@ ggplot(temperatures, aes(x = hours, y = temperature, color = city)) +
   geom_line()
 ```
 
-```{r}
-ggplot(temperatures, aes(x = hours, y = temperature, color = city)) + 
-  geom_point() + 
-  geom_line() +
-  xlab("Time (Hours)") + 
-  ylab("Temperature (F)") +
-  ggtitle("Projected Temperatures for the next Six Hours")
-```
+ggplot will automatically generate axis labels based on the column names of the input data. However, we can also make more descriptive x and y axis labels along with an overall figure title using `xlab()`, `ylab()`, and `ggtitle()`, respectively: 
 
 ```{r}
 ggplot(temperatures, aes(x = hours, y = temperature, color = city)) + 
@@ -63,7 +68,18 @@ ggplot(temperatures, aes(x = hours, y = temperature, color = city)) +
   geom_line() +
   xlab("Time (Hours)") + 
   ylab("Temperature (F)") +
-  ggtitle("Projected Temperatures for the next Six Hours") + 
+  ggtitle("Projected Temperatures for the Next Six Hours")
+```
+
+Lastly, it is worth mentioning that we can add `theme()` statements to modify almost any aspect of our figure's aesthetics. Along with manually defined `theme()` statements, ggplot comes with a handful of predefined themes:
+
+```{r}
+ggplot(temperatures, aes(x = hours, y = temperature, color = city)) + 
+  geom_point() + 
+  geom_line() +
+  xlab("Time (Hours)") + 
+  ylab("Temperature (F)") +
+  ggtitle("Projected Temperatures for the Next Six Hours") + 
   theme_classic()
 ```
 
@@ -73,16 +89,6 @@ ggplot(temperatures, aes(x = hours, y = temperature, color = city)) +
   geom_line() +
   xlab("Time (Hours)") + 
   ylab("Temperature (F)") +
-  ggtitle("Projected Temperatures for the next Six Hours") + 
-  theme_minimal()
-```
-
-```{r}
-ggplot(temperatures, aes(x = hours, y = temperature, color = city)) + 
-  geom_point() + 
-  geom_line() +
-  xlab("Time (Hours)") + 
-  ylab("Temperature (F)") +
-  ggtitle("Projected Temperatures for the next Six Hours") + 
+  ggtitle("Projected Temperatures for the Next Six Hours") + 
   theme_bw()
 ```
