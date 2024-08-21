@@ -19,9 +19,9 @@ R allows us to work with many different types of data. The crucial ones for us a
 
 Note that `85.3` - no quotes - is numeric data; `"85.3"` is character data.
 
-**Logical** data has three possible values: `TRUE`, `FALSE`, and `NA` for missing data. These are case sensitive and lack quotes (`"TRUE"` would be character data).
+**Logical** data has three possible values: `TRUE`, `FALSE`, and `NA` for missing data. These are case sensitive and lack quotes (`"TRUE"` would be character data). `TRUE` and `FALSE` can also be shortened to `T` and `F`. 
 
-**Factors** are characters with associated **levels**, i.e. an order. When we work with numeric data, it is sorted in ascending/descending order. When we work with character data, there is no comparable way to order our data so we can use factors to manually create an order for our data. If this is a bit abstract right now, it'll make more sense in practice once we work with real data.
+**Factors** are characters with associated **levels**, i.e. an order. For example, imagine that you have the set of characters `"Bach"`, `"Purcell"`, `"Handel"` and you always want them sorted in *that specific order*, rather than the default alphabetical order. We can use factors to manually create such an order for our data. If this is a bit abstract right now, it'll make more sense in practice once we work with real data!
 
 ## Variables
 
