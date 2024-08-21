@@ -235,6 +235,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4    1847,Hare,19.61
 ## 5    1848,Hare,11.99
 ## 6    1849,Hare,28.04</code></pre>
+<p>A couple things went wrong here:</p>
+<ol style="list-style-type: decimal">
+<li>The data is imported as a single column - we want R to know that there are multiple columns delimited by commas</li>
+<li>The header (<code>Year,Species,Count</code>) was imported as the first row of our data - we would instead like R to recognize that this is a header rather than a row of data</li>
+</ol>
+<p>How do we fix this? Along with the essential argument of the file location, we can provide <code>read.table</code> with many <strong>optional arguments</strong>. Because there are many possibilities for what our second argument may be, we need to explicitly reference the name of our optional arguments.</p>
+<p>Let’s inform R that our data is split by commas. We can do this using the <code>sep</code> (short for “separator”) argument.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="introduction-to-r.html#cb4-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="introduction-to-r.html#cb5-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>))</span></code></pre></div>
+<pre><code>##     V1      V2    V3
+## 1 Year Species Count
+## 2 1845    Hare 19.58
+## 3 1846    Hare  19.6
+## 4 1847    Hare 19.61
+## 5 1848    Hare 11.99
+## 6 1849    Hare 28.04</code></pre>
+<p>Now we correctly have three columns of data! We now have to tell R that the first row is a header. There is an optional argument <code>header</code> which can be set to <code>TRUE</code> or <code>FALSE</code> (case sensitive - more on this later).</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introduction-to-r.html#cb7-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="introduction-to-r.html#cb8-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>##   Year Species Count
+## 1 1845    Hare 19.58
+## 2 1846    Hare 19.60
+## 3 1847    Hare 19.61
+## 4 1848    Hare 11.99
+## 5 1849    Hare 28.04
+## 6 1850    Hare 58.00</code></pre>
+<p>Looks good! Now, a couple nuances:</p>
+<ol style="list-style-type: decimal">
+<li>The order <strong>named arguments</strong> (here, <code>sep</code> and <code>header</code> doesn’t matter. The following lines of code are equivalent:</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="introduction-to-r.html#cb10-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-2"><a href="introduction-to-r.html#cb10-2" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>For better legibility, we can add line breaks after commas, like so:</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="introduction-to-r.html#cb11-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, </span>
+<span id="cb11-2"><a href="introduction-to-r.html#cb11-2" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, </span>
+<span id="cb11-3"><a href="introduction-to-r.html#cb11-3" tabindex="-1"></a>           <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 
 </div>
 </div>

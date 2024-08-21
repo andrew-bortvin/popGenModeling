@@ -219,13 +219,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The Data Frame is a tabular data structure which can contain data of multiple types. It is conceptually similar to an Excel spreadsheet and is by far the most important data structure in R programming.</p>
 <p>In a dataframe, each column is a vector. This is to say, all elements within a column will be of the same data type. However, different columns can be of different data types.</p>
 <p>Here’s a data frame with a handful of writers, their birth years, and whether or not they were poets.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="data-frames.html#cb59-1" tabindex="-1"></a>writers <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb59-2"><a href="data-frames.html#cb59-2" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;Plath&quot;</span>, <span class="st">&quot;Tolstoy&quot;</span>, <span class="st">&quot;Milton&quot;</span>, <span class="st">&quot;Woolf&quot;</span>, <span class="st">&quot;Farid ud-Din Attar&quot;</span>),</span>
-<span id="cb59-3"><a href="data-frames.html#cb59-3" tabindex="-1"></a>  <span class="at">BirthYear =</span> <span class="fu">c</span>(<span class="dv">1932</span>, <span class="dv">1828</span>, <span class="dv">1608</span>, <span class="dv">1882</span>, <span class="dv">1145</span>),</span>
-<span id="cb59-4"><a href="data-frames.html#cb59-4" tabindex="-1"></a>  <span class="at">Poet =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb59-5"><a href="data-frames.html#cb59-5" tabindex="-1"></a>)</span>
-<span id="cb59-6"><a href="data-frames.html#cb59-6" tabindex="-1"></a></span>
-<span id="cb59-7"><a href="data-frames.html#cb59-7" tabindex="-1"></a><span class="fu">print</span>(writers)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="data-frames.html#cb67-1" tabindex="-1"></a>writers <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb67-2"><a href="data-frames.html#cb67-2" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;Plath&quot;</span>, <span class="st">&quot;Tolstoy&quot;</span>, <span class="st">&quot;Milton&quot;</span>, <span class="st">&quot;Woolf&quot;</span>, <span class="st">&quot;Farid ud-Din Attar&quot;</span>),</span>
+<span id="cb67-3"><a href="data-frames.html#cb67-3" tabindex="-1"></a>  <span class="at">BirthYear =</span> <span class="fu">c</span>(<span class="dv">1932</span>, <span class="dv">1828</span>, <span class="dv">1608</span>, <span class="dv">1882</span>, <span class="dv">1145</span>),</span>
+<span id="cb67-4"><a href="data-frames.html#cb67-4" tabindex="-1"></a>  <span class="at">Poet =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb67-5"><a href="data-frames.html#cb67-5" tabindex="-1"></a>)</span>
+<span id="cb67-6"><a href="data-frames.html#cb67-6" tabindex="-1"></a></span>
+<span id="cb67-7"><a href="data-frames.html#cb67-7" tabindex="-1"></a><span class="fu">print</span>(writers)</span></code></pre></div>
 <pre><code>##                 Name BirthYear  Poet
 ## 1              Plath      1932  TRUE
 ## 2            Tolstoy      1828 FALSE
@@ -236,31 +236,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="subsetting-data-frames" class="section level3 hasAnchor" number="4.6.1">
 <h3><span class="header-section-number">4.6.1</span> Subsetting Data Frames<a href="data-frames.html#subsetting-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When we indexed vectors, we used the bracket notation <code>vector[index]</code> to extract information. We can do the same for data frames, but now we must provide two values - one for the row index and one for the column index, so the syntax is <code>dataFrame[row, column]</code>. For example, to pull out the value <code>1608</code> from <code>writers</code>, we would do:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="data-frames.html#cb61-1" tabindex="-1"></a>writers[<span class="dv">3</span>,<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="data-frames.html#cb69-1" tabindex="-1"></a>writers[<span class="dv">3</span>,<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] 1608</code></pre>
 <p>As with vectors, we can extract multiple elements at once:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="data-frames.html#cb63-1" tabindex="-1"></a>writers[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>), <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="data-frames.html#cb71-1" tabindex="-1"></a>writers[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>), <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]</span></code></pre></div>
 <pre><code>##      Name BirthYear
 ## 2 Tolstoy      1828
 ## 3  Milton      1608</code></pre>
 <p>What if we want to subset the rows, but keep all the columns of our data frame? We can leave a field blank to not subset it at all. For example, pulling out all columns for rows 2 and 3:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="data-frames.html#cb65-1" tabindex="-1"></a>writers[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>), ]</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="data-frames.html#cb73-1" tabindex="-1"></a>writers[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>), ]</span></code></pre></div>
 <pre><code>##      Name BirthYear  Poet
 ## 2 Tolstoy      1828 FALSE
 ## 3  Milton      1608  TRUE</code></pre>
 <p>However, there is an easier way of extracting infromation from a data frame - we can take advantage of row names. We can pull out individual vectors from a data frame using the syntax <code>dataFrame$columnName</code>. For example, we can extract the <code>Name</code> vector from <code>writers</code> using:</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="data-frames.html#cb67-1" tabindex="-1"></a>writers<span class="sc">$</span>Name</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="data-frames.html#cb75-1" tabindex="-1"></a>writers<span class="sc">$</span>Name</span></code></pre></div>
 <pre><code>## [1] &quot;Plath&quot;              &quot;Tolstoy&quot;            &quot;Milton&quot;            
 ## [4] &quot;Woolf&quot;              &quot;Farid ud-Din Attar&quot;</code></pre>
 <p>And then we can index the <code>Name</code> as we would any other vector:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="data-frames.html#cb69-1" tabindex="-1"></a>writers<span class="sc">$</span>Name[<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="data-frames.html#cb77-1" tabindex="-1"></a>writers<span class="sc">$</span>Name[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Tolstoy&quot;</code></pre>
 </div>
 <div id="logical-indexing-1" class="section level3 hasAnchor" number="4.6.2">
 <h3><span class="header-section-number">4.6.2</span> Logical Indexing<a href="data-frames.html#logical-indexing-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As with vectors, we can use logic and comparison operators to subset data frames. For example, we can subset our data frame just to writers who are poets:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="data-frames.html#cb71-1" tabindex="-1"></a>poetsVector <span class="ot">&lt;-</span> writers<span class="sc">$</span>Poet <span class="sc">==</span> <span class="cn">TRUE</span> <span class="co"># Get the positions of writers who are poets</span></span>
-<span id="cb71-2"><a href="data-frames.html#cb71-2" tabindex="-1"></a>writers[poetsVector, ] <span class="co"># Subset our data</span></span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="data-frames.html#cb79-1" tabindex="-1"></a>poetsVector <span class="ot">&lt;-</span> writers<span class="sc">$</span>Poet <span class="sc">==</span> <span class="cn">TRUE</span> <span class="co"># Get the positions of writers who are poets</span></span>
+<span id="cb79-2"><a href="data-frames.html#cb79-2" tabindex="-1"></a>writers[poetsVector, ] <span class="co"># Subset our data</span></span></code></pre></div>
 <pre><code>##                 Name BirthYear Poet
 ## 1              Plath      1932 TRUE
 ## 3             Milton      1608 TRUE
