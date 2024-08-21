@@ -25,7 +25,7 @@ Note that `85.3` - no quotes - is numeric data; `"85.3"` is character data.
 
 ## Variables
 
-Variables allow us to store data in memory, associated with a name.
+Variables allow us to store data in memory. When we store data in memory, we can also give it a name.
 
 We create a variable using the assignment operator `<-` or `=`:
 
@@ -40,7 +40,7 @@ For our purposes, these are interchangeable. For example:
 
 The variable name can be almost anything. Here are some general rules to consider when naming a variable:
 
-• Variable names start with a letter and consist of letters, numbers, `.`, and `_`\
+• Variable names must start with a letter and consist of letters, numbers, `.`, and `_`\
 • Some words are considered "reserved" - i.e. they are already used by R to mean something and therefore cannot be a variable name. These include `TRUE`, `if`, `NULL`, etc. For a full list, check [here](https://www.datamentor.io/r-programming/reserved-words). \
 
 ### Overwriting Variables
