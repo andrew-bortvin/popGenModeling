@@ -100,3 +100,39 @@ For example we can use the `head` function, which displays the first 10 rows of 
 ```{r}
 head(hareLynxData)
 ```
+
+### DataFrames
+
+Now that our data is properly saved into memory, let's look a bit more at it. First, what data type is this table? We can investigate the data type of a variable using the function `class()`:
+
+```{r}
+class(hareLynxData)
+```
+
+Our data is automatically imported as a data frame. It's worth talking a bit more about what data frames are and how to work with them, since data frames are perhaps the most important data structure in R. 
+
+Data frames represent tabular data, where each column is a named **vector** containing elements of a single data type. For example, the `Year` column contains only numeric values. Notice that while the data type needs to be consistent *within* a column, different columns can contain different types of data - for example the `Species` column contains character data. 
+
+### Subsetting
+
+Very often, we will want to extract information from a larger data frame. 
+
+We can extract an entire column using the syntax `dataFrame$columnName`. For example, to pull out the `Year` vector, we can use:
+
+```{r, eval=FALSE}
+hareLynxData$Year
+```
+
+```{r, echo=TRUE}
+hareLynxData$Year[1:10]
+```
+
+
+### Logical subsetting
+
+### Plotting
+
+```{r}
+library(ggplot2)
+
+```

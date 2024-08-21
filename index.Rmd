@@ -19,3 +19,6 @@ This is the course homepage and digital textbook for Population Genetics Modelin
 #### Instructor
 
 Andrew Bortvin, `abortvi2[at]jhu.edu`
+
+### Course Updates
+
