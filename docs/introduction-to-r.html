@@ -273,6 +273,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="introduction-to-r.html#cb11-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, </span>
 <span id="cb11-2"><a href="introduction-to-r.html#cb11-2" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, </span>
 <span id="cb11-3"><a href="introduction-to-r.html#cb11-3" tabindex="-1"></a>           <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>This does not impact how data is evaluated.</p>
+<p>Now that we read in the data correctly, the last thing to do is to save it as a <strong>variable</strong>. This means that rather than just reading in the data and printing it out, we truly save it in the computer’s memory and assign it a name.</p>
+<p>The general syntax for saving a variable in R is:</p>
+<p><code>variableName &lt;- value</code></p>
+<p>For example:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="introduction-to-r.html#cb12-1" tabindex="-1"></a>hareLynxData <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, </span>
+<span id="cb12-2"><a href="introduction-to-r.html#cb12-2" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, </span>
+<span id="cb12-3"><a href="introduction-to-r.html#cb12-3" tabindex="-1"></a>           <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Now, when we refer to <code>hareLynxData</code>, we are referring to the data we have just imported.</p>
+<p>For example we can use the <code>head</code> function, which displays the first 10 rows of our data:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction-to-r.html#cb13-1" tabindex="-1"></a><span class="fu">head</span>(hareLynxData)</span></code></pre></div>
+<pre><code>##   Year Species Count
+## 1 1845    Hare 19.58
+## 2 1846    Hare 19.60
+## 3 1847    Hare 19.61
+## 4 1848    Hare 11.99
+## 5 1849    Hare 28.04
+## 6 1850    Hare 58.00</code></pre>
 
 </div>
 </div>
