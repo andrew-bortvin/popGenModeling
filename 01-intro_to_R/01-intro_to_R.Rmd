@@ -32,3 +32,47 @@ read.table("hare_lynx.csv")
 ```{r, echo=TRUE}
 head(read.table("hare_lynx.csv"))
 ```
+
+A couple things went wrong here:
+
+1.  The data is imported as a single column - we want R to know that there are multiple columns delimited by commas
+2.  The header (`Year,Species,Count`) was imported as the first row of our data - we would instead like R to recognize that this is a header rather than a row of data
+
+How do we fix this? Along with the essential argument of the file location, we can provide `read.table` with many **optional arguments**. Because there are many possibilities for what our second argument may be, we need to explicitly reference the name of our optional arguments.
+
+Let's inform R that our data is split by commas. We can do this using the `sep` (short for "separator") argument.
+
+```{r, eval=FALSE}
+read.table("hare_lynx.csv", sep = ",")
+```
+
+```{r, echo=TRUE}
+head(read.table("hare_lynx.csv", sep = ","))
+```
+
+Now we correctly have three columns of data! We now have to tell R that the first row is a header. There is an optional argument `header` which can be set to `TRUE` or `FALSE` (case sensitive - more on this later).
+
+```{r, eval=FALSE}
+read.table("hare_lynx.csv", sep = ",", header = TRUE)
+```
+
+```{r, echo=TRUE}
+head(read.table("hare_lynx.csv", sep = ",", header = TRUE))
+```
+
+Looks good! Now, a couple nuances:
+
+1.  The order **named arguments** (here, `sep` and `header` doesn't matter. The following lines of code are equivalent:
+
+```{r, eval = FALSE}
+read.table("hare_lynx.csv", sep = ",", header = TRUE)
+read.table("hare_lynx.csv", header = TRUE, sep = ",")
+```
+
+2.  For better legibility, we can add line breaks after commas, like so:
+
+```{r, eval = FALSE}
+read.table("hare_lynx.csv", 
+           sep = ",", 
+           header = TRUE)
+```
