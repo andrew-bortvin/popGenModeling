@@ -29,7 +29,7 @@
   
   <link rel="shortcut icon" href="assets/pig.jpg" type="image/x-icon" />
 <link rel="prev" href="lecture-notes.html"/>
-<link rel="next" href="lecture-notes-1.html"/>
+<link rel="next" href="r-guidebook.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -151,15 +151,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3.1</b> Introduction to R</a>
 <ul>
 <li class="chapter" data-level="3.1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-import"><i class="fa fa-check"></i><b>3.1.1</b> Data import</a></li>
-<li class="chapter" data-level="3.1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-data-frame"><i class="fa fa-check"></i><b>3.1.2</b> The Data Frame</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="lecture-notes-1.html"><a href="lecture-notes-1.html"><i class="fa fa-check"></i><b>3.2</b> Lecture Notes</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="lecture-notes-1.html"><a href="lecture-notes-1.html#data-import-1"><i class="fa fa-check"></i><b>3.2.1</b> Data import</a></li>
-<li class="chapter" data-level="3.2.2" data-path="lecture-notes-1.html"><a href="lecture-notes-1.html#dataframes"><i class="fa fa-check"></i><b>3.2.2</b> DataFrames</a></li>
-<li class="chapter" data-level="3.2.3" data-path="lecture-notes-1.html"><a href="lecture-notes-1.html#data-manipulation"><i class="fa fa-check"></i><b>3.2.3</b> Data Manipulation</a></li>
-<li class="chapter" data-level="3.2.4" data-path="lecture-notes-1.html"><a href="lecture-notes-1.html#subsetting"><i class="fa fa-check"></i><b>3.2.4</b> Subsetting</a></li>
-<li class="chapter" data-level="3.2.5" data-path="lecture-notes-1.html"><a href="lecture-notes-1.html#logical-subsetting"><i class="fa fa-check"></i><b>3.2.5</b> Logical subsetting</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="r-guidebook.html"><a href="r-guidebook.html"><i class="fa fa-check"></i><b>4</b> R Guidebook</a>
@@ -226,38 +217,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introduction-to-r" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Introduction to R<a href="introduction-to-r.html#introduction-to-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R is a programming language developed primarily for use by statisticians, and it is a common tool in the field for data exploration, analysis, visualization, etc. We will be using it throughout the course to manipulate, view, and interpret data.</p>
-<p>In this module, we will learn the basics of R by manipulating some real-world data. In particular, we’ll look at data from the Hudson Bay looking at the size of the hare and lynx populations.</p>
-<p>We’ll talk a lot more about this dataset when we study predator-prey models in a few weeks, but for now, let’s make some exploratory plots.</p>
-<p>Data adapted from here: <a href="http://people.whitman.edu/~hundledr/courses/M250F03/M250.html" class="uri">http://people.whitman.edu/~hundledr/courses/M250F03/M250.html</a></p>
+<p>In this module, we will learn the basics of R by manipulating some real-world data. In particular, we’ll work with data from the Hudson Bay looking at the size of historical hare and lynx populations.</p>
+<p>We’ll talk a lot more about this dataset and the biology it represents when we study predator-prey models, but for now let’s use it make some exploratory plots. Data adapted from <a href="http://people.whitman.edu/~hundledr/courses/M250F03/M250.html">here</a></p>
 <p>Please note that input data is available on the course Posit cloud page - please feel free to work alongside this page!</p>
 <div id="data-import" class="section level3 hasAnchor" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> Data import<a href="introduction-to-r.html#data-import" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The bread and butter of R is the data frame, a tabular data structure which can contain data of multiple types.</p>
-<p>R has a few built-in functions that allow for easy and efficient import of data. As we go on, we’ll learn a lot of nuances about how these work, but for now we’ll start with a tidy, well-behaved dataset that is easy to work with.</p>
-<p>We would like for R to import our data and save it into memory. We also want to give it a name, so that we can refer to it later.</p>
-<p>In R, we use the assignment operator <code>&lt;-</code> to associate a name with some data. The general syntax for this is:</p>
-<p><code>variableName &lt;- value</code></p>
-<p>Where <strong>left - name right -&gt; value</strong></p>
-<p><strong>if you know python or c or something, “+” is equivalent</strong></p>
-<p><strong>lets test it out</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-r.html#cb1-1" tabindex="-1"></a>populationData <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p>Let’s break down what’s happening here.</p>
-<p>On the left of the <code>&lt;-</code>, we have the text <code>populationData</code></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="introduction-to-r.html#cb2-1" tabindex="-1"></a><span class="fu">head</span>(populationData)</span></code></pre></div>
-<pre><code>##   Year Species Count
-## 1 1845    Hare 19.58
-## 2 1846    Hare 19.60
-## 3 1847    Hare 19.61
-## 4 1848    Hare 11.99
-## 5 1849    Hare 28.04
-## 6 1850    Hare 58.00</code></pre>
-</div>
-<div id="the-data-frame" class="section level3 hasAnchor" number="3.1.2">
-<h3><span class="header-section-number">3.1.2</span> The Data Frame<a href="introduction-to-r.html#the-data-frame" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>R has the ability to manipulate multiple different types of data. The primary data types we will use in this course are:</p>
+<p>Our data is available as a comma-delimited text file, or <code>csv</code>. Here’s the top of it as it appears in a text editor:</p>
+<p><img src="01-intro_to_R/img/csv_head.png" /></p>
+<p>The first thing we have to do to work with it is to import it into R. R has a few built-in functions that allow for easy and efficient import of data. As we go on, we’ll learn a lot of nuances about how these work, but for now we’ll start with a tidy, well-behaved dataset that is easy to work with. The <code>read.table</code> function will be our workhorse for reading in data.</p>
+<p>Let’s try it out. To run this function, we need to provide one <strong>argument</strong>: the location of the data we want to load.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-r.html#cb1-1" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="introduction-to-r.html#cb2-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read.table</span>(<span class="st">&quot;hare_lynx.csv&quot;</span>))</span></code></pre></div>
+<pre><code>##                   V1
+## 1 Year,Species,Count
+## 2    1845,Hare,19.58
+## 3     1846,Hare,19.6
+## 4    1847,Hare,19.61
+## 5    1848,Hare,11.99
+## 6    1849,Hare,28.04</code></pre>
 
 </div>
 </div>
+<!-- </div> -->
 <hr>
 <center> 
   <div class="footer">
@@ -272,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="lecture-notes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lecture-notes-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-guidebook.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

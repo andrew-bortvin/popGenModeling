@@ -8,13 +8,6 @@ schedule
 lecture-notes
 introduction-to-r
 data-import
-the-data-frame
-lecture-notes-1
-data-import-1
-dataframes
-data-manipulation
-subsetting
-logical-subsetting
 r-guidebook
 data-types
 variables
