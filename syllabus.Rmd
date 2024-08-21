@@ -57,9 +57,10 @@ You may be familiar with ChatGPT and other large language models. After trying e
 How do population sizes change? Models for one and two populations. Cooperation, Competition, and predation.
 
 **Week Two: One Population Models**\
+
 | Date      | Topic                               | Assignments |
 |------------------------|------------------------|------------------------|
-|September 3 | The Exponential and Logistic Growth Models          | Problem Set 1 Assigned |
+|September 3 | The Exponential and Logistic Growth Models  | Problem Set 1 Assigned |
 |September 5 |  Density-Dependent Growth |  |
 
 **Week Three: Multiple Populations**\
@@ -71,9 +72,12 @@ How do population sizes change? Models for one and two populations. Cooperation,
 
 
 **Week Four: Advanced Topics in Population Biology**\
-September 17: Spatial Models
 
-September 19: Social Evolution and Game Theory
+|       |                                |  |
+|------------------------|------------------------|------------------------|
+|September 17 | Spatial Models        |             |
+|September 19| Social Evolution and Game Theory | Problem Set 2 Due; Problem Set 3 Assigned |
+
 
 **Unit Two: Population Genetics**\
 How do we measure the genetic relationships between individuals? Between Populations? Between Species?\
@@ -81,21 +85,28 @@ What determines the fate of a genetic element in a population? How does the size
 Biological Simulation
 
 **Week Five: The Wright Fisher Model**\
-September 24: The Wright-Fisher Model: Evolutionary Neutrality
 
-September 26: The Wright-Fisher Mode 2: Types of Selection, Selective Sweeps
+|       |                                |  |
+|------------------------|------------------------|------------------------|
+|September 24 | The Wright-Fisher Model: Evolutionary Neutrality       |             |
+|September 26| The Wright-Fisher Mode 2: Types of Selection, Selective Sweeps| Problem Set 3 Due; Problem Set 4 Assigned |
+
 
 **Week Six: Multiple Loci - Measures of Genetic Variation**\
-October 1: Nucleotide Diversity, the Site Frequency Spectrum
 
-October 3: F statistics
+|       |                                |  |
+|------------------------|------------------------|------------------------|
+|October 1 | Nucleotide Diversity, the Site Frequency Spectrum      |             |
+|October 3| F statistics| Problem Set 4 Due |
 
 **Week Seven: Biological Simulation and Population Size Changes**\
-October 8: The SLiM Programming Language and `slimr`
 
-October 10: Population Bottlenecks, Population Expansion, and Genetic Diversity
+|       |                                |  |
+|------------------------|------------------------|------------------------|
+|October 8 | The SLiM Programming Language and `slimr`  |             |
+|October 10:| Population Bottlenecks, Population Expansion, and Genetic Diversity | |
 
-**Week Eight:Biological Simulation and Population Size Changes Continued**\
+**Week Eight: Biological Simulation and Population Size Changes Continued**\
 October 15: Population Size Changes and the Site Frequency Spectrum
 
 October 17: Fall Break
