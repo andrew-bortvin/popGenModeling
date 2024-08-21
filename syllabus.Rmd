@@ -107,14 +107,19 @@ Biological Simulation
 |October 10:| Population Bottlenecks, Population Expansion, and Genetic Diversity | |
 
 **Week Eight: Biological Simulation and Population Size Changes Continued**\
-October 15: Population Size Changes and the Site Frequency Spectrum
 
-October 17: Fall Break
+|       |                                |  |
+|------------------------|------------------------|------------------------|
+|October 15 | Population Size Changes and the Site Frequency Spectrum  |             |
+|October 17|  Fall Break | |
+
 
 **Week Nine: Multiple Populations and Genetic Relatedness**\
-October 22:Simulation with Multiple Populations - Migration
 
-October 24:Simulation with Multiple Populations - Admixture, Local Adaptation
+|       |                                |  |
+|------------------------|------------------------|------------------------|
+|October 22 | Simulation with Multiple Populations - Migration  |             |
+|October 24|  Simulation with Multiple Populations - Admixture, Local Adaptation | |
 
 **Unit Three: Analyzing Genetic Data**\
 How are population-scale genetic variants represented?\
@@ -122,30 +127,40 @@ How do we quantify relatedness between populations?\
 Tests for selection, association testing, fine mapping.   Phylogeny
 
 **Week Ten: Association Testing**\
-October 29: The Variant Call Format and population-scale data
 
-October 31: GWAS, linkage disequilbrium, Fine Mapping
+|       |                                |  |
+|------------------------|------------------------|------------------------|
+|October 29 | The Variant Call Format and population-scale data |             |
+|October 31|   GWAS, linkage disequilbrium, Fine Mapping | |
 
 **Week Eleven: Population Structure and Phylogeny**\
-November 5: Population structure: PCA, STRUCTURE, and clustering methods
 
-November 7: The Coalescent - Inferring Timing of Selection
+|       |                                |  |
+|------------------------|------------------------|------------------------|
+|November 5 | Population structure: PCA, STRUCTURE, and clustering methods|             |
+|November 7|  The Coalescent - Inferring Timing of Selection | |
+
 
 **Week Twelve: Constructing and Interpreting Phylogenies**\
-November 12: Working with Phylogenetic Trees - the `ape` and `phytools` packages
 
-November 14: Tree Comparison Methods, Advanced trees
+|       |                                |  |
+|------------------------|------------------------|------------------------|
+|November 12 | Working with Phylogenetic Trees - the `ape` and `phytools` packages|             |
+|November 14|  Tree Comparison Methods, Advanced trees | |
 
 **Week Thirteen: Independent/Small Group Projects**\
-November 19: Work on Independent/Small Group Projects
 
-November 21: Work on Independent/Small Group Projects
+|       |                                |  |
+|------------------------|------------------------|------------------------|
+|November 19 | Work on Independent/Small Group Projects |             |
+|November 21|  Work on Independent/Small Group Projects | |
 
 **Week Fourteen:**\
-December 3: Semester Retrospective Discussion\
-Evolutionary Methods in Other Fields (Linguistics, Economics, etc.)\
-Current Directions in Population Genetics\
 
-December 5: Project Presentations and Discussion
+|       |                                |  |
+|------------------------|------------------------|------------------------|
+|December 3 | Evolutionary Methods in Other Fields (Linguistics, Economics, etc.)\
+Current Directions in Population Genetics |             |
+|December 5|  Project Presentations and Discussion | |
 
 **December 19**: All revisions for weekly assignments due
