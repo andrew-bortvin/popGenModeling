@@ -9,47 +9,26 @@ knitr::opts_knit$set(root.dir = '01-intro_to_R')
 
 R is a programming language developed primarily for use by statisticians, and it is a common tool in the field for data exploration, analysis, visualization, etc. We will be using it throughout the course to manipulate, view, and interpret data. 
 
-In this module, we will learn the basics of R by manipulating some real-world data. In particular, we'll look at data from the Hudson Bay looking at the size of the hare and lynx populations. 
+In this module, we will learn the basics of R by manipulating some real-world data. In particular, we'll work with data from the Hudson Bay looking at the size of historical hare and lynx populations.
 
-We'll talk a lot more about this dataset when we study predator-prey models in a few weeks, but for now, let's make some exploratory plots. 
-
-Data adapted from here: http://people.whitman.edu/~hundledr/courses/M250F03/M250.html
+We'll talk a lot more about this dataset and the biology it represents when we study predator-prey models, but for now let's use it make some exploratory plots. Data adapted from [here](http://people.whitman.edu/~hundledr/courses/M250F03/M250.html)
 
 Please note that input data is available on the course Posit cloud page - please feel free to work alongside this page! 
 
-### Data import 
+### Data import
 
-The bread and butter of R is the data frame, a tabular data structure which can contain data of multiple types. 
+Our data is available as a comma-delimited text file, or `csv`. Here's the top of it as it appears in a text editor:
 
-R has a few built-in functions that allow for easy and efficient import of data. As we go on, we'll learn a lot of nuances about how these work, but for now we'll start with a tidy, well-behaved dataset that is easy to work with.
+![](01-intro_to_R/img/csv_head.png)
 
-We would like for R to import our data and save it into memory. We also want to give it a name, so that we can refer to it later. 
+The first thing we have to do to work with it is to import it into R. R has a few built-in functions that allow for easy and efficient import of data. As we go on, we'll learn a lot of nuances about how these work, but for now we'll start with a tidy, well-behaved dataset that is easy to work with. The `read.table` function will be our workhorse for reading in data.
 
-In R, we use the assignment operator `<-` to associate a name with some data. The general syntax for this is: 
+Let's try it out. To run this function, we need to provide one **argument**: the location of the data we want to load.
 
-`variableName <- value`
-
-Where **left - name right -> value**
-
-**if you know python or c or something, "+" is equivalent**
-
-**lets test it out**
-
-```{r, include = TRUE}
-populationData <- read.table("hare_lynx.csv", sep = ",", header = TRUE)
+```{r, eval=FALSE}
+read.table("hare_lynx.csv")
 ```
 
-Let's break down what's happening here.
-
-On the left of the `<-`, we have the text `populationData` 
-
-```{r}
-head(populationData)
+```{r, echo=TRUE}
+head(read.table("hare_lynx.csv"))
 ```
-
-### The Data Frame
-
-R has the ability to manipulate multiple different types of data. The primary data types we will use in this course are: 
-
-
-
