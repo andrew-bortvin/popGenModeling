@@ -1,13 +1,11 @@
 homepage
 instructor
+course-updates
 course-syllabus
 course-description
 learning-goals
 grading
 schedule
-lecture-notes
-introduction-to-r
-data-import
 r-guidebook
 data-types
 variables
