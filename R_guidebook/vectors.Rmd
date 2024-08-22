@@ -20,7 +20,7 @@ beetles <- c("Weevil", "Firefly", 5)
 print(beetles)
 ```
 
-Here, we mix character and numeric data. Notice that when we print the vector, the numeric `5` is converted to the string `"5"`.
+Here, we mix character and numeric data. This isn't allowed, so the numeric `5` is converted to the string `"5"`.
 
 ### Indexing
 
@@ -28,7 +28,7 @@ We will often want to take a larger vector and extract specific data points from
 
 `vectorName[itemPosition]`
 
-The position of the first item in the list is 1, and so on (in other words, R is 1-indexed). Let's try indexing using our `plants` vector, made above
+The position of the first item in the list is 1 (in other words, R is 1-indexed). Let's try indexing using our `plants` vector, made above.
 
 ```{r}
 print(plants)
@@ -68,7 +68,7 @@ plants[length(plants) - 1]
 
 ### Logical Indexing
 
-We often want to subset our data not by the position of elements, but based on whether or not they meet a certain criterion. For example, below I have generated a short list of numbers:
+We often want to subset our data not by the position of elements, but based on whether or not they meet a certain criterion. Below, I have generated a short list of numbers:
 
 ```{r}
 myNumbers <- c(1, 54, 12.2, 70, 18, 24, 94)
