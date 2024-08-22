@@ -6,9 +6,9 @@ ottrpal::set_knitr_image_path()
 
 A lot of mathematical operations in R are straightforward. Here are some of the basic operations we can perform:
 
-• + and -: addition and subtraction \
-• * and /: multiplication and division \
-• **: exponentials \
+• `+` and `-`: addition and subtraction \
+• `*` and `/`: multiplication and division \
+• `**`: exponents \
 
 We can perform mathematical operations on values directly: \
 
@@ -20,10 +20,10 @@ Or we can operate on variables:
 
 ```{r}
 x <- 5 
-print(5**3)
+print(x**3)
 ```
 
-We can save the output of an expression as a variable:
+We can also save the output of an expression as a variable:
 
 ```{r}
 my_product <- 2 * 10
