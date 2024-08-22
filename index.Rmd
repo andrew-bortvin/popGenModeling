@@ -22,3 +22,6 @@ Andrew Bortvin, `abortvi2[at]jhu.edu`
 
 ### Course Updates
 
+* 8/21: Introductory R chapters added under R Guidebook
+* 8/21: Syllabus added to website
+* 8/21: Course website is live! 
