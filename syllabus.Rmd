@@ -103,14 +103,14 @@ Biological Simulation
 
 |       |                                |  |
 |------------------------|------------------------|------------------------|
-|October 8 | The SLiM Programming Language and `slimr`  |             |
+|October 8 | The SLiM Programming Language and `slimr`  | Problem Set 5 Assigned    |
 |October 10:| Population Bottlenecks, Population Expansion, and Genetic Diversity | |
 
 **Week Eight: Biological Simulation and Population Size Changes Continued**\
 
 |       |                                |  |
 |------------------------|------------------------|------------------------|
-|October 15 | Population Size Changes and the Site Frequency Spectrum  |             |
+|October 15 | Population Size Changes and the Site Frequency Spectrum  | Problem Set 5 Due  |
 |October 17|  Fall Break | |
 
 
@@ -118,41 +118,41 @@ Biological Simulation
 
 |       |                                |  |
 |------------------------|------------------------|------------------------|
-|October 22 | Simulation with Multiple Populations - Migration  |             |
+|October 22 | Simulation with Multiple Populations - Migration  | Problem Set 6 Assigned |
 |October 24|  Simulation with Multiple Populations - Admixture, Local Adaptation | |
 
 **Unit Three: Analyzing Genetic Data**\
 How are population-scale genetic variants represented?\
 How do we quantify relatedness between populations?\
-Tests for selection, association testing, fine mapping.   Phylogeny
+Tests for selection, association testing, fine mapping. Phylogeny
 
 **Week Ten: Association Testing**\
 
 |       |                                |  |
 |------------------------|------------------------|------------------------|
-|October 29 | The Variant Call Format and population-scale data |             |
-|October 31|   GWAS, linkage disequilbrium, Fine Mapping | |
+|October 29 | The Variant Call Format and population-scale data | Problem Set 6 Due |
+|October 31|   GWAS, linkage disequilbrium, Fine Mapping | Problem Set 7 Assigned |
 
 **Week Eleven: Population Structure and Phylogeny**\
 
 |       |                                |  |
 |------------------------|------------------------|------------------------|
 |November 5 | Population structure: PCA, STRUCTURE, and clustering methods|             |
-|November 7|  The Coalescent - Inferring Timing of Selection | |
+|November 7|  The Coalescent - Inferring Timing of Selection | Problem Set 7 Due |
 
 
 **Week Twelve: Constructing and Interpreting Phylogenies**\
 
 |       |                                |  |
 |------------------------|------------------------|------------------------|
-|November 12 | Working with Phylogenetic Trees - the `ape` and `phytools` packages|             |
-|November 14|  Tree Comparison Methods, Advanced trees | |
+|November 12 | Working with Phylogenetic Trees - the `ape` and `phytools` packages| Problem Set 8 Assigned |
+|November 14|  Tree Comparison Methods, Advanced trees | DUE: Finalized proposals for independent/small Group projects |
 
 **Week Thirteen: Independent/Small Group Projects**\
 
 |       |                                |  |
 |------------------------|------------------------|------------------------|
-|November 19 | Work on Independent/Small Group Projects |             |
+|November 19 | Work on Independent/Small Group Projects | Problem Set 8 Due |
 |November 21|  Work on Independent/Small Group Projects | |
 
 **Week Fourteen:**\
@@ -161,6 +161,6 @@ Tests for selection, association testing, fine mapping.   Phylogeny
 |------------------------|------------------------|------------------------|
 |December 3 | Evolutionary Methods in Other Fields (Linguistics, Economics, etc.)\
 Current Directions in Population Genetics |             |
-|December 5|  Project Presentations and Discussion | |
+|December 5|  Project Presentations and Discussion | Independent/Small Group Projects Due |
 
 **December 19**: All revisions for weekly assignments due
