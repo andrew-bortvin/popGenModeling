@@ -8,6 +8,7 @@ knitr::opts_knit$set(root.dir = '01-intro_to_R')
 **COMPUTATIONAL APPROACHES TO POPULATION GENETICS**\
 Instructor: Andrew Bortvin\
 Times: Tuesday, Thursday 3:00PM - 4:30PM\
+Location: UG Teaching Lab (UTL) 189\
 Office Hours: To be determined by when2meet at the start of the semester, or by appointment\
 Course website: <https://andrew-bortvin.github.io/popGenModeling/>
 
