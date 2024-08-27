@@ -5,3 +5,5 @@ ottrpal::set_knitr_image_path()
 # Lecture Slides
 
 Slides from all class session will be hosted on this page. 
+
+[**Day 1:**](https://docs.google.com/presentation/d/16A7M2S_77kYN3ev2zu5wXeZbEBs8p5NfObUaqHGqkaA/edit?usp=sharing)
