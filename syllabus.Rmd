@@ -54,7 +54,7 @@ You may be familiar with ChatGPT and other large language models. After trying e
 | August 27 | Welcome; Course Overview            |             |
 | August 29 | Introduction to R Programming - Working with Data, Plotting | DUE: Create a Posit account |
 
-**Unit 1: Population Biology**\
+**Unit One: Population Biology**\
 How do population sizes change? Models for one and two populations. Cooperation, Competition, and predation.
 
 **Week Two: One Population Models**\
