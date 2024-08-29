@@ -3,7 +3,7 @@ chapter_name: ""
 repo: https://github.com/andrew-bortvin/popGenModeling
 rmd_files: ["index.Rmd",
             "syllabus.Rmd",
-            #"01-intro_to_R/01-intro_to_R.Rmd",
+            "01-intro_to_R/intro_R_liveCoding.Rmd",
             "R_guidebook/guidebook_intro.Rmd",
             "R_guidebook/variables.Rmd", 
             "R_guidebook/math.Rmd",
