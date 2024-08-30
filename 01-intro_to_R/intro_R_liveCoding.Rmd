@@ -141,7 +141,7 @@ testData <- "yes"
 print(class(testData))
 ```
 
-## Comparisons
+## Comparing Values
 
 Logical data most commonly appears when we compare values. We compare equality using the double equals sign:
 
@@ -370,7 +370,7 @@ for (i in c("b", "c")){
 }
 ```
 
-## Data Frames 
+## Data Frames: Tabular Data
 
 So vectors are great, but usually we don't keep track of just *one* thing - we normally have multiple variables that we track simultaneously - for example, time and population size. A data frame is a tabular data structure that lets us organize a lot of different data in one place. 
 
