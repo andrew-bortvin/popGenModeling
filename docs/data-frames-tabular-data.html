@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.5 Vectors | Population Genetics Modeling</title>
+  <title>3.6 Data Frames: Tabular Data | Population Genetics Modeling</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.39.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.5 Vectors | Population Genetics Modeling" />
+  <meta property="og:title" content="3.6 Data Frames: Tabular Data | Population Genetics Modeling" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Description of Course" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.5 Vectors | Population Genetics Modeling" />
+  <meta name="twitter:title" content="3.6 Data Frames: Tabular Data | Population Genetics Modeling" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/pig.jpg" type="image/x-icon" />
-<link rel="prev" href="comparisons.html"/>
-<link rel="next" href="data-frames.html"/>
+<link rel="prev" href="iteration.html"/>
+<link rel="next" href="plotting.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -239,74 +239,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container">
   <img class="hero-image" src="assets/ilum.jpg">
 </div>
-<div id="vectors" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> Vectors<a href="vectors.html#vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Usually, we don’t want to work with just a single data point - we will typically have multiple values that we want to store together. The most convenient way of doing this in R is using <strong>vectors</strong>. A vector stores multiple data points, preserving their order.</p>
-<p>We create a vector using the <code>c()</code> (short for “concatenate”) function. For example:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="vectors.html#cb173-1" tabindex="-1"></a>plants <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Feverfew&quot;</span>, <span class="st">&quot;Ivy&quot;</span>, <span class="st">&quot;Willow&quot;</span>)</span>
-<span id="cb173-2"><a href="vectors.html#cb173-2" tabindex="-1"></a><span class="fu">print</span>(plants)</span></code></pre></div>
-<pre><code>## [1] &quot;Feverfew&quot; &quot;Ivy&quot;      &quot;Willow&quot;</code></pre>
-<p>The data within a vector may be of any type, but all elements of a vector <strong>must be of the same data type</strong>. What happens if we try to create a vector with multiple data types?</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="vectors.html#cb175-1" tabindex="-1"></a>beetles <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Weevil&quot;</span>, <span class="st">&quot;Firefly&quot;</span>, <span class="dv">5</span>)</span>
-<span id="cb175-2"><a href="vectors.html#cb175-2" tabindex="-1"></a><span class="fu">print</span>(beetles)</span></code></pre></div>
-<pre><code>## [1] &quot;Weevil&quot;  &quot;Firefly&quot; &quot;5&quot;</code></pre>
-<p>Here, we mix character and numeric data. This isn’t allowed, so the numeric <code>5</code> is converted to the string <code>"5"</code>.</p>
-<div id="indexing-1" class="section level3 hasAnchor" number="4.5.1">
-<h3><span class="header-section-number">4.5.1</span> Indexing<a href="vectors.html#indexing-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We will often want to take a larger vector and extract specific data points from it. To do this, we <strong>index</strong> our vector using the general syntax:</p>
-<p><code>vectorName[itemPosition]</code></p>
-<p>The position of the first item in the list is 1 (in other words, R is 1-indexed). Let’s try indexing using our <code>plants</code> vector, made above.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="vectors.html#cb177-1" tabindex="-1"></a><span class="fu">print</span>(plants)</span></code></pre></div>
-<pre><code>## [1] &quot;Feverfew&quot; &quot;Ivy&quot;      &quot;Willow&quot;</code></pre>
-<p>To extract <code>"Ivy"</code>, we would do:</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="vectors.html#cb179-1" tabindex="-1"></a>plants[<span class="dv">2</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;Ivy&quot;</code></pre>
-<p>We can also use a colon to extract multiple subsequent elements:</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="vectors.html#cb181-1" tabindex="-1"></a>plants[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;Feverfew&quot; &quot;Ivy&quot;</code></pre>
-<p>We can also provide a vector to index multiple values:</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="vectors.html#cb183-1" tabindex="-1"></a>plants[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span></code></pre></div>
-<pre><code>## [1] &quot;Feverfew&quot; &quot;Willow&quot;</code></pre>
-<p>We often want to extract elements near the end of a vector. <code>plants</code> is short and we can count to the end of it easily, but most of the data we will work with is a lot longer. One easy way to index items near the end of a vector is to use the <code>length()</code> function. We can index the final entry in plants as so:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="vectors.html#cb185-1" tabindex="-1"></a>plants[<span class="fu">length</span>(plants)]</span></code></pre></div>
-<pre><code>## [1] &quot;Willow&quot;</code></pre>
-<p><code>length(plants)</code> is 3, so writing <code>plants[length(plants)]</code> is equivalent to writing <code>plants[3]</code></p>
-<p>Likewise, we can index the second element by doing some math:</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="vectors.html#cb187-1" tabindex="-1"></a>plants[<span class="fu">length</span>(plants) <span class="sc">-</span> <span class="dv">1</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;Ivy&quot;</code></pre>
+<div id="data-frames-tabular-data" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Data Frames: Tabular Data<a href="data-frames-tabular-data.html#data-frames-tabular-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So vectors are great, but usually we don’t keep track of just <em>one</em> thing - we normally have multiple variables that we track simultaneously - for example, time and population size. A data frame is a tabular data structure that lets us organize a lot of different data in one place.</p>
+<p>Each column in a data frame is a vector - so within each column, the data needs to be of the same type. However, each column can be its own data type. So to make this concrete, let’s build a simple data frame with some made up data:</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="data-frames-tabular-data.html#cb106-1" tabindex="-1"></a>myDf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb106-2"><a href="data-frames-tabular-data.html#cb106-2" tabindex="-1"></a>  <span class="at">numbers =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="fl">3.3</span>),</span>
+<span id="cb106-3"><a href="data-frames-tabular-data.html#cb106-3" tabindex="-1"></a>  <span class="at">logic =</span> <span class="fu">c</span>(T, T, F, F, T),</span>
+<span id="cb106-4"><a href="data-frames-tabular-data.html#cb106-4" tabindex="-1"></a>  <span class="at">words =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;turquoise&quot;</span>)</span>
+<span id="cb106-5"><a href="data-frames-tabular-data.html#cb106-5" tabindex="-1"></a>)</span>
+<span id="cb106-6"><a href="data-frames-tabular-data.html#cb106-6" tabindex="-1"></a></span>
+<span id="cb106-7"><a href="data-frames-tabular-data.html#cb106-7" tabindex="-1"></a>myDf</span></code></pre></div>
+<pre><code>##   numbers logic     words
+## 1     1.0  TRUE       red
+## 2     4.0  TRUE     green
+## 3     6.0 FALSE      blue
+## 4     2.0 FALSE    orange
+## 5     3.3  TRUE turquoise</code></pre>
+<p>So now that we’ve made a simple dataset, let’s load in some more elaborate real data.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="data-frames-tabular-data.html#cb108-1" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;penguins.csv&quot;</span>)</span></code></pre></div>
+<p>We have a few ways of quickly looking at our data:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="data-frames-tabular-data.html#cb109-1" tabindex="-1"></a><span class="fu">head</span>(penguins)</span></code></pre></div>
+<pre><code>##   species    island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+## 1  Adelie Torgersen           39.1          18.7               181        3750
+## 2  Adelie Torgersen           39.5          17.4               186        3800
+## 3  Adelie Torgersen           40.3          18.0               195        3250
+## 4  Adelie Torgersen             NA            NA                NA          NA
+## 5  Adelie Torgersen           36.7          19.3               193        3450
+## 6  Adelie Torgersen           39.3          20.6               190        3650
+##      sex
+## 1   MALE
+## 2 FEMALE
+## 3 FEMALE
+## 4       
+## 5 FEMALE
+## 6   MALE</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="data-frames-tabular-data.html#cb111-1" tabindex="-1"></a><span class="fu">tail</span>(penguins)</span></code></pre></div>
+<pre><code>##     species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+## 339  Gentoo Biscoe           47.2          13.7               214        4925
+## 340  Gentoo Biscoe             NA            NA                NA          NA
+## 341  Gentoo Biscoe           46.8          14.3               215        4850
+## 342  Gentoo Biscoe           50.4          15.7               222        5750
+## 343  Gentoo Biscoe           45.2          14.8               212        5200
+## 344  Gentoo Biscoe           49.9          16.1               213        5400
+##        sex
+## 339 FEMALE
+## 340       
+## 341 FEMALE
+## 342   MALE
+## 343 FEMALE
+## 344   MALE</code></pre>
+<p>and <code>View(penguins)</code>, which is analogous to clicking on it in the Environment tab.</p>
+<p>So we can only see the first seven columns of our data here - if we ever want to know what all the columns are, we can use the <code>names()</code> function:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="data-frames-tabular-data.html#cb113-1" tabindex="-1"></a><span class="fu">names</span>(penguins)</span></code></pre></div>
+<pre><code>## [1] &quot;species&quot;           &quot;island&quot;            &quot;bill_length_mm&quot;   
+## [4] &quot;bill_depth_mm&quot;     &quot;flipper_length_mm&quot; &quot;body_mass_g&quot;      
+## [7] &quot;sex&quot;</code></pre>
+<p>We can also pretty easily get the dimensions of our data:</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="data-frames-tabular-data.html#cb115-1" tabindex="-1"></a><span class="fu">nrow</span>(penguins)</span></code></pre></div>
+<pre><code>## [1] 344</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="data-frames-tabular-data.html#cb117-1" tabindex="-1"></a><span class="fu">ncol</span>(penguins)</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="data-frames-tabular-data.html#cb119-1" tabindex="-1"></a><span class="fu">dim</span>(penguins)</span></code></pre></div>
+<pre><code>## [1] 344   7</code></pre>
+<div id="subsetting" class="section level3 hasAnchor" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Subsetting<a href="data-frames-tabular-data.html#subsetting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can extract columns from our data frame using the dollar sign. So for example if I want to see the <code>island</code> column, I can do:</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="data-frames-tabular-data.html#cb121-1" tabindex="-1"></a>penguins<span class="sc">$</span>island</span></code></pre></div>
+<p>Which we can now index the usual way:</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="data-frames-tabular-data.html#cb122-1" tabindex="-1"></a>penguins<span class="sc">$</span>island[<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Torgersen&quot; &quot;Torgersen&quot; &quot;Torgersen&quot; &quot;Torgersen&quot; &quot;Torgersen&quot; &quot;Torgersen&quot;</code></pre>
+<p>We can also index the entire df the conventional way, but now we need to provide a row and column index:</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="data-frames-tabular-data.html#cb124-1" tabindex="-1"></a>penguins[<span class="dv">5</span>, <span class="dv">10</span>]</span></code></pre></div>
+<pre><code>## NULL</code></pre>
 </div>
-<div id="logical-indexing-1" class="section level3 hasAnchor" number="4.5.2">
-<h3><span class="header-section-number">4.5.2</span> Logical Indexing<a href="vectors.html#logical-indexing-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We often want to subset our data not by the position of elements, but based on whether or not they meet a certain criterion. Below, I have generated a short list of numbers:</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="vectors.html#cb189-1" tabindex="-1"></a>myNumbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">54</span>, <span class="fl">12.2</span>, <span class="dv">70</span>, <span class="dv">18</span>, <span class="dv">24</span>, <span class="dv">94</span>)</span></code></pre></div>
-<p>Let’s say we want to extract just the values that are greater than 15 from this list. We can use any of our comparative operators with a vector to compare <em>all</em> values within the vector:</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="vectors.html#cb190-1" tabindex="-1"></a>myNumbers <span class="sc">&gt;</span> <span class="dv">15</span></span></code></pre></div>
-<pre><code>## [1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
-<p>This generates a logical vector. We can provide this vector as an index to <code>myNumbers</code> to pull out the elements that are <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="vectors.html#cb192-1" tabindex="-1"></a>myNumbers[myNumbers <span class="sc">&gt;</span> <span class="dv">15</span>]</span></code></pre></div>
-<pre><code>## [1] 54 70 18 24 94</code></pre>
-<p>We can use the logical AND (<code>&amp;</code>) and OR (<code>|</code>) operators to combine conditions. For example, extracting values greater than 15 and less than 30:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="vectors.html#cb194-1" tabindex="-1"></a>myNumbers[(myNumbers <span class="sc">&gt;</span> <span class="dv">15</span>) <span class="sc">&amp;</span> (myNumbers <span class="sc">&lt;</span> <span class="dv">30</span>)]</span></code></pre></div>
-<pre><code>## [1] 18 24</code></pre>
-</div>
-<div id="modifying-vectors" class="section level3 hasAnchor" number="4.5.3">
-<h3><span class="header-section-number">4.5.3</span> Modifying Vectors<a href="vectors.html#modifying-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Once we point to elements within a vector, we can modify them using the assignment operator. For example, making the second item in myNumbers equal to 200:</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="vectors.html#cb196-1" tabindex="-1"></a>myNumbers[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">200</span></span>
-<span id="cb196-2"><a href="vectors.html#cb196-2" tabindex="-1"></a><span class="fu">print</span>(myNumbers)</span></code></pre></div>
-<pre><code>## [1]   1.0 200.0  12.2  70.0  18.0  24.0  94.0</code></pre>
-<p>We can also modify multiple elements at once. For example, making every value less than 50 equal to 0:</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="vectors.html#cb198-1" tabindex="-1"></a>myNumbers[myNumbers <span class="sc">&lt;</span> <span class="dv">50</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb198-2"><a href="vectors.html#cb198-2" tabindex="-1"></a><span class="fu">print</span>(myNumbers)</span></code></pre></div>
-<pre><code>## [1]   0 200   0  70   0   0  94</code></pre>
-</div>
-<div id="adding-to-vectors-1" class="section level3 hasAnchor" number="4.5.4">
-<h3><span class="header-section-number">4.5.4</span> Adding to Vectors<a href="vectors.html#adding-to-vectors-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We can add to vectors using the concatenate function:</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="vectors.html#cb200-1" tabindex="-1"></a>plants <span class="ot">&lt;-</span> <span class="fu">c</span>(plants, <span class="st">&quot;Philodendron&quot;</span>)</span>
-<span id="cb200-2"><a href="vectors.html#cb200-2" tabindex="-1"></a><span class="fu">print</span>(plants)</span></code></pre></div>
-<pre><code>## [1] &quot;Feverfew&quot;     &quot;Ivy&quot;          &quot;Willow&quot;       &quot;Philodendron&quot;</code></pre>
-
+<div id="logical-indexing" class="section level3 hasAnchor" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> Logical Indexing<a href="data-frames-tabular-data.html#logical-indexing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s say that we want the penguins with big bills.</p>
+<p>We can use logical comparisons with the <code>bill_length_mm</code> vector to find which ones are 40 mm or longer.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="data-frames-tabular-data.html#cb126-1" tabindex="-1"></a>penguins<span class="sc">$</span>bill_length_mm <span class="sc">&gt;=</span> <span class="dv">40</span></span></code></pre></div>
+<p>This creates a huge vector of <code>TRUE</code>s and <code>FALSE</code>s. We can give this as a row index to pull out the <code>TRUE</code> rows:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-frames-tabular-data.html#cb127-1" tabindex="-1"></a>penguins[penguins<span class="sc">$</span>bill_length_mm <span class="sc">&gt;=</span> <span class="dv">40</span>, ] </span></code></pre></div>
+<p>Notice that the column index is blank - this means that we want to pull out all columns.</p>
+<p>Notice that we retain rows where the bill length is <code>NA</code> are retained. The easiest way to address this is to remove rows with <code>NA</code>s. Checking for <code>NA</code> values in R is a bit finicky. The conventional way is to use the function <code>is.na()</code>. This returns <code>TRUE</code> for all <code>NA</code>s. We want the opposite of that, so we add in <code>!</code> to negate it:</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="data-frames-tabular-data.html#cb128-1" tabindex="-1"></a>penguins[penguins<span class="sc">$</span>bill_length_mm <span class="sc">&gt;=</span> <span class="dv">40</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(penguins<span class="sc">$</span>bill_length_mm), ] </span></code></pre></div>
+<p>We can also use this type of logical comparisons to answer the question of <em>how many</em> penguins have long bills. <code>penguins$bill_length_mm &gt;= 40</code> returns a logical vector of <code>T</code> and <code>F</code>. Recall that these are equivalent to <code>1</code> and <code>0</code>. So to find the number of <code>TRUE</code>s, we can just sum the vector:</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-frames-tabular-data.html#cb129-1" tabindex="-1"></a><span class="fu">sum</span>(penguins<span class="sc">$</span>bill_length_mm <span class="sc">&gt;=</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 242</code></pre>
+<p>Again, we need to remove the <code>NA</code>s for this to work as intended, so the sum function has an optional <code>na.rm</code> argument.</p>
 </div>
 </div>
 <hr>
@@ -322,8 +342,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="comparisons.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-frames.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="iteration.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="plotting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -13,7 +13,7 @@ characters-and-variables
 paste
 numbers
 logical-data
-comparisons
+comparing-values
 multiple-conditions
 and
 or
@@ -25,7 +25,7 @@ two-other-major-types-of-collections
 rep
 seq
 iteration
-data-frames
+data-frames-tabular-data
 subsetting
 logical-indexing
 plotting
@@ -36,7 +36,7 @@ variables
 overwriting-variables
 math
 order-of-operations
-comparisons-1
+comparisons
 and-and-or
 and-1
 or-1
@@ -45,7 +45,7 @@ indexing-1
 logical-indexing-1
 modifying-vectors
 adding-to-vectors-1
-data-frames-1
+data-frames
 subsetting-data-frames
 logical-indexing-2
 plotting-1
