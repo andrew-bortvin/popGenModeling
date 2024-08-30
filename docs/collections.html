@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Lecture Notes | Population Genetics Modeling</title>
+  <title>3.4 Collections | Population Genetics Modeling</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.39.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Lecture Notes | Population Genetics Modeling" />
+  <meta property="og:title" content="3.4 Collections | Population Genetics Modeling" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Description of Course" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Lecture Notes | Population Genetics Modeling" />
+  <meta name="twitter:title" content="3.4 Collections | Population Genetics Modeling" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/pig.jpg" type="image/x-icon" />
-<link rel="prev" href="course-syllabus.html"/>
-<link rel="next" href="class-2-intro-to-r.html"/>
+<link rel="prev" href="comparisons.html"/>
+<link rel="next" href="iteration.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -239,8 +239,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container">
   <img class="hero-image" src="assets/ilum.jpg">
 </div>
-<div id="lecture-notes" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Lecture Notes<a href="lecture-notes.html#lecture-notes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="collections" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Collections<a href="collections.html#collections" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Most of the time, our data doesn’t come in the form of individual discrete observations. Instead, we usually work with collections of data - for example, the size of a population across many years.</p>
+<p>The most basic kind of collection in R is the <strong>vector</strong>, which combines multiple data points of the same type. We create a vector using the function <code>c()</code> (stands for concatenate).</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="collections.html#cb62-1" tabindex="-1"></a>fruits <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;peach&quot;</span>, <span class="st">&quot;plum&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
+<span id="cb62-2"><a href="collections.html#cb62-2" tabindex="-1"></a><span class="fu">print</span>(fruits)</span></code></pre></div>
+<pre><code>## [1] &quot;peach&quot; &quot;plum&quot;  &quot;pear&quot;</code></pre>
+<p>If we mix data of multiple types, R automatically converts data, to the best of its ability:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="collections.html#cb64-1" tabindex="-1"></a>fruits <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;peach&quot;</span>, <span class="fl">5.2</span>, <span class="st">&quot;pear&quot;</span>)</span>
+<span id="cb64-2"><a href="collections.html#cb64-2" tabindex="-1"></a><span class="fu">print</span>(fruits)</span></code></pre></div>
+<pre><code>## [1] &quot;peach&quot; &quot;5.2&quot;   &quot;pear&quot;</code></pre>
+<p>Notice that the numeric 5.2 is converted to the character <code>"5.2"</code> (see the quotation marks).</p>
+<div id="adding-to-vectors" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Adding to vectors<a href="collections.html#adding-to-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can use the <code>c()</code> function to add to an existing vector:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="collections.html#cb66-1" tabindex="-1"></a>fruits <span class="ot">&lt;-</span> <span class="fu">c</span>(fruits, <span class="st">&quot;apple&quot;</span>)</span>
+<span id="cb66-2"><a href="collections.html#cb66-2" tabindex="-1"></a><span class="fu">print</span>(fruits)</span></code></pre></div>
+<pre><code>## [1] &quot;peach&quot; &quot;5.2&quot;   &quot;pear&quot;  &quot;apple&quot;</code></pre>
+</div>
+<div id="indexing" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Indexing<a href="collections.html#indexing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can extract from a vector using the brackets <code>[]</code>. Inside the brackets, put the position of the item you want to extract:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="collections.html#cb68-1" tabindex="-1"></a><span class="fu">print</span>(fruits)</span></code></pre></div>
+<pre><code>## [1] &quot;peach&quot; &quot;5.2&quot;   &quot;pear&quot;  &quot;apple&quot;</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="collections.html#cb70-1" tabindex="-1"></a><span class="fu">print</span>(fruits[<span class="dv">2</span>]) <span class="co"># Get the second item</span></span></code></pre></div>
+<pre><code>## [1] &quot;5.2&quot;</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="collections.html#cb72-1" tabindex="-1"></a><span class="fu">print</span>(fruits[<span class="fu">length</span>(fruits)]) <span class="co"># Get the last item</span></span></code></pre></div>
+<pre><code>## [1] &quot;apple&quot;</code></pre>
+<p>We can provide a range or a vector of positions to extract multiple items from our vector:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="collections.html#cb74-1" tabindex="-1"></a><span class="fu">print</span>(fruits[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>])</span></code></pre></div>
+<pre><code>## [1] &quot;5.2&quot;   &quot;pear&quot;  &quot;apple&quot;</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="collections.html#cb76-1" tabindex="-1"></a><span class="fu">print</span>(fruits[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>)])</span></code></pre></div>
+<pre><code>## [1] &quot;peach&quot; &quot;pear&quot;  &quot;5.2&quot;</code></pre>
+<p>We can combine indexing and the assignment operator to modify a vector. For example, changing <code>"5.2"</code> back to <code>"plum"</code>:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="collections.html#cb78-1" tabindex="-1"></a>fruits[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">&quot;plum&quot;</span></span>
+<span id="cb78-2"><a href="collections.html#cb78-2" tabindex="-1"></a><span class="fu">print</span>(fruits)</span></code></pre></div>
+<pre><code>## [1] &quot;peach&quot; &quot;plum&quot;  &quot;pear&quot;  &quot;apple&quot;</code></pre>
+</div>
+<div id="comparisons-with-vectors" class="section level3 hasAnchor" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Comparisons with vectors<a href="collections.html#comparisons-with-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can use our comparison operators with vectors to compare the entire vector to a value.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="collections.html#cb80-1" tabindex="-1"></a>myNumbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">2</span>)</span>
+<span id="cb80-2"><a href="collections.html#cb80-2" tabindex="-1"></a>myNumbers <span class="sc">&gt;</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE  TRUE FALSE</code></pre>
+<p>We return a vector of logical values!</p>
+</div>
+<div id="two-other-major-types-of-collections" class="section level3 hasAnchor" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> Two other major types of collections:<a href="collections.html#two-other-major-types-of-collections" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="rep" class="section level4 hasAnchor" number="3.4.4.1">
+<h4><span class="header-section-number">3.4.4.1</span> Rep<a href="collections.html#rep" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We often want to repeat elements a set number of times. Writing this out by hand is annoying, so there’s a helpful function to do it for you: <code>rep()</code>.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="collections.html#cb82-1" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">5</span>, <span class="at">times =</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] 5 5 5 5</code></pre>
+<p>This repeats <code>5</code> four times.</p>
+<p>We can also repeat vectors:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="collections.html#cb84-1" tabindex="-1"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;stop&#39;</span>, <span class="st">&#39;go&#39;</span>), <span class="at">times =</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;stop&quot; &quot;go&quot;   &quot;stop&quot; &quot;go&quot;   &quot;stop&quot; &quot;go&quot;   &quot;stop&quot; &quot;go&quot;</code></pre>
+<p>What if we want to repeat each element in the vector a set number of times before moving on to the next? e.g. we want to turn <code>c("a", "b")</code> into <code>c("a","a","a", "b","b","b")</code>?</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="collections.html#cb86-1" tabindex="-1"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>), <span class="at">each =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot;</code></pre>
+<p>So, notice that this the first function we’ve encountered that takes multiple arguments. Multiple arguments are extremely common. For most functions, the first argument will be the input data or a formula or something. It doesn’t need a name - R can figure that out on its own.</p>
+<p>After that, though, most arguments are <strong>optional</strong>. So if you give R the code <code>rep(c('stop', 'go'), 4)</code>, it won’t automatically know what that 4 means - it could be either <code>times</code> or <code>each</code> in that position. So it’s a good practice to explicitly tell R what your optional arguments are by writing their name.</p>
+<p>Incidentally, how do we know what these optional arguments can be? This is something we need to know on a function-by function basis, and the ones for the common functions will be second nature to you sooner than you think. But also, we can look up our functions documentation using <code>?rep</code>. And if our function is not from the default R language, we can do a broader search using <code>??rep?</code></p>
+</div>
+<div id="seq" class="section level4 hasAnchor" number="3.4.4.2">
+<h4><span class="header-section-number">3.4.4.2</span> seq<a href="collections.html#seq" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We often want to work with a series of numbers in order (1,2,3,4,5,…,n). The <code>seq()</code> function allows us to do this.</p>
+<p>Let’s look at it in a bit more detail:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="collections.html#cb88-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<p>We can give <code>seq()</code> multiple numbers to create a start and stop condition:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="collections.html#cb90-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="collections.html#cb92-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">7</span>,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 7 6 5 4 3</code></pre>
+<p>Two important optional arguments for <code>seq()</code></p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="collections.html#cb94-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">5</span>,<span class="dv">20</span>, <span class="at">by =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1]  5 10 15 20</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="collections.html#cb96-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">4</span>,<span class="dv">9</span>, <span class="at">length =</span> <span class="dv">12</span>)</span></code></pre></div>
+<pre><code>##  [1] 4.000000 4.454545 4.909091 5.363636 5.818182 6.272727 6.727273 7.181818
+##  [9] 7.636364 8.090909 8.545455 9.000000</code></pre>
+</div>
+</div>
 </div>
 <hr>
 <center> 
@@ -255,8 +336,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="course-syllabus.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="class-2-intro-to-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="comparisons.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="iteration.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Lecture Notes | Population Genetics Modeling</title>
+  <title>4.7 Plotting | Population Genetics Modeling</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.39.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Lecture Notes | Population Genetics Modeling" />
+  <meta property="og:title" content="4.7 Plotting | Population Genetics Modeling" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Description of Course" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Lecture Notes | Population Genetics Modeling" />
+  <meta name="twitter:title" content="4.7 Plotting | Population Genetics Modeling" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/pig.jpg" type="image/x-icon" />
-<link rel="prev" href="course-syllabus.html"/>
-<link rel="next" href="class-2-intro-to-r.html"/>
+<link rel="prev" href="data-frames-1.html"/>
+<link rel="next" href="lecture-slides.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -239,9 +239,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container">
   <img class="hero-image" src="assets/ilum.jpg">
 </div>
-<div id="lecture-notes" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Lecture Notes<a href="lecture-notes.html#lecture-notes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="plotting-1" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Plotting<a href="plotting-1.html#plotting-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The base R programming language comes with some pretty robust tools for plotting. However, most R users instead use the external library <code>ggplot2</code>, which simplifies plotting and allows for more elaborate data visualization.</p>
+<p>Your Posit cloud accounts have <code>ggplot2</code> pre-installed. However, at the start of each script where you plot, you must let R know that you will use an external package with the line:</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="plotting-1.html#cb216-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<p>For a simple dataset to plot, I’ve saved the temperature in Fahrenheit in Baltimore, MD and Wommels, Netherlands for the next seven hours:</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="plotting-1.html#cb217-1" tabindex="-1"></a>temperatures <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb217-2"><a href="plotting-1.html#cb217-2" tabindex="-1"></a>  <span class="at">hours =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">7</span>),</span>
+<span id="cb217-3"><a href="plotting-1.html#cb217-3" tabindex="-1"></a>  <span class="at">temperature =</span> <span class="fu">c</span>(<span class="dv">74</span>, <span class="dv">73</span>, <span class="dv">72</span>, <span class="dv">71</span>, <span class="dv">75</span>, <span class="dv">79</span>, <span class="dv">87</span>, <span class="dv">59</span>, <span class="dv">60</span>, <span class="dv">62</span>, <span class="dv">65</span>, <span class="dv">69</span>, <span class="dv">72</span>, <span class="dv">67</span>),</span>
+<span id="cb217-4"><a href="plotting-1.html#cb217-4" tabindex="-1"></a>  <span class="at">city =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Baltimore&quot;</span>, <span class="dv">7</span>), <span class="fu">rep</span>(<span class="st">&quot;Wommels&quot;</span>, <span class="dv">7</span>))</span>
+<span id="cb217-5"><a href="plotting-1.html#cb217-5" tabindex="-1"></a>)</span>
+<span id="cb217-6"><a href="plotting-1.html#cb217-6" tabindex="-1"></a></span>
+<span id="cb217-7"><a href="plotting-1.html#cb217-7" tabindex="-1"></a><span class="fu">head</span>(temperatures)</span></code></pre></div>
+<pre><code>##   hours temperature      city
+## 1     1          74 Baltimore
+## 2     2          73 Baltimore
+## 3     3          72 Baltimore
+## 4     4          71 Baltimore
+## 5     5          75 Baltimore
+## 6     6          79 Baltimore</code></pre>
+<p>We can initialize a blank canvas with a call to the <code>ggplot()</code> function. The first argument that this function takes is the dataset you wish to plot, which in our case is <code>temperatures</code>.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="plotting-1.html#cb219-1" tabindex="-1"></a><span class="fu">ggplot</span>(temperatures)</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+<p>Next, we have to define the axes, groups of data, and other aesthetics. This is done with the <code>aes</code> argument. For our data, it makes sense to have time be the x axis and temperature to be the y axis:</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="plotting-1.html#cb220-1" tabindex="-1"></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(<span class="at">x =</span> hours, <span class="at">y =</span> temperature))</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<p>We now have a blank plot with axes. Notice that the scales of our axes are automatically set by the scales of our data (hours ranges from 0 to 7; temperature ranges approximately from 60 to 90).</p>
+<p>Now to add some data to our plot. Because <code>ggplot</code> already knows our input data and how the axes are laid out, all we need to do is to say that type of visualization we want (e.g. points, lines, etc.). Let’s start by adding points to our plot:</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="plotting-1.html#cb221-1" tabindex="-1"></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(<span class="at">x =</span> hours, <span class="at">y =</span> temperature)) <span class="sc">+</span> </span>
+<span id="cb221-2"><a href="plotting-1.html#cb221-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<p>This plots our data correctly, but notice that we can’t distinguish between the two cities visually. We can group our data points by coloring them differently. To do this, we can add another argument (<code>color</code>) to our <code>aes</code> statement:</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="plotting-1.html#cb222-1" tabindex="-1"></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(<span class="at">x =</span> hours, <span class="at">y =</span> temperature, <span class="at">color =</span> city)) <span class="sc">+</span> </span>
+<span id="cb222-2"><a href="plotting-1.html#cb222-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
+<p>This is a pretty clear, interpretable plot! We can pretty easily make a few changes to make it look nicer, though. First, let’s also add a line by adding a <code>geom_line()</code> statement:</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="plotting-1.html#cb223-1" tabindex="-1"></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(<span class="at">x =</span> hours, <span class="at">y =</span> temperature, <span class="at">color =</span> city)) <span class="sc">+</span> </span>
+<span id="cb223-2"><a href="plotting-1.html#cb223-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb223-3"><a href="plotting-1.html#cb223-3" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
+<p>ggplot will automatically generate axis labels based on the column names of the input data. However, we can also make more descriptive x and y axis labels along with an overall figure title using <code>xlab()</code>, <code>ylab()</code>, and <code>ggtitle()</code>, respectively:</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="plotting-1.html#cb224-1" tabindex="-1"></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(<span class="at">x =</span> hours, <span class="at">y =</span> temperature, <span class="at">color =</span> city)) <span class="sc">+</span> </span>
+<span id="cb224-2"><a href="plotting-1.html#cb224-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb224-3"><a href="plotting-1.html#cb224-3" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb224-4"><a href="plotting-1.html#cb224-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Time (Hours)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb224-5"><a href="plotting-1.html#cb224-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Temperature (F)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb224-6"><a href="plotting-1.html#cb224-6" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Projected Temperatures for the Next Six Hours&quot;</span>)</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
+<p>Lastly, it is worth mentioning that we can add <code>theme()</code> statements to modify almost any aspect of our figure’s aesthetics. Along with manually defined <code>theme()</code> statements, ggplot comes with a handful of predefined themes:</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="plotting-1.html#cb225-1" tabindex="-1"></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(<span class="at">x =</span> hours, <span class="at">y =</span> temperature, <span class="at">color =</span> city)) <span class="sc">+</span> </span>
+<span id="cb225-2"><a href="plotting-1.html#cb225-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb225-3"><a href="plotting-1.html#cb225-3" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb225-4"><a href="plotting-1.html#cb225-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Time (Hours)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb225-5"><a href="plotting-1.html#cb225-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Temperature (F)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb225-6"><a href="plotting-1.html#cb225-6" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Projected Temperatures for the Next Six Hours&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb225-7"><a href="plotting-1.html#cb225-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="plotting-1.html#cb226-1" tabindex="-1"></a><span class="fu">ggplot</span>(temperatures, <span class="fu">aes</span>(<span class="at">x =</span> hours, <span class="at">y =</span> temperature, <span class="at">color =</span> city)) <span class="sc">+</span> </span>
+<span id="cb226-2"><a href="plotting-1.html#cb226-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb226-3"><a href="plotting-1.html#cb226-3" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb226-4"><a href="plotting-1.html#cb226-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Time (Hours)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb226-5"><a href="plotting-1.html#cb226-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Temperature (F)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb226-6"><a href="plotting-1.html#cb226-6" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Projected Temperatures for the Next Six Hours&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb226-7"><a href="plotting-1.html#cb226-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
+
 </div>
+<!-- </div> -->
 <hr>
 <center> 
   <div class="footer">
@@ -255,8 +320,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="course-syllabus.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="class-2-intro-to-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-frames-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lecture-slides.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

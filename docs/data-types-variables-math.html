@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Lecture Notes | Population Genetics Modeling</title>
+  <title>3.2 Data Types, Variables, Math | Population Genetics Modeling</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.39.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Lecture Notes | Population Genetics Modeling" />
+  <meta property="og:title" content="3.2 Data Types, Variables, Math | Population Genetics Modeling" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Description of Course" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Lecture Notes | Population Genetics Modeling" />
+  <meta name="twitter:title" content="3.2 Data Types, Variables, Math | Population Genetics Modeling" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/pig.jpg" type="image/x-icon" />
-<link rel="prev" href="course-syllabus.html"/>
-<link rel="next" href="class-2-intro-to-r.html"/>
+<link rel="prev" href="class-2-intro-to-r.html"/>
+<link rel="next" href="comparisons.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -239,8 +239,87 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container">
   <img class="hero-image" src="assets/ilum.jpg">
 </div>
-<div id="lecture-notes" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Lecture Notes<a href="lecture-notes.html#lecture-notes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="data-types-variables-math" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Data Types, Variables, Math<a href="data-types-variables-math.html#data-types-variables-math" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="characters-and-variables" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Characters and Variables<a href="data-types-variables-math.html#characters-and-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In R, we have access to a lot of different data types. Text data is called <strong>Character data</strong> and is denoted by single or double quotes:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-types-variables-math.html#cb1-1" tabindex="-1"></a><span class="st">&quot;ant&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;ant&quot;</code></pre>
+<p>We’ve just written down that string and not actually done anything with it. Typically, though, we want to save and store our data for future use.</p>
+<p>We can do this using <strong>variables</strong>. We assign a variable using the operators <code>&lt;-</code> or <code>=</code>. For our purposes these are interchangeable for assignment; if you look at code online you’ll likely see both. I use <code>&lt;-</code> since it is a little more common.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-types-variables-math.html#cb3-1" tabindex="-1"></a>insect <span class="ot">&lt;-</span> <span class="st">&quot;cicada&quot;</span></span></code></pre></div>
+<p>Now we have a thing in memory with the name <code>insect</code>. And associated with that name is some data - in this case, the word “ant”. Incidentally, you can see in the top right corner of your screen in the Environment tab there is now an <code>insect</code> variable with the associated word “ant”.</p>
+<p>And now, whenever we want to access that data, we can use its variable name. For example, the <code>print()</code> function allows us to, fittingly, print data to the screen. We can print the contents of <code>insect</code> as such:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-types-variables-math.html#cb4-1" tabindex="-1"></a><span class="fu">print</span>(insect)</span></code></pre></div>
+<pre><code>## [1] &quot;cicada&quot;</code></pre>
+<p>And so just one bit of nomenclature - here, <code>print()</code> is the <strong>function</strong>, and <strong>insect</strong> - the thing we give to the function - is the function’s <strong>argument</strong>.</p>
+<p>A little more about assignment: we can “overwrite” a variable by assigning new data to it.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-types-variables-math.html#cb6-1" tabindex="-1"></a>insect <span class="ot">&lt;-</span> <span class="st">&quot;ant&quot;</span></span>
+<span id="cb6-2"><a href="data-types-variables-math.html#cb6-2" tabindex="-1"></a><span class="fu">print</span>(insect)</span></code></pre></div>
+<pre><code>## [1] &quot;ant&quot;</code></pre>
+<p>Now, <code>insect</code> is associated with the value <code>"ant"</code>. The old value is removed and the new one is added in its place.</p>
+<p>I’ve just told you that <code>insect</code> is character data, but if you ever are working with data and you don’t know the type of data it is, you can investigate that using the <code>class()</code> function:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="data-types-variables-math.html#cb8-1" tabindex="-1"></a><span class="fu">class</span>(insect)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div id="paste" class="section level4 hasAnchor" number="3.2.1.1">
+<h4><span class="header-section-number">3.2.1.1</span> paste<a href="data-types-variables-math.html#paste" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We have two very helpful functions for combining strings <code>paste</code> and <code>paste0</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="data-types-variables-math.html#cb10-1" tabindex="-1"></a><span class="fu">paste</span>(insect, <span class="st">&quot;hill&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;ant hill&quot;</code></pre>
+<p>We can give <code>paste()</code> a separator to combine with a common delimiter:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data-types-variables-math.html#cb12-1" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;eye&quot;</span>, <span class="st">&quot;of&quot;</span>, <span class="st">&quot;newt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;eye,of,newt&quot;</code></pre>
+<p><code>paste0()</code> is a shorthand of writing <code>sep = ""</code></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-types-variables-math.html#cb14-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(insect, <span class="st">&quot;hill&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;anthill&quot;</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-types-variables-math.html#cb16-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(insect, <span class="st">&quot;hill&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;anthill&quot;</code></pre>
+</div>
+</div>
+<div id="numbers" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Numbers<a href="data-types-variables-math.html#numbers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In many programming languages, you need to be very careful about different types of data - the difference between integers and numbers with decimal points is often extremely critical. R simplifies this a lot - under the hood, there are differences between these data types, but for our purposes we can broadly treat them as one type of data - <strong>numeric data</strong>.</p>
+<p>Math is straightforward:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-types-variables-math.html#cb18-1" tabindex="-1"></a>aNumber <span class="ot">&lt;-</span> <span class="fl">3.14</span></span>
+<span id="cb18-2"><a href="data-types-variables-math.html#cb18-2" tabindex="-1"></a><span class="fu">print</span>(aNumber <span class="sc">+</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 5.14</code></pre>
+<p>Notice that this <strong>does not</strong> modify the original value of <code>aNumber</code>:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-types-variables-math.html#cb20-1" tabindex="-1"></a><span class="fu">print</span>(aNumber)</span></code></pre></div>
+<pre><code>## [1] 3.14</code></pre>
+<p>To do that, we must use the assignment operator:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="data-types-variables-math.html#cb22-1" tabindex="-1"></a>aNumber <span class="ot">&lt;-</span> aNumber <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb22-2"><a href="data-types-variables-math.html#cb22-2" tabindex="-1"></a><span class="fu">print</span>(aNumber)</span></code></pre></div>
+<pre><code>## [1] 6.28</code></pre>
+<p>Other Math:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-types-variables-math.html#cb24-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">5</span> <span class="sc">+</span> <span class="fl">2.2</span>) <span class="co"># Notice the accommodation of integers and floating point data</span></span></code></pre></div>
+<pre><code>## [1] 7.2</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-types-variables-math.html#cb26-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">7</span><span class="sc">/</span><span class="dv">3</span>) <span class="co"># Division</span></span></code></pre></div>
+<pre><code>## [1] 2.333333</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="data-types-variables-math.html#cb28-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">9</span><span class="sc">*</span><span class="dv">4</span>) <span class="co"># Multiplication</span></span></code></pre></div>
+<pre><code>## [1] 36</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="data-types-variables-math.html#cb30-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">2</span><span class="sc">**</span><span class="dv">3</span>) <span class="co"># Exponents</span></span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<p>This last point about math is fairly intuitive, so I don’t need to dwell on it too long, but R obeys standard order of operations. Just like in real math, you can use parenthesis to control the order of operations.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-types-variables-math.html#cb32-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-types-variables-math.html#cb34-1" tabindex="-1"></a><span class="fu">print</span>((<span class="dv">1</span> <span class="sc">+</span> <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+</div>
+<div id="logical-data" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Logical Data<a href="data-types-variables-math.html#logical-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R can represent whether conditions are true or false using the appropriately named, case-sensitive <code>TRUE</code> and <code>FALSE</code>. These can shortened to <code>T</code> and <code>F</code>.</p>
+<p>A really nifty part of these is that they can also be automatically converted to the numeric <code>1</code> for <code>TRUE</code> and <code>0</code> for <code>FALSE</code>.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-types-variables-math.html#cb36-1" tabindex="-1"></a>T <span class="sc">+</span> <span class="cn">TRUE</span> <span class="sc">+</span> <span class="cn">FALSE</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>Now that we’ve seen the three major data types, one last thing about the assignment operator. Assignment can change the type of a variable. For example:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="data-types-variables-math.html#cb38-1" tabindex="-1"></a>testData <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb38-2"><a href="data-types-variables-math.html#cb38-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">class</span>(testData))</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="data-types-variables-math.html#cb40-1" tabindex="-1"></a>testData <span class="ot">&lt;-</span> <span class="st">&quot;yes&quot;</span></span>
+<span id="cb40-2"><a href="data-types-variables-math.html#cb40-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">class</span>(testData))</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
 </div>
 <hr>
 <center> 
@@ -255,8 +334,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="course-syllabus.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="class-2-intro-to-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="class-2-intro-to-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="comparisons.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

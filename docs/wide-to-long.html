@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Lecture Notes | Population Genetics Modeling</title>
+  <title>3.8 Wide to Long | Population Genetics Modeling</title>
   <meta name="description" content="Description of Course" />
   <meta name="generator" content="bookdown 0.39.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Lecture Notes | Population Genetics Modeling" />
+  <meta property="og:title" content="3.8 Wide to Long | Population Genetics Modeling" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Description of Course" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Lecture Notes | Population Genetics Modeling" />
+  <meta name="twitter:title" content="3.8 Wide to Long | Population Genetics Modeling" />
   
   <meta name="twitter:description" content="Description of Course" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/pig.jpg" type="image/x-icon" />
-<link rel="prev" href="course-syllabus.html"/>
-<link rel="next" href="class-2-intro-to-r.html"/>
+<link rel="prev" href="plotting.html"/>
+<link rel="next" href="r-guidebook.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -239,9 +239,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container">
   <img class="hero-image" src="assets/ilum.jpg">
 </div>
-<div id="lecture-notes" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Lecture Notes<a href="lecture-notes.html#lecture-notes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="wide-to-long" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> Wide to Long<a href="wide-to-long.html#wide-to-long" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One thing you may have noticed is that when we plot our data, we want our data to be tall rather than wide. To make that a little more concrete, here’s a data set of population sizes for two species:</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="wide-to-long.html#cb140-1" tabindex="-1"></a>popSizes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb140-2"><a href="wide-to-long.html#cb140-2" tabindex="-1"></a>  <span class="at">generation =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">5</span>), </span>
+<span id="cb140-3"><a href="wide-to-long.html#cb140-3" tabindex="-1"></a>  <span class="at">species1 =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">13</span>, <span class="dv">14</span>),</span>
+<span id="cb140-4"><a href="wide-to-long.html#cb140-4" tabindex="-1"></a>  <span class="at">species2 =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">13</span>, <span class="dv">11</span>)</span>
+<span id="cb140-5"><a href="wide-to-long.html#cb140-5" tabindex="-1"></a>)</span>
+<span id="cb140-6"><a href="wide-to-long.html#cb140-6" tabindex="-1"></a></span>
+<span id="cb140-7"><a href="wide-to-long.html#cb140-7" tabindex="-1"></a><span class="fu">head</span>(popSizes)</span></code></pre></div>
+<pre><code>##   generation species1 species2
+## 1          1       10       20
+## 2          2       12       15
+## 3          3       15       14
+## 4          4       13       13
+## 5          5       14       11</code></pre>
+<p>So if we go to plot this, we hit an issue:</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="wide-to-long.html#cb142-1" tabindex="-1"></a><span class="fu">ggplot</span>(popSizes, <span class="fu">aes</span>(<span class="at">x =</span> generation, <span class="at">y =</span> <span class="co">#????))</span></span></code></pre></div>
+<p>There are a few workarounds for this, but one of the best ones is to reshape your data and make it taller.</p>
+<p>The <code>reshape2</code> library has a great function for this is:</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="wide-to-long.html#cb143-1" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="wide-to-long.html#cb144-1" tabindex="-1"></a>popSizesTall <span class="ot">&lt;-</span> <span class="fu">melt</span>(popSizes, <span class="at">id.vars =</span> <span class="st">&quot;generation&quot;</span>)</span>
+<span id="cb144-2"><a href="wide-to-long.html#cb144-2" tabindex="-1"></a><span class="fu">head</span>(popSizesTall)</span></code></pre></div>
+<p>We should now rename our columns to be a bit more descriptive. This can be done with the <code>colnames()</code> function:</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="wide-to-long.html#cb145-1" tabindex="-1"></a><span class="fu">colnames</span>(popSizesTall) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;generation&quot;</span>, <span class="st">&quot;species&quot;</span>, <span class="st">&quot;size&quot;</span>)</span></code></pre></div>
+<p><img src="01-intro_to_R/img/melt_head.png" /></p>
+<p>Plotting is now straightforward:</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="wide-to-long.html#cb146-1" tabindex="-1"></a><span class="fu">ggplot</span>(popSizesTall, <span class="fu">aes</span>(<span class="at">x =</span> generation, <span class="at">y =</span> size, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb146-2"><a href="wide-to-long.html#cb146-2" tabindex="-1"></a>         <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb146-3"><a href="wide-to-long.html#cb146-3" tabindex="-1"></a>         <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb146-4"><a href="wide-to-long.html#cb146-4" tabindex="-1"></a>         <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="01-intro_to_R/img/melt_plot.png" /></p>
+
 </div>
+<!-- </div> -->
 <hr>
 <center> 
   <div class="footer">
@@ -255,8 +287,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="course-syllabus.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="class-2-intro-to-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="plotting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-guidebook.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
