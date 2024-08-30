@@ -554,7 +554,7 @@ The `reshape2` library has a great function for this is:
 library(reshape2)
 ```
 
-```{r, eval=FALSE}
+```{r}
 popSizesTall <- melt(popSizes, id.vars = "generation")
 head(popSizesTall)
 ```
