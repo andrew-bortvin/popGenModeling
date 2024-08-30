@@ -555,7 +555,7 @@ library(reshape2)
 ```
 
 ```{r}
-popSizesTall <- melt(popSizes, id.vars = "generation")
+popSizesTall <- reshape2::melt(popSizes, id.vars = "generation")
 head(popSizesTall)
 ```
 
