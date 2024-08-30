@@ -554,16 +554,18 @@ The `reshape2` library has a great function for this is:
 library(reshape2)
 ```
 
-```{r}
-popSizesTall <- reshape2::melt(popSizes, id.vars = "generation")
+```{r, eval=FALSE}
+popSizesTall <- melt(popSizes, id.vars = "generation")
 head(popSizesTall)
 ```
 
 We should now rename our columns to be a bit more descriptive. This can be done with the `colnames()` function:
 
-```{r}
+```{r, eval=FALSE}
 colnames(popSizesTall) <- c("generation", "species", "size")
 ```
+
+![](01-intro_to_R/img/melt_head.png)
 
 Plotting is now straightforward: 
 
@@ -574,3 +576,4 @@ ggplot(popSizesTall, aes(x = generation, y = size, color = species)) +
          theme_classic()
 ```
 
+![](01-intro_to_R/img/melt_plot.png)
