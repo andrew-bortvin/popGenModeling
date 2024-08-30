@@ -389,7 +389,7 @@ myDf
 So now that we've made a simple dataset, let's load in some more elaborate real data. 
 
 ```{r}
-penguins <- read.csv("~/popGenModeling/01-intro_to_R/penguins.csv")
+penguins <- read.csv("penguins.csv")
 ```
 
 We have a few ways of quickly looking at our data: 
