@@ -61,8 +61,8 @@ How do population sizes change? Models for one and two populations. Cooperation,
 
 | Date      | Topic                               | Assignments |
 |------------------------|------------------------|------------------------|
-|September 3 | The Exponential and Logistic Growth Models  | Problem Set 1 Assigned |
-|September 5 |  Density-Dependent Growth |  |
+|September 3 | The Exponential and Logistic Growth Models  |  |
+|September 5 |  Density-Dependent Growth | Problem Set 1 Assigned |
 
 **Week Three: Multiple Populations**\
 
