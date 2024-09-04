@@ -112,7 +112,7 @@ head(yoavData)
 ```
 
 ```{r importData, echo=FALSE}
-yoavData <- read.csv("yoavData.csv", row.names = "X")
+yoavData <- read.csv("yoavData.csv")
 head(yoavData)
 ```
 
