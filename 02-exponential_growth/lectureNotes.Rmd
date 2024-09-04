@@ -111,32 +111,33 @@ yoavData <- read.csv("yoavData.csv", row.names = "X")
 head(yoavData)
 ```
 
-```{r}
-yoavData <- read.csv("popGenModeling/exponential_growth/yoavData.csv")
-head(yoavData)
-```
-
+![](02-exponential_growth/img/yoav1.png)
 
 The data has three columns: `Time.S` - the time in seconds, `Plate` - the name of the plate that the culture is grown in, and `Size` - the size of the colony. First, plotting the size of the colony for the first 13,000 seconds:
 
-```{r}
+```{r, eval=FALSE}
 ggplot(yoavData, aes(x = Time.S, y = Size, color = Plate)) +
   geom_point() +
   geom_line() +
   theme(legend.position = "none") +
+  xlab("Time (Seconds)") +
+  ylab("Population Size") +
   xlim(c(0, 13000)) +
   ylim(c(0, 300000))
 ```
 
+![](02-exponential_growth/img/yoav1.png)
+
 Visually, this looks exponential. We can fit a curve to it. To do this, we can use the function `lm()` which fits a linear model. The tilde (`~`) symbol indicates the relationship we want to measure - in other words, this equation measures `log(Size)` as a function of `Time`. To make this an exponential fit, we take the log of the dependent variable:
 
-```{r}
+```{r, eval=FALSE}
 fitData <- yoavData[yoavData$Time.S < 15000, ]
 lm(log(fitData$Size) ~ fitData$Time.S)
 ```
+
 We can plot this along the real-world data. 
 
-```{r, warnings = FALSE}
+```{r, eval = FALSE}
 # Creating a dataframe from our function
 xs <- seq(1, 60000)                        # Set the x values we want to evaluate
 ys <- exp(10.067264) * exp(0.000182 * xs)  # Get the corresponding values using coefficients from the fit
@@ -153,11 +154,15 @@ fit_line <-data.frame(Time.S = xs,         # Convert to data frame
 ggplot(yoavData, aes(x = Time.S, y = Size, color = Plate)) +
   geom_point() +
   geom_line() +
+  xlab("Time (Seconds)") +
+  ylab("Population Size") +
   geom_line(data = fit_line, size = 1, color = "black") + # Plot the line of best fit 
   theme(legend.position = "none") +
   xlim(c(0, 13000)) +
   ylim(c(0, 300000)) 
 ```
+
+![](02-exponential_growth/img/yoav3.png)
 
 Notice that when we add the line of best fit, we provide the argument `data = fit_line`. This tells `ggplot` that we are using a second data set not provided in the initial `ggplot` call. 
 
@@ -174,11 +179,15 @@ fit_line <-data.frame(Time.S = xs,
 ggplot(yoavData, aes(x = Time.S, y = Size, color = Plate)) +
   geom_point() +
   geom_line() +
+  xlab("Time (Seconds)") +
+  ylab("Population Size") +
   geom_line(data = fit_line, size = 1, color = "black") +
   theme(legend.position = "none") +
   xlim(c(0, 35000)) +       # Changed x limits to see further into the Time 
   ylim(c(0, 800000)) 
 ```
+
+![](02-exponential_growth/img/yoav4.png)
 
 Notice that as the population grows, the exponential model is an increasingly poor fit - the exponential model predicts continued growth at an increasing rate; the actual data shows growth slowing down until the population hits a plateau. We'll look at this discrepancy in more detail next class! 
 
