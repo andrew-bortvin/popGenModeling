@@ -168,7 +168,7 @@ Notice that when we add the line of best fit, we provide the argument `data = fi
 
 Now, let's plot our data extending further in time - this is done by changing the `xlim` arguments:
 
-```{r, evalFALSE}
+```{r, eval=FALSE}
 xs <- seq(1, 60000)
 ys <- exp(10.067264) * exp(0.000182 * xs)
 fit_line <-data.frame(Time.S = xs,
