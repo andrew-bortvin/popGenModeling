@@ -112,7 +112,7 @@ head(yoavData)
 ```
 
 ```{r}
-yoavData <- read.csv("yoavData.csv")
+yoavData <- read.csv("popGenModeling/exponential_growth/yoavData.csv")
 head(yoavData)
 ```
 
