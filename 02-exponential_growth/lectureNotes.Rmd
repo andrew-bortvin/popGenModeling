@@ -112,7 +112,7 @@ head(yoavData)
 ```
 
 ```{r, echo=FALSE}
-yoavData <- read.csv("02-exponential_growth/yoavData.csv", row.names = "X")
+yoavData <- read.csv("yoavData.csv", row.names = "X")
 head(yoavData)
 ```
 
