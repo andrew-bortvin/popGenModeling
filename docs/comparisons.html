@@ -161,6 +161,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.6" data-path="class-2-intro-to-r.html"><a href="class-2-intro-to-r.html#plotting"><i class="fa fa-check"></i><b>3.1.6</b> Plotting</a></li>
 <li class="chapter" data-level="3.1.7" data-path="class-2-intro-to-r.html"><a href="class-2-intro-to-r.html#wide-to-long"><i class="fa fa-check"></i><b>3.1.7</b> Wide to Long</a></li>
 </ul></li>
+<li class="chapter" data-level="3.2" data-path="class-3-exponential-growth-and-age-structure.html"><a href="class-3-exponential-growth-and-age-structure.html"><i class="fa fa-check"></i><b>3.2</b> Class 3: Exponential Growth and Age Structure</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="class-3-exponential-growth-and-age-structure.html"><a href="class-3-exponential-growth-and-age-structure.html#comparison-to-real-data"><i class="fa fa-check"></i><b>3.2.1</b> Comparison to Real Data</a></li>
+<li class="chapter" data-level="3.2.2" data-path="class-3-exponential-growth-and-age-structure.html"><a href="class-3-exponential-growth-and-age-structure.html#age-structure"><i class="fa fa-check"></i><b>3.2.2</b> Age Structure</a></li>
+<li class="chapter" data-level="3.2.3" data-path="class-3-exponential-growth-and-age-structure.html"><a href="class-3-exponential-growth-and-age-structure.html#the-leslie-matrix"><i class="fa fa-check"></i><b>3.2.3</b> The Leslie Matrix</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="r-guidebook.html"><a href="r-guidebook.html"><i class="fa fa-check"></i><b>4</b> R Guidebook</a>
 <ul>
@@ -229,12 +235,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>• <code>&lt;</code> and <code>&gt;</code>: greater than, less than<br />
 • <code>&lt;=</code> and <code>&gt;=</code>: greater than or equal to, less than or equal to</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="comparisons.html#cb159-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fl">5.3</span> <span class="sc">&lt;</span> <span class="dv">17</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="comparisons.html#cb171-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fl">5.3</span> <span class="sc">&lt;</span> <span class="dv">17</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="comparisons.html#cb161-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">4</span> <span class="sc">&gt;=</span> (<span class="dv">8</span><span class="sc">/</span><span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="comparisons.html#cb173-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">4</span> <span class="sc">&gt;=</span> (<span class="dv">8</span><span class="sc">/</span><span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>• <code>==</code> checks if two values are equal. <code>!=</code> checks if two values are different.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="comparisons.html#cb163-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">2</span> <span class="sc">==</span> (<span class="dv">10</span> <span class="sc">-</span> <span class="dv">8</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="comparisons.html#cb175-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">2</span> <span class="sc">==</span> (<span class="dv">10</span> <span class="sc">-</span> <span class="dv">8</span>))</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Note that a single equals sign <code>=</code> can be used to assign values. However, a double equals sign <code>==</code> is used to compare values.</p>
 <div id="and-and-or" class="section level3 hasAnchor" number="4.4.1">
@@ -243,19 +249,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="and-1" class="section level4 hasAnchor" number="4.4.1.1">
 <h4><span class="header-section-number">4.4.1.1</span> AND<a href="comparisons.html#and-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>AND statements are represented using the operator <code>&amp;</code>. Two AND statements evaluate as <code>TRUE</code> only if <strong>both</strong> are <code>TRUE</code>. For example:</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="comparisons.html#cb165-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">&amp;</span> (<span class="dv">7</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="comparisons.html#cb177-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">&amp;</span> (<span class="dv">7</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">9</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>If <strong>either</strong> statement is <code>FALSE</code>, the entire expression is <code>FALSE</code>:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="comparisons.html#cb167-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">&amp;</span> (<span class="dv">12</span> <span class="sc">==</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="comparisons.html#cb179-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">&amp;</span> (<span class="dv">12</span> <span class="sc">==</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 </div>
 <div id="or-1" class="section level4 hasAnchor" number="4.4.1.2">
 <h4><span class="header-section-number">4.4.1.2</span> OR<a href="comparisons.html#or-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>OR statements are represented using the operator <code>|</code>. Two OR statements evaluate as <code>TRUE</code> if <strong>either</strong> statement is <code>TRUE</code>. For example:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="comparisons.html#cb169-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">|</span> (<span class="dv">7</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="comparisons.html#cb181-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">|</span> (<span class="dv">7</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">9</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>If <strong>either</strong> statement is <code>TRUE</code>, the entire expression is <code>TRUE</code>:</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="comparisons.html#cb171-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">|</span> (<span class="dv">12</span> <span class="sc">==</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="comparisons.html#cb183-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">|</span> (<span class="dv">12</span> <span class="sc">==</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 
 </div>

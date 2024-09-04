@@ -161,6 +161,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.6" data-path="class-2-intro-to-r.html"><a href="class-2-intro-to-r.html#plotting"><i class="fa fa-check"></i><b>3.1.6</b> Plotting</a></li>
 <li class="chapter" data-level="3.1.7" data-path="class-2-intro-to-r.html"><a href="class-2-intro-to-r.html#wide-to-long"><i class="fa fa-check"></i><b>3.1.7</b> Wide to Long</a></li>
 </ul></li>
+<li class="chapter" data-level="3.2" data-path="class-3-exponential-growth-and-age-structure.html"><a href="class-3-exponential-growth-and-age-structure.html"><i class="fa fa-check"></i><b>3.2</b> Class 3: Exponential Growth and Age Structure</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="class-3-exponential-growth-and-age-structure.html"><a href="class-3-exponential-growth-and-age-structure.html#comparison-to-real-data"><i class="fa fa-check"></i><b>3.2.1</b> Comparison to Real Data</a></li>
+<li class="chapter" data-level="3.2.2" data-path="class-3-exponential-growth-and-age-structure.html"><a href="class-3-exponential-growth-and-age-structure.html#age-structure"><i class="fa fa-check"></i><b>3.2.2</b> Age Structure</a></li>
+<li class="chapter" data-level="3.2.3" data-path="class-3-exponential-growth-and-age-structure.html"><a href="class-3-exponential-growth-and-age-structure.html#the-leslie-matrix"><i class="fa fa-check"></i><b>3.2.3</b> The Leslie Matrix</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="r-guidebook.html"><a href="r-guidebook.html"><i class="fa fa-check"></i><b>4</b> R Guidebook</a>
 <ul>
@@ -227,12 +233,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.5</span> Vectors<a href="vectors.html#vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Usually, we don’t want to work with just a single data point - we will typically have multiple values that we want to store together. The most convenient way of doing this in R is using <strong>vectors</strong>. A vector stores multiple data points, preserving their order.</p>
 <p>We create a vector using the <code>c()</code> (short for “concatenate”) function. For example:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="vectors.html#cb173-1" tabindex="-1"></a>plants <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Feverfew&quot;</span>, <span class="st">&quot;Ivy&quot;</span>, <span class="st">&quot;Willow&quot;</span>)</span>
-<span id="cb173-2"><a href="vectors.html#cb173-2" tabindex="-1"></a><span class="fu">print</span>(plants)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="vectors.html#cb185-1" tabindex="-1"></a>plants <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Feverfew&quot;</span>, <span class="st">&quot;Ivy&quot;</span>, <span class="st">&quot;Willow&quot;</span>)</span>
+<span id="cb185-2"><a href="vectors.html#cb185-2" tabindex="-1"></a><span class="fu">print</span>(plants)</span></code></pre></div>
 <pre><code>## [1] &quot;Feverfew&quot; &quot;Ivy&quot;      &quot;Willow&quot;</code></pre>
 <p>The data within a vector may be of any type, but all elements of a vector <strong>must be of the same data type</strong>. What happens if we try to create a vector with multiple data types?</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="vectors.html#cb175-1" tabindex="-1"></a>beetles <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Weevil&quot;</span>, <span class="st">&quot;Firefly&quot;</span>, <span class="dv">5</span>)</span>
-<span id="cb175-2"><a href="vectors.html#cb175-2" tabindex="-1"></a><span class="fu">print</span>(beetles)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="vectors.html#cb187-1" tabindex="-1"></a>beetles <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Weevil&quot;</span>, <span class="st">&quot;Firefly&quot;</span>, <span class="dv">5</span>)</span>
+<span id="cb187-2"><a href="vectors.html#cb187-2" tabindex="-1"></a><span class="fu">print</span>(beetles)</span></code></pre></div>
 <pre><code>## [1] &quot;Weevil&quot;  &quot;Firefly&quot; &quot;5&quot;</code></pre>
 <p>Here, we mix character and numeric data. This isn’t allowed, so the numeric <code>5</code> is converted to the string <code>"5"</code>.</p>
 <div id="indexing-1" class="section level3 hasAnchor" number="4.5.1">
@@ -240,55 +246,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We will often want to take a larger vector and extract specific data points from it. To do this, we <strong>index</strong> our vector using the general syntax:</p>
 <p><code>vectorName[itemPosition]</code></p>
 <p>The position of the first item in the list is 1 (in other words, R is 1-indexed). Let’s try indexing using our <code>plants</code> vector, made above.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="vectors.html#cb177-1" tabindex="-1"></a><span class="fu">print</span>(plants)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="vectors.html#cb189-1" tabindex="-1"></a><span class="fu">print</span>(plants)</span></code></pre></div>
 <pre><code>## [1] &quot;Feverfew&quot; &quot;Ivy&quot;      &quot;Willow&quot;</code></pre>
 <p>To extract <code>"Ivy"</code>, we would do:</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="vectors.html#cb179-1" tabindex="-1"></a>plants[<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="vectors.html#cb191-1" tabindex="-1"></a>plants[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Ivy&quot;</code></pre>
 <p>We can also use a colon to extract multiple subsequent elements:</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="vectors.html#cb181-1" tabindex="-1"></a>plants[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="vectors.html#cb193-1" tabindex="-1"></a>plants[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Feverfew&quot; &quot;Ivy&quot;</code></pre>
 <p>We can also provide a vector to index multiple values:</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="vectors.html#cb183-1" tabindex="-1"></a>plants[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="vectors.html#cb195-1" tabindex="-1"></a>plants[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span></code></pre></div>
 <pre><code>## [1] &quot;Feverfew&quot; &quot;Willow&quot;</code></pre>
 <p>We often want to extract elements near the end of a vector. <code>plants</code> is short and we can count to the end of it easily, but most of the data we will work with is a lot longer. One easy way to index items near the end of a vector is to use the <code>length()</code> function. We can index the final entry in plants as so:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="vectors.html#cb185-1" tabindex="-1"></a>plants[<span class="fu">length</span>(plants)]</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="vectors.html#cb197-1" tabindex="-1"></a>plants[<span class="fu">length</span>(plants)]</span></code></pre></div>
 <pre><code>## [1] &quot;Willow&quot;</code></pre>
 <p><code>length(plants)</code> is 3, so writing <code>plants[length(plants)]</code> is equivalent to writing <code>plants[3]</code></p>
 <p>Likewise, we can index the second element by doing some math:</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="vectors.html#cb187-1" tabindex="-1"></a>plants[<span class="fu">length</span>(plants) <span class="sc">-</span> <span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="vectors.html#cb199-1" tabindex="-1"></a>plants[<span class="fu">length</span>(plants) <span class="sc">-</span> <span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Ivy&quot;</code></pre>
 </div>
 <div id="logical-indexing-1" class="section level3 hasAnchor" number="4.5.2">
 <h3><span class="header-section-number">4.5.2</span> Logical Indexing<a href="vectors.html#logical-indexing-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We often want to subset our data not by the position of elements, but based on whether or not they meet a certain criterion. Below, I have generated a short list of numbers:</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="vectors.html#cb189-1" tabindex="-1"></a>myNumbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">54</span>, <span class="fl">12.2</span>, <span class="dv">70</span>, <span class="dv">18</span>, <span class="dv">24</span>, <span class="dv">94</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="vectors.html#cb201-1" tabindex="-1"></a>myNumbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">54</span>, <span class="fl">12.2</span>, <span class="dv">70</span>, <span class="dv">18</span>, <span class="dv">24</span>, <span class="dv">94</span>)</span></code></pre></div>
 <p>Let’s say we want to extract just the values that are greater than 15 from this list. We can use any of our comparative operators with a vector to compare <em>all</em> values within the vector:</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="vectors.html#cb190-1" tabindex="-1"></a>myNumbers <span class="sc">&gt;</span> <span class="dv">15</span></span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="vectors.html#cb202-1" tabindex="-1"></a>myNumbers <span class="sc">&gt;</span> <span class="dv">15</span></span></code></pre></div>
 <pre><code>## [1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
 <p>This generates a logical vector. We can provide this vector as an index to <code>myNumbers</code> to pull out the elements that are <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="vectors.html#cb192-1" tabindex="-1"></a>myNumbers[myNumbers <span class="sc">&gt;</span> <span class="dv">15</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="vectors.html#cb204-1" tabindex="-1"></a>myNumbers[myNumbers <span class="sc">&gt;</span> <span class="dv">15</span>]</span></code></pre></div>
 <pre><code>## [1] 54 70 18 24 94</code></pre>
 <p>We can use the logical AND (<code>&amp;</code>) and OR (<code>|</code>) operators to combine conditions. For example, extracting values greater than 15 and less than 30:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="vectors.html#cb194-1" tabindex="-1"></a>myNumbers[(myNumbers <span class="sc">&gt;</span> <span class="dv">15</span>) <span class="sc">&amp;</span> (myNumbers <span class="sc">&lt;</span> <span class="dv">30</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="vectors.html#cb206-1" tabindex="-1"></a>myNumbers[(myNumbers <span class="sc">&gt;</span> <span class="dv">15</span>) <span class="sc">&amp;</span> (myNumbers <span class="sc">&lt;</span> <span class="dv">30</span>)]</span></code></pre></div>
 <pre><code>## [1] 18 24</code></pre>
 </div>
 <div id="modifying-vectors" class="section level3 hasAnchor" number="4.5.3">
 <h3><span class="header-section-number">4.5.3</span> Modifying Vectors<a href="vectors.html#modifying-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Once we point to elements within a vector, we can modify them using the assignment operator. For example, making the second item in myNumbers equal to 200:</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="vectors.html#cb196-1" tabindex="-1"></a>myNumbers[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">200</span></span>
-<span id="cb196-2"><a href="vectors.html#cb196-2" tabindex="-1"></a><span class="fu">print</span>(myNumbers)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="vectors.html#cb208-1" tabindex="-1"></a>myNumbers[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb208-2"><a href="vectors.html#cb208-2" tabindex="-1"></a><span class="fu">print</span>(myNumbers)</span></code></pre></div>
 <pre><code>## [1]   1.0 200.0  12.2  70.0  18.0  24.0  94.0</code></pre>
 <p>We can also modify multiple elements at once. For example, making every value less than 50 equal to 0:</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="vectors.html#cb198-1" tabindex="-1"></a>myNumbers[myNumbers <span class="sc">&lt;</span> <span class="dv">50</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb198-2"><a href="vectors.html#cb198-2" tabindex="-1"></a><span class="fu">print</span>(myNumbers)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="vectors.html#cb210-1" tabindex="-1"></a>myNumbers[myNumbers <span class="sc">&lt;</span> <span class="dv">50</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb210-2"><a href="vectors.html#cb210-2" tabindex="-1"></a><span class="fu">print</span>(myNumbers)</span></code></pre></div>
 <pre><code>## [1]   0 200   0  70   0   0  94</code></pre>
 </div>
 <div id="adding-to-vectors-1" class="section level3 hasAnchor" number="4.5.4">
 <h3><span class="header-section-number">4.5.4</span> Adding to Vectors<a href="vectors.html#adding-to-vectors-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can add to vectors using the concatenate function:</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="vectors.html#cb200-1" tabindex="-1"></a>plants <span class="ot">&lt;-</span> <span class="fu">c</span>(plants, <span class="st">&quot;Philodendron&quot;</span>)</span>
-<span id="cb200-2"><a href="vectors.html#cb200-2" tabindex="-1"></a><span class="fu">print</span>(plants)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="vectors.html#cb212-1" tabindex="-1"></a>plants <span class="ot">&lt;-</span> <span class="fu">c</span>(plants, <span class="st">&quot;Philodendron&quot;</span>)</span>
+<span id="cb212-2"><a href="vectors.html#cb212-2" tabindex="-1"></a><span class="fu">print</span>(plants)</span></code></pre></div>
 <pre><code>## [1] &quot;Feverfew&quot;     &quot;Ivy&quot;          &quot;Willow&quot;       &quot;Philodendron&quot;</code></pre>
 
 </div>

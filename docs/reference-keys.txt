@@ -30,6 +30,10 @@ subsetting
 logical-indexing
 plotting
 wide-to-long
+class-3-exponential-growth-and-age-structure
+comparison-to-real-data
+age-structure
+the-leslie-matrix
 r-guidebook
 data-types
 variables
