@@ -16,7 +16,7 @@ library(reshape2)
 library(ggplot2)
 ```
 
-# Exponential Growth
+## Class 3: Exponential Growth and Age Structure
 
 Today, we're looking at the exponential growth model, which describes how a population grows in the absence of density dependence - that is, when the growth rate doesn't change in response to population size. First, we'll plot exponential growth for one population at a given per capita growth rate. 
 
@@ -102,7 +102,7 @@ ggplot(df, aes(x = generations,
 
 Notice that our population decreases when lambda < 1, stays constant when lambda = 1, and increases when lambda > 1.
 
-## Comparison to Real Data
+### Comparison to Real Data
 
 I've pulled some data from Yoav et al. 2019, PNAS (https://doi.org/10.1073/pnas.1902217116). This data set tracks microbial growth across a series of plates. Reading in the data:
 
@@ -176,7 +176,7 @@ ggplot(yoavData, aes(x = Time.S, y = Size, color = Plate)) +
 
 Notice that as the population grows, the exponential model is an increasingly poor fit - the exponential model predicts continued growth at an increasing rate; the actual data shows growth slowing down until the population hits a plateau. We'll look at this discrepancy in more detail next class! 
 
-# Age Structure
+### Age Structure
 
 Next, let's look at age structured populations - that is a population where we track the ages of individuals and where individuals of different ages can have different reproduction rates and mortalities. 
 
@@ -307,7 +307,7 @@ ggplot(ratioDf, aes(x = generations,
 
 Notice that after an initial period of chaos, the ratio of age groups stabilizes. This is called the stable age distribution and is a general property of age structured models like this. 
 
-## The Leslie Matrix
+### The Leslie Matrix
 
 The Leslie matrix allows us to very efficiently extend age structured models to an arbitrarily large number of populations. 
 
