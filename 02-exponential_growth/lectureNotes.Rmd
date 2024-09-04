@@ -106,10 +106,16 @@ Notice that our population decreases when lambda < 1, stays constant when lambda
 
 I've pulled some data from Yoav et al. 2019, PNAS (https://doi.org/10.1073/pnas.1902217116). This data set tracks microbial growth across a series of plates. Reading in the data:
 
-```{r}
+```{r, eval=FALSE}
 yoavData <- read.csv("yoavData.csv", row.names = "X")
 head(yoavData)
 ```
+
+```{r, echo=FALSE}
+yoavData <- read.csv("02-exponential_growth/yoavData.csv", row.names = "X")
+head(yoavData)
+```
+
 
 The data has three columns: `Time.S` - the time in seconds, `Plate` - the name of the plate that the culture is grown in, and `Size` - the size of the colony. First, plotting the size of the colony for the first 13,000 seconds:
 
