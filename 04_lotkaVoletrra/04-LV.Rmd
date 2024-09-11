@@ -278,10 +278,10 @@ n2_list_logistic <- c(N2_logistic)
 # StepSize
 stepSize <- 0.01
 
-for (i in seq(nYears/step)){
+for (i in seq(nYears/stepSize)){
   # Calculate LV dynamics
-  N1_future <- N1 + r1 * N1 * ((K1 - N1 - alpha * N2)/K1) * step
-  N2_future <- N2 + r2 * N2 * ((K2 - N2 - beta * N1)/K2) * step
+  N1_future <- N1 + r1 * N1 * ((K1 - N1 - alpha * N2)/K1) * stepSize
+  N2_future <- N2 + r2 * N2 * ((K2 - N2 - beta * N1)/K2) * stepSize
   
   # Update N1 and N2
   N1 <- N1_future
