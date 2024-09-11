@@ -347,7 +347,7 @@ ggplot(df_plot, aes(x = time / stepSize,
 
 ![](04_lotkaVoletrra/img/LV_and_logistic.png)
 
-### Equilibirum from multiplt starting points 
+### Equilibirum from multiple starting points 
 
 Now, starting from multiple conditions:
 
@@ -379,7 +379,7 @@ time <- c()
 step <- 0.01
 
 # Number of trials we are running
-nTrials <- 100
+nTrials <- 300
 
 # Run simulation
 for (trial in seq(nTrials)){
