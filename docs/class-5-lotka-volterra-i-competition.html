@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.3 Class 5: Lotka-Volterra I: Competition | Population Genetics Modeling</title>
+  <meta name="description" content="Description of Course" />
+  <meta name="generator" content="bookdown 0.39.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.3 Class 5: Lotka-Volterra I: Competition | Population Genetics Modeling" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Description of Course" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.3 Class 5: Lotka-Volterra I: Competition | Population Genetics Modeling" />
+  
+  <meta name="twitter:description" content="Description of Course" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="assets/pig.jpg" type="image/x-icon" />
+<link rel="prev" href="class-3-exponential-growth-and-age-structure.html"/>
+<link rel="next" href="r-guidebook.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<a href="https://andrew-bortvin.github.io/popGenModeling/"><img src="assets/pig.jpg" style=" width: 80%; padding-left: 40px; padding-top: 8px; vertical-align: top"</a>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Homepage</a>
+<ul>
+<li class="chapter" data-level="1.0.1" data-path="index.html"><a href="index.html#course-updates"><i class="fa fa-check"></i><b>1.0.1</b> Course Updates</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="course-syllabus.html"><a href="course-syllabus.html"><i class="fa fa-check"></i><b>2</b> Course Syllabus</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="course-syllabus.html"><a href="course-syllabus.html#course-description"><i class="fa fa-check"></i><b>2.0.1</b> Course Description</a></li>
+<li class="chapter" data-level="2.0.2" data-path="course-syllabus.html"><a href="course-syllabus.html#learning-goals"><i class="fa fa-check"></i><b>2.0.2</b> Learning Goals</a></li>
+<li class="chapter" data-level="2.0.3" data-path="course-syllabus.html"><a href="course-syllabus.html#grading"><i class="fa fa-check"></i><b>2.0.3</b> Grading</a></li>
+<li class="chapter" data-level="2.0.4" data-path="course-syllabus.html"><a href="course-syllabus.html#schedule"><i class="fa fa-check"></i><b>2.0.4</b> Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lecture-notes.html"><a href="lecture-notes.html"><i class="fa fa-check"></i><b>3</b> Lecture Notes</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="class-2-intro-to-r.html"><a href="class-2-intro-to-r.html"><i class="fa fa-check"></i><b>3.1</b> Class 2: Intro to R</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="class-2-intro-to-r.html"><a href="class-2-intro-to-r.html#data-types-variables-math"><i class="fa fa-check"></i><b>3.1.1</b> Data Types, Variables, Math</a></li>
+<li class="chapter" data-level="3.1.2" data-path="class-2-intro-to-r.html"><a href="class-2-intro-to-r.html#comparing-values"><i class="fa fa-check"></i><b>3.1.2</b> Comparing Values</a></li>
+<li class="chapter" data-level="3.1.3" data-path="class-2-intro-to-r.html"><a href="class-2-intro-to-r.html#collections"><i class="fa fa-check"></i><b>3.1.3</b> Collections</a></li>
+<li class="chapter" data-level="3.1.4" data-path="class-2-intro-to-r.html"><a href="class-2-intro-to-r.html#iteration"><i class="fa fa-check"></i><b>3.1.4</b> Iteration</a></li>
+<li class="chapter" data-level="3.1.5" data-path="class-2-intro-to-r.html"><a href="class-2-intro-to-r.html#data-frames-tabular-data"><i class="fa fa-check"></i><b>3.1.5</b> Data Frames: Tabular Data</a></li>
+<li class="chapter" data-level="3.1.6" data-path="class-2-intro-to-r.html"><a href="class-2-intro-to-r.html#plotting"><i class="fa fa-check"></i><b>3.1.6</b> Plotting</a></li>
+<li class="chapter" data-level="3.1.7" data-path="class-2-intro-to-r.html"><a href="class-2-intro-to-r.html#wide-to-long"><i class="fa fa-check"></i><b>3.1.7</b> Wide to Long</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="class-3-exponential-growth-and-age-structure.html"><a href="class-3-exponential-growth-and-age-structure.html"><i class="fa fa-check"></i><b>3.2</b> Class 3: Exponential Growth and Age Structure</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="class-3-exponential-growth-and-age-structure.html"><a href="class-3-exponential-growth-and-age-structure.html#comparison-to-real-data"><i class="fa fa-check"></i><b>3.2.1</b> Comparison to Real Data</a></li>
+<li class="chapter" data-level="3.2.2" data-path="class-3-exponential-growth-and-age-structure.html"><a href="class-3-exponential-growth-and-age-structure.html#age-structure"><i class="fa fa-check"></i><b>3.2.2</b> Age Structure</a></li>
+<li class="chapter" data-level="3.2.3" data-path="class-3-exponential-growth-and-age-structure.html"><a href="class-3-exponential-growth-and-age-structure.html#the-leslie-matrix"><i class="fa fa-check"></i><b>3.2.3</b> The Leslie Matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="class-5-lotka-volterra-i-competition.html"><a href="class-5-lotka-volterra-i-competition.html"><i class="fa fa-check"></i><b>3.3</b> Class 5: Lotka-Volterra I: Competition</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="class-5-lotka-volterra-i-competition.html"><a href="class-5-lotka-volterra-i-competition.html#equilibirum-from-multiplt-starting-points"><i class="fa fa-check"></i><b>3.3.1</b> Equilibirum from multiplt starting points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-guidebook.html"><a href="r-guidebook.html"><i class="fa fa-check"></i><b>4</b> R Guidebook</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-types.html"><a href="data-types.html"><i class="fa fa-check"></i><b>4.1</b> Data Types</a></li>
+<li class="chapter" data-level="4.2" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>4.2</b> Variables</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="variables.html"><a href="variables.html#overwriting-variables"><i class="fa fa-check"></i><b>4.2.1</b> Overwriting Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="math.html"><a href="math.html"><i class="fa fa-check"></i><b>4.3</b> Math</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="math.html"><a href="math.html#order-of-operations"><i class="fa fa-check"></i><b>4.3.1</b> Order of Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="comparisons.html"><a href="comparisons.html"><i class="fa fa-check"></i><b>4.4</b> Comparisons</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="comparisons.html"><a href="comparisons.html#and-and-or"><i class="fa fa-check"></i><b>4.4.1</b> AND and OR</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>4.5</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="vectors.html"><a href="vectors.html#indexing-1"><i class="fa fa-check"></i><b>4.5.1</b> Indexing</a></li>
+<li class="chapter" data-level="4.5.2" data-path="vectors.html"><a href="vectors.html#logical-indexing-1"><i class="fa fa-check"></i><b>4.5.2</b> Logical Indexing</a></li>
+<li class="chapter" data-level="4.5.3" data-path="vectors.html"><a href="vectors.html#modifying-vectors"><i class="fa fa-check"></i><b>4.5.3</b> Modifying Vectors</a></li>
+<li class="chapter" data-level="4.5.4" data-path="vectors.html"><a href="vectors.html#adding-to-vectors-1"><i class="fa fa-check"></i><b>4.5.4</b> Adding to Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>4.6</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="data-frames.html"><a href="data-frames.html#subsetting-data-frames"><i class="fa fa-check"></i><b>4.6.1</b> Subsetting Data Frames</a></li>
+<li class="chapter" data-level="4.6.2" data-path="data-frames.html"><a href="data-frames.html#logical-indexing-2"><i class="fa fa-check"></i><b>4.6.2</b> Logical Indexing</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="plotting-1.html"><a href="plotting-1.html"><i class="fa fa-check"></i><b>4.7</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lecture-slides.html"><a href="lecture-slides.html"><i class="fa fa-check"></i><b>5</b> Lecture Slides</a></li>
+<li class="chapter" data-level="" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i>Authors</a></li>
+<li class="divider"></li>
+<p style="text-align:center; font-size: 11pt"> <a href="https://github.com/jhudsl/OTTR_Template" target="blank" > Published with</a> <a href="https://bookdown.org/" target="blank"> <b>bookdown</b></a> (by <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab</a>) </p>
+<p style="text-align:center; font-size: 12px;"> <a href="https://github.com/rstudio4edu/rstudio4edu-book/"> Style adapted from: rstudio4edu-book </a> <a href ="https://creativecommons.org/licenses/by/2.0/"> (CC-BY 2.0) </a></p>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Population Genetics Modeling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0">
+  <link href="assets/style.css" rel="stylesheet">
+</head>
+
+
+
+<div class="hero-image-container">
+  <img class="hero-image" src="assets/ilum.jpg">
+</div>
+<div id="class-5-lotka-volterra-i-competition" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Class 5: Lotka-Volterra I: Competition<a href="class-5-lotka-volterra-i-competition.html#class-5-lotka-volterra-i-competition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To begin with, a simple implementation of the Lotka-Volterra equation in R, with discrete time points:</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="class-5-lotka-volterra-i-competition.html#cb160-1" tabindex="-1"></a><span class="co"># Initialize conditions</span></span>
+<span id="cb160-2"><a href="class-5-lotka-volterra-i-competition.html#cb160-2" tabindex="-1"></a><span class="co"># Population Sizes</span></span>
+<span id="cb160-3"><a href="class-5-lotka-volterra-i-competition.html#cb160-3" tabindex="-1"></a>N1 <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb160-4"><a href="class-5-lotka-volterra-i-competition.html#cb160-4" tabindex="-1"></a>N2 <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb160-5"><a href="class-5-lotka-volterra-i-competition.html#cb160-5" tabindex="-1"></a></span>
+<span id="cb160-6"><a href="class-5-lotka-volterra-i-competition.html#cb160-6" tabindex="-1"></a><span class="co"># Carrying Capacities</span></span>
+<span id="cb160-7"><a href="class-5-lotka-volterra-i-competition.html#cb160-7" tabindex="-1"></a>K1 <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb160-8"><a href="class-5-lotka-volterra-i-competition.html#cb160-8" tabindex="-1"></a>K2 <span class="ot">&lt;-</span> <span class="dv">400</span></span>
+<span id="cb160-9"><a href="class-5-lotka-volterra-i-competition.html#cb160-9" tabindex="-1"></a></span>
+<span id="cb160-10"><a href="class-5-lotka-volterra-i-competition.html#cb160-10" tabindex="-1"></a><span class="co"># Interaction parameters between pops</span></span>
+<span id="cb160-11"><a href="class-5-lotka-volterra-i-competition.html#cb160-11" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb160-12"><a href="class-5-lotka-volterra-i-competition.html#cb160-12" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
+<span id="cb160-13"><a href="class-5-lotka-volterra-i-competition.html#cb160-13" tabindex="-1"></a></span>
+<span id="cb160-14"><a href="class-5-lotka-volterra-i-competition.html#cb160-14" tabindex="-1"></a><span class="co"># Growth rates</span></span>
+<span id="cb160-15"><a href="class-5-lotka-volterra-i-competition.html#cb160-15" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb160-16"><a href="class-5-lotka-volterra-i-competition.html#cb160-16" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fl">1.3</span></span>
+<span id="cb160-17"><a href="class-5-lotka-volterra-i-competition.html#cb160-17" tabindex="-1"></a></span>
+<span id="cb160-18"><a href="class-5-lotka-volterra-i-competition.html#cb160-18" tabindex="-1"></a><span class="co"># Simulation time</span></span>
+<span id="cb160-19"><a href="class-5-lotka-volterra-i-competition.html#cb160-19" tabindex="-1"></a>nYears <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb160-20"><a href="class-5-lotka-volterra-i-competition.html#cb160-20" tabindex="-1"></a></span>
+<span id="cb160-21"><a href="class-5-lotka-volterra-i-competition.html#cb160-21" tabindex="-1"></a><span class="co"># Vectors to store population sizes</span></span>
+<span id="cb160-22"><a href="class-5-lotka-volterra-i-competition.html#cb160-22" tabindex="-1"></a>n1_list <span class="ot">&lt;-</span> <span class="fu">c</span>(N1)</span>
+<span id="cb160-23"><a href="class-5-lotka-volterra-i-competition.html#cb160-23" tabindex="-1"></a>n2_list <span class="ot">&lt;-</span> <span class="fu">c</span>(N2)</span>
+<span id="cb160-24"><a href="class-5-lotka-volterra-i-competition.html#cb160-24" tabindex="-1"></a></span>
+<span id="cb160-25"><a href="class-5-lotka-volterra-i-competition.html#cb160-25" tabindex="-1"></a><span class="co"># Run simulation</span></span>
+<span id="cb160-26"><a href="class-5-lotka-volterra-i-competition.html#cb160-26" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(nYears)){</span>
+<span id="cb160-27"><a href="class-5-lotka-volterra-i-competition.html#cb160-27" tabindex="-1"></a>  <span class="co"># Calculate future pop sizes for next time point</span></span>
+<span id="cb160-28"><a href="class-5-lotka-volterra-i-competition.html#cb160-28" tabindex="-1"></a>  <span class="co"># Saving N1 as a new variable so that it the current value of N1</span></span>
+<span id="cb160-29"><a href="class-5-lotka-volterra-i-competition.html#cb160-29" tabindex="-1"></a>  <span class="co"># can be used to calculate N2 </span></span>
+<span id="cb160-30"><a href="class-5-lotka-volterra-i-competition.html#cb160-30" tabindex="-1"></a>  N1_future <span class="ot">&lt;-</span> N1 <span class="sc">+</span> r1 <span class="sc">*</span> N1 <span class="sc">*</span> ((K1 <span class="sc">-</span> N1 <span class="sc">-</span> alpha <span class="sc">*</span> N2)<span class="sc">/</span>K1) </span>
+<span id="cb160-31"><a href="class-5-lotka-volterra-i-competition.html#cb160-31" tabindex="-1"></a>  N2_future <span class="ot">&lt;-</span> N2 <span class="sc">+</span> r2 <span class="sc">*</span> N2 <span class="sc">*</span> ((K2 <span class="sc">-</span> N2 <span class="sc">-</span> beta <span class="sc">*</span> N1)<span class="sc">/</span>K2) </span>
+<span id="cb160-32"><a href="class-5-lotka-volterra-i-competition.html#cb160-32" tabindex="-1"></a>  </span>
+<span id="cb160-33"><a href="class-5-lotka-volterra-i-competition.html#cb160-33" tabindex="-1"></a>  <span class="co"># Update N1 and N2 </span></span>
+<span id="cb160-34"><a href="class-5-lotka-volterra-i-competition.html#cb160-34" tabindex="-1"></a>  N1 <span class="ot">&lt;-</span> N1_future</span>
+<span id="cb160-35"><a href="class-5-lotka-volterra-i-competition.html#cb160-35" tabindex="-1"></a>  N2 <span class="ot">&lt;-</span> N2_future</span>
+<span id="cb160-36"><a href="class-5-lotka-volterra-i-competition.html#cb160-36" tabindex="-1"></a>  </span>
+<span id="cb160-37"><a href="class-5-lotka-volterra-i-competition.html#cb160-37" tabindex="-1"></a>  <span class="co"># Save to list </span></span>
+<span id="cb160-38"><a href="class-5-lotka-volterra-i-competition.html#cb160-38" tabindex="-1"></a>  n1_list <span class="ot">&lt;-</span> <span class="fu">c</span>(n1_list, N1)</span>
+<span id="cb160-39"><a href="class-5-lotka-volterra-i-competition.html#cb160-39" tabindex="-1"></a>  n2_list <span class="ot">&lt;-</span> <span class="fu">c</span>(n2_list, N2)</span>
+<span id="cb160-40"><a href="class-5-lotka-volterra-i-competition.html#cb160-40" tabindex="-1"></a>}</span>
+<span id="cb160-41"><a href="class-5-lotka-volterra-i-competition.html#cb160-41" tabindex="-1"></a></span>
+<span id="cb160-42"><a href="class-5-lotka-volterra-i-competition.html#cb160-42" tabindex="-1"></a><span class="co"># Convert to data frame</span></span>
+<span id="cb160-43"><a href="class-5-lotka-volterra-i-competition.html#cb160-43" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb160-44"><a href="class-5-lotka-volterra-i-competition.html#cb160-44" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="fu">length</span>(n1_list)),</span>
+<span id="cb160-45"><a href="class-5-lotka-volterra-i-competition.html#cb160-45" tabindex="-1"></a>  <span class="at">n1 =</span> n1_list,</span>
+<span id="cb160-46"><a href="class-5-lotka-volterra-i-competition.html#cb160-46" tabindex="-1"></a>  <span class="at">n2 =</span> n2_list</span>
+<span id="cb160-47"><a href="class-5-lotka-volterra-i-competition.html#cb160-47" tabindex="-1"></a>)</span>
+<span id="cb160-48"><a href="class-5-lotka-volterra-i-competition.html#cb160-48" tabindex="-1"></a></span>
+<span id="cb160-49"><a href="class-5-lotka-volterra-i-competition.html#cb160-49" tabindex="-1"></a><span class="co"># Convert to tall format</span></span>
+<span id="cb160-50"><a href="class-5-lotka-volterra-i-competition.html#cb160-50" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">melt</span>(df, <span class="at">id.vars =</span> <span class="st">&quot;time&quot;</span>)</span>
+<span id="cb160-51"><a href="class-5-lotka-volterra-i-competition.html#cb160-51" tabindex="-1"></a><span class="fu">colnames</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;pop&quot;</span>, <span class="st">&quot;size&quot;</span>)</span>
+<span id="cb160-52"><a href="class-5-lotka-volterra-i-competition.html#cb160-52" tabindex="-1"></a>  </span>
+<span id="cb160-53"><a href="class-5-lotka-volterra-i-competition.html#cb160-53" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb160-54"><a href="class-5-lotka-volterra-i-competition.html#cb160-54" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> time,</span>
+<span id="cb160-55"><a href="class-5-lotka-volterra-i-competition.html#cb160-55" tabindex="-1"></a>               <span class="at">y =</span> size, </span>
+<span id="cb160-56"><a href="class-5-lotka-volterra-i-competition.html#cb160-56" tabindex="-1"></a>               <span class="at">color =</span> pop)) <span class="sc">+</span></span>
+<span id="cb160-57"><a href="class-5-lotka-volterra-i-competition.html#cb160-57" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb160-58"><a href="class-5-lotka-volterra-i-competition.html#cb160-58" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb160-59"><a href="class-5-lotka-volterra-i-competition.html#cb160-59" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time (Generations)&quot;</span>, </span>
+<span id="cb160-60"><a href="class-5-lotka-volterra-i-competition.html#cb160-60" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Population Size&quot;</span>,</span>
+<span id="cb160-61"><a href="class-5-lotka-volterra-i-competition.html#cb160-61" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Population&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb160-62"><a href="class-5-lotka-volterra-i-competition.html#cb160-62" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="04_lotkaVoletrra/img/LV_discrete.png" /></p>
+<p>A couple things are apparent from this mode:</p>
+<ul>
+<li>Under these conditions, both populations are not able to coexist - after a brief period of growth, population 2 collapses to 0.</li>
+<li>In this model, population 2 dips below 0 at generation 6.</li>
+</ul>
+<p>The first behavior is fine - it’s a pretty basic property of this model that many parameter combinations lead to one population outcompeting the other to extinction. This is called <strong>competitive exclusion</strong>.</p>
+<p>The second behavior - dipping below zero - is not desirable. While our models are theoretical representations of reality, unrealistic behaviors like this are good to correct.</p>
+<p>Here, shooting below zero happens because with a large step size and a large growth rate, our model moves too quickly. In response to this, we can decrease our step size. In fact, if we decrease our step size enough, our model very closely approximates the continuous form of the equation.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="class-5-lotka-volterra-i-competition.html#cb161-1" tabindex="-1"></a><span class="co"># Initialize conditions</span></span>
+<span id="cb161-2"><a href="class-5-lotka-volterra-i-competition.html#cb161-2" tabindex="-1"></a><span class="co"># Population Sizes</span></span>
+<span id="cb161-3"><a href="class-5-lotka-volterra-i-competition.html#cb161-3" tabindex="-1"></a>N1 <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb161-4"><a href="class-5-lotka-volterra-i-competition.html#cb161-4" tabindex="-1"></a>N2 <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb161-5"><a href="class-5-lotka-volterra-i-competition.html#cb161-5" tabindex="-1"></a></span>
+<span id="cb161-6"><a href="class-5-lotka-volterra-i-competition.html#cb161-6" tabindex="-1"></a><span class="co"># Carrying Capacities</span></span>
+<span id="cb161-7"><a href="class-5-lotka-volterra-i-competition.html#cb161-7" tabindex="-1"></a>K1 <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb161-8"><a href="class-5-lotka-volterra-i-competition.html#cb161-8" tabindex="-1"></a>K2 <span class="ot">&lt;-</span> <span class="dv">400</span></span>
+<span id="cb161-9"><a href="class-5-lotka-volterra-i-competition.html#cb161-9" tabindex="-1"></a></span>
+<span id="cb161-10"><a href="class-5-lotka-volterra-i-competition.html#cb161-10" tabindex="-1"></a><span class="co"># Interaction parameters between pops</span></span>
+<span id="cb161-11"><a href="class-5-lotka-volterra-i-competition.html#cb161-11" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb161-12"><a href="class-5-lotka-volterra-i-competition.html#cb161-12" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
+<span id="cb161-13"><a href="class-5-lotka-volterra-i-competition.html#cb161-13" tabindex="-1"></a></span>
+<span id="cb161-14"><a href="class-5-lotka-volterra-i-competition.html#cb161-14" tabindex="-1"></a><span class="co"># Growth rates</span></span>
+<span id="cb161-15"><a href="class-5-lotka-volterra-i-competition.html#cb161-15" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb161-16"><a href="class-5-lotka-volterra-i-competition.html#cb161-16" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fl">1.3</span></span>
+<span id="cb161-17"><a href="class-5-lotka-volterra-i-competition.html#cb161-17" tabindex="-1"></a></span>
+<span id="cb161-18"><a href="class-5-lotka-volterra-i-competition.html#cb161-18" tabindex="-1"></a><span class="co"># Simulation time</span></span>
+<span id="cb161-19"><a href="class-5-lotka-volterra-i-competition.html#cb161-19" tabindex="-1"></a>nYears <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb161-20"><a href="class-5-lotka-volterra-i-competition.html#cb161-20" tabindex="-1"></a></span>
+<span id="cb161-21"><a href="class-5-lotka-volterra-i-competition.html#cb161-21" tabindex="-1"></a><span class="co"># Vectors to store population sizes</span></span>
+<span id="cb161-22"><a href="class-5-lotka-volterra-i-competition.html#cb161-22" tabindex="-1"></a>n1_list <span class="ot">&lt;-</span> <span class="fu">c</span>(N1)</span>
+<span id="cb161-23"><a href="class-5-lotka-volterra-i-competition.html#cb161-23" tabindex="-1"></a>n2_list <span class="ot">&lt;-</span> <span class="fu">c</span>(N2)</span>
+<span id="cb161-24"><a href="class-5-lotka-volterra-i-competition.html#cb161-24" tabindex="-1"></a></span>
+<span id="cb161-25"><a href="class-5-lotka-volterra-i-competition.html#cb161-25" tabindex="-1"></a><span class="co"># Create a step size</span></span>
+<span id="cb161-26"><a href="class-5-lotka-volterra-i-competition.html#cb161-26" tabindex="-1"></a>stepSize <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb161-27"><a href="class-5-lotka-volterra-i-competition.html#cb161-27" tabindex="-1"></a></span>
+<span id="cb161-28"><a href="class-5-lotka-volterra-i-competition.html#cb161-28" tabindex="-1"></a><span class="co"># Run simulation</span></span>
+<span id="cb161-29"><a href="class-5-lotka-volterra-i-competition.html#cb161-29" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(nYears<span class="sc">/</span>stepSize)){   <span class="co"># Scale our for loop range by the step size</span></span>
+<span id="cb161-30"><a href="class-5-lotka-volterra-i-competition.html#cb161-30" tabindex="-1"></a>  <span class="co"># Calculate future pop sizes for next time point</span></span>
+<span id="cb161-31"><a href="class-5-lotka-volterra-i-competition.html#cb161-31" tabindex="-1"></a>  <span class="co"># Saving N1 as a new variable so that it the current value of N1</span></span>
+<span id="cb161-32"><a href="class-5-lotka-volterra-i-competition.html#cb161-32" tabindex="-1"></a>  <span class="co"># can be used to calculate N2 </span></span>
+<span id="cb161-33"><a href="class-5-lotka-volterra-i-competition.html#cb161-33" tabindex="-1"></a>  N1_future <span class="ot">&lt;-</span> N1 <span class="sc">+</span> r1 <span class="sc">*</span> N1 <span class="sc">*</span> ((K1 <span class="sc">-</span> N1 <span class="sc">-</span> alpha <span class="sc">*</span> N2)<span class="sc">/</span>K1) <span class="sc">*</span> stepSize <span class="co"># Multiply by step size</span></span>
+<span id="cb161-34"><a href="class-5-lotka-volterra-i-competition.html#cb161-34" tabindex="-1"></a>  N2_future <span class="ot">&lt;-</span> N2 <span class="sc">+</span> r2 <span class="sc">*</span> N2 <span class="sc">*</span> ((K2 <span class="sc">-</span> N2 <span class="sc">-</span> beta <span class="sc">*</span> N1)<span class="sc">/</span>K2)  <span class="sc">*</span> stepSize <span class="co"># Multiply by step size</span></span>
+<span id="cb161-35"><a href="class-5-lotka-volterra-i-competition.html#cb161-35" tabindex="-1"></a>  </span>
+<span id="cb161-36"><a href="class-5-lotka-volterra-i-competition.html#cb161-36" tabindex="-1"></a>  <span class="co"># Update N1 and N2 </span></span>
+<span id="cb161-37"><a href="class-5-lotka-volterra-i-competition.html#cb161-37" tabindex="-1"></a>  N1 <span class="ot">&lt;-</span> N1_future</span>
+<span id="cb161-38"><a href="class-5-lotka-volterra-i-competition.html#cb161-38" tabindex="-1"></a>  N2 <span class="ot">&lt;-</span> N2_future</span>
+<span id="cb161-39"><a href="class-5-lotka-volterra-i-competition.html#cb161-39" tabindex="-1"></a>  </span>
+<span id="cb161-40"><a href="class-5-lotka-volterra-i-competition.html#cb161-40" tabindex="-1"></a>  <span class="co"># Save to list </span></span>
+<span id="cb161-41"><a href="class-5-lotka-volterra-i-competition.html#cb161-41" tabindex="-1"></a>  n1_list <span class="ot">&lt;-</span> <span class="fu">c</span>(n1_list, N1)</span>
+<span id="cb161-42"><a href="class-5-lotka-volterra-i-competition.html#cb161-42" tabindex="-1"></a>  n2_list <span class="ot">&lt;-</span> <span class="fu">c</span>(n2_list, N2)</span>
+<span id="cb161-43"><a href="class-5-lotka-volterra-i-competition.html#cb161-43" tabindex="-1"></a>}</span>
+<span id="cb161-44"><a href="class-5-lotka-volterra-i-competition.html#cb161-44" tabindex="-1"></a></span>
+<span id="cb161-45"><a href="class-5-lotka-volterra-i-competition.html#cb161-45" tabindex="-1"></a><span class="co"># Convert to data frame</span></span>
+<span id="cb161-46"><a href="class-5-lotka-volterra-i-competition.html#cb161-46" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb161-47"><a href="class-5-lotka-volterra-i-competition.html#cb161-47" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="fu">length</span>(n1_list)),</span>
+<span id="cb161-48"><a href="class-5-lotka-volterra-i-competition.html#cb161-48" tabindex="-1"></a>  <span class="at">n1 =</span> n1_list,</span>
+<span id="cb161-49"><a href="class-5-lotka-volterra-i-competition.html#cb161-49" tabindex="-1"></a>  <span class="at">n2 =</span> n2_list</span>
+<span id="cb161-50"><a href="class-5-lotka-volterra-i-competition.html#cb161-50" tabindex="-1"></a>)</span>
+<span id="cb161-51"><a href="class-5-lotka-volterra-i-competition.html#cb161-51" tabindex="-1"></a></span>
+<span id="cb161-52"><a href="class-5-lotka-volterra-i-competition.html#cb161-52" tabindex="-1"></a><span class="co"># Convert to tall format</span></span>
+<span id="cb161-53"><a href="class-5-lotka-volterra-i-competition.html#cb161-53" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">melt</span>(df, <span class="at">id.vars =</span> <span class="st">&quot;time&quot;</span>)</span>
+<span id="cb161-54"><a href="class-5-lotka-volterra-i-competition.html#cb161-54" tabindex="-1"></a><span class="fu">colnames</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;pop&quot;</span>, <span class="st">&quot;size&quot;</span>)</span>
+<span id="cb161-55"><a href="class-5-lotka-volterra-i-competition.html#cb161-55" tabindex="-1"></a>  </span>
+<span id="cb161-56"><a href="class-5-lotka-volterra-i-competition.html#cb161-56" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb161-57"><a href="class-5-lotka-volterra-i-competition.html#cb161-57" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> time <span class="sc">*</span> stepSize, <span class="co"># We multiply time by stepSize to convert back to years</span></span>
+<span id="cb161-58"><a href="class-5-lotka-volterra-i-competition.html#cb161-58" tabindex="-1"></a>               <span class="at">y =</span> size, </span>
+<span id="cb161-59"><a href="class-5-lotka-volterra-i-competition.html#cb161-59" tabindex="-1"></a>               <span class="at">color =</span> pop)) <span class="sc">+</span></span>
+<span id="cb161-60"><a href="class-5-lotka-volterra-i-competition.html#cb161-60" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb161-61"><a href="class-5-lotka-volterra-i-competition.html#cb161-61" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time (Generations)&quot;</span>, </span>
+<span id="cb161-62"><a href="class-5-lotka-volterra-i-competition.html#cb161-62" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Population Size&quot;</span>,</span>
+<span id="cb161-63"><a href="class-5-lotka-volterra-i-competition.html#cb161-63" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Population&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb161-64"><a href="class-5-lotka-volterra-i-competition.html#cb161-64" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="04_lotkaVoletrra/img/LV_continuous.png" /></p>
+<p>A few changes are needed to make this work:</p>
+<ul>
+<li>The for loop is changed to incorporate step size: <code>for (i in seq(nYears/stepSize))</code>. If, previously, each step represented one generation, each step now represents one generation * stepSize - just a fraction of the time. In other words, we need to run our model more times to represent an equal amount of real time.</li>
+<li>When calculating population sizes, we incorporate step size: <code>N1_future &lt;- N1 + r1 * N1 * ((K1 - N1 - alpha * N2)/K1) * stepSize</code></li>
+<li>Lastly, when plotting, we convert time back to years by multiplying by stepSize again: <code>ggplot(df, aes(x = time * stepSize,</code></li>
+</ul>
+<p>So far, we have seen models where one population outcompetes the other. It is worth noting that this is not an inherent property of Lotka-Volterra models:</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="class-5-lotka-volterra-i-competition.html#cb162-1" tabindex="-1"></a><span class="co"># Initialize conditions</span></span>
+<span id="cb162-2"><a href="class-5-lotka-volterra-i-competition.html#cb162-2" tabindex="-1"></a><span class="co"># Population Sizes</span></span>
+<span id="cb162-3"><a href="class-5-lotka-volterra-i-competition.html#cb162-3" tabindex="-1"></a>N1 <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb162-4"><a href="class-5-lotka-volterra-i-competition.html#cb162-4" tabindex="-1"></a>N2 <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb162-5"><a href="class-5-lotka-volterra-i-competition.html#cb162-5" tabindex="-1"></a></span>
+<span id="cb162-6"><a href="class-5-lotka-volterra-i-competition.html#cb162-6" tabindex="-1"></a><span class="co"># Carrying Capacities</span></span>
+<span id="cb162-7"><a href="class-5-lotka-volterra-i-competition.html#cb162-7" tabindex="-1"></a>K1 <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb162-8"><a href="class-5-lotka-volterra-i-competition.html#cb162-8" tabindex="-1"></a>K2 <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb162-9"><a href="class-5-lotka-volterra-i-competition.html#cb162-9" tabindex="-1"></a></span>
+<span id="cb162-10"><a href="class-5-lotka-volterra-i-competition.html#cb162-10" tabindex="-1"></a><span class="co"># Interaction parameters between pops</span></span>
+<span id="cb162-11"><a href="class-5-lotka-volterra-i-competition.html#cb162-11" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb162-12"><a href="class-5-lotka-volterra-i-competition.html#cb162-12" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
+<span id="cb162-13"><a href="class-5-lotka-volterra-i-competition.html#cb162-13" tabindex="-1"></a></span>
+<span id="cb162-14"><a href="class-5-lotka-volterra-i-competition.html#cb162-14" tabindex="-1"></a><span class="co"># Growth rates</span></span>
+<span id="cb162-15"><a href="class-5-lotka-volterra-i-competition.html#cb162-15" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb162-16"><a href="class-5-lotka-volterra-i-competition.html#cb162-16" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fl">1.3</span></span>
+<span id="cb162-17"><a href="class-5-lotka-volterra-i-competition.html#cb162-17" tabindex="-1"></a></span>
+<span id="cb162-18"><a href="class-5-lotka-volterra-i-competition.html#cb162-18" tabindex="-1"></a><span class="co"># Simulation time</span></span>
+<span id="cb162-19"><a href="class-5-lotka-volterra-i-competition.html#cb162-19" tabindex="-1"></a>nYears <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb162-20"><a href="class-5-lotka-volterra-i-competition.html#cb162-20" tabindex="-1"></a></span>
+<span id="cb162-21"><a href="class-5-lotka-volterra-i-competition.html#cb162-21" tabindex="-1"></a><span class="co"># Vectors to store population sizes</span></span>
+<span id="cb162-22"><a href="class-5-lotka-volterra-i-competition.html#cb162-22" tabindex="-1"></a>n1_list <span class="ot">&lt;-</span> <span class="fu">c</span>(N1)</span>
+<span id="cb162-23"><a href="class-5-lotka-volterra-i-competition.html#cb162-23" tabindex="-1"></a>n2_list <span class="ot">&lt;-</span> <span class="fu">c</span>(N2)</span>
+<span id="cb162-24"><a href="class-5-lotka-volterra-i-competition.html#cb162-24" tabindex="-1"></a></span>
+<span id="cb162-25"><a href="class-5-lotka-volterra-i-competition.html#cb162-25" tabindex="-1"></a><span class="co"># Create a step size</span></span>
+<span id="cb162-26"><a href="class-5-lotka-volterra-i-competition.html#cb162-26" tabindex="-1"></a>stepSize <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb162-27"><a href="class-5-lotka-volterra-i-competition.html#cb162-27" tabindex="-1"></a></span>
+<span id="cb162-28"><a href="class-5-lotka-volterra-i-competition.html#cb162-28" tabindex="-1"></a><span class="co"># Run simulation</span></span>
+<span id="cb162-29"><a href="class-5-lotka-volterra-i-competition.html#cb162-29" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(nYears<span class="sc">/</span>stepSize)){ <span class="co"># Scale our for loop range by the step size</span></span>
+<span id="cb162-30"><a href="class-5-lotka-volterra-i-competition.html#cb162-30" tabindex="-1"></a>  <span class="co"># Calculate future pop sizes for next time point</span></span>
+<span id="cb162-31"><a href="class-5-lotka-volterra-i-competition.html#cb162-31" tabindex="-1"></a>  <span class="co"># Saving N1 as a new variable so that it the current value of N1</span></span>
+<span id="cb162-32"><a href="class-5-lotka-volterra-i-competition.html#cb162-32" tabindex="-1"></a>  <span class="co"># can be used to calculate N2 </span></span>
+<span id="cb162-33"><a href="class-5-lotka-volterra-i-competition.html#cb162-33" tabindex="-1"></a>  N1_future <span class="ot">&lt;-</span> N1 <span class="sc">+</span> r1 <span class="sc">*</span> N1 <span class="sc">*</span> ((K1 <span class="sc">-</span> N1 <span class="sc">-</span> alpha <span class="sc">*</span> N2)<span class="sc">/</span>K1) <span class="sc">*</span> stepSize <span class="co"># Multiply by step size</span></span>
+<span id="cb162-34"><a href="class-5-lotka-volterra-i-competition.html#cb162-34" tabindex="-1"></a>  N2_future <span class="ot">&lt;-</span> N2 <span class="sc">+</span> r2 <span class="sc">*</span> N2 <span class="sc">*</span> ((K2 <span class="sc">-</span> N2 <span class="sc">-</span> beta <span class="sc">*</span> N1)<span class="sc">/</span>K2) <span class="sc">*</span> stepSize <span class="co"># Multiply by step size</span></span>
+<span id="cb162-35"><a href="class-5-lotka-volterra-i-competition.html#cb162-35" tabindex="-1"></a>   </span>
+<span id="cb162-36"><a href="class-5-lotka-volterra-i-competition.html#cb162-36" tabindex="-1"></a>  <span class="co"># Update N1 and N2</span></span>
+<span id="cb162-37"><a href="class-5-lotka-volterra-i-competition.html#cb162-37" tabindex="-1"></a>  N1 <span class="ot">&lt;-</span> N1_future</span>
+<span id="cb162-38"><a href="class-5-lotka-volterra-i-competition.html#cb162-38" tabindex="-1"></a>  N2 <span class="ot">&lt;-</span> N2_future</span>
+<span id="cb162-39"><a href="class-5-lotka-volterra-i-competition.html#cb162-39" tabindex="-1"></a>  </span>
+<span id="cb162-40"><a href="class-5-lotka-volterra-i-competition.html#cb162-40" tabindex="-1"></a>  <span class="co"># Save to list </span></span>
+<span id="cb162-41"><a href="class-5-lotka-volterra-i-competition.html#cb162-41" tabindex="-1"></a>  n1_list <span class="ot">&lt;-</span> <span class="fu">c</span>(n1_list, N1)</span>
+<span id="cb162-42"><a href="class-5-lotka-volterra-i-competition.html#cb162-42" tabindex="-1"></a>  n2_list <span class="ot">&lt;-</span> <span class="fu">c</span>(n2_list, N2)</span>
+<span id="cb162-43"><a href="class-5-lotka-volterra-i-competition.html#cb162-43" tabindex="-1"></a>}</span>
+<span id="cb162-44"><a href="class-5-lotka-volterra-i-competition.html#cb162-44" tabindex="-1"></a></span>
+<span id="cb162-45"><a href="class-5-lotka-volterra-i-competition.html#cb162-45" tabindex="-1"></a><span class="co"># Convert to data frame</span></span>
+<span id="cb162-46"><a href="class-5-lotka-volterra-i-competition.html#cb162-46" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb162-47"><a href="class-5-lotka-volterra-i-competition.html#cb162-47" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="fu">length</span>(n1_list)),</span>
+<span id="cb162-48"><a href="class-5-lotka-volterra-i-competition.html#cb162-48" tabindex="-1"></a>  <span class="at">n1 =</span> n1_list,</span>
+<span id="cb162-49"><a href="class-5-lotka-volterra-i-competition.html#cb162-49" tabindex="-1"></a>  <span class="at">n2 =</span> n2_list</span>
+<span id="cb162-50"><a href="class-5-lotka-volterra-i-competition.html#cb162-50" tabindex="-1"></a>)</span>
+<span id="cb162-51"><a href="class-5-lotka-volterra-i-competition.html#cb162-51" tabindex="-1"></a></span>
+<span id="cb162-52"><a href="class-5-lotka-volterra-i-competition.html#cb162-52" tabindex="-1"></a><span class="co"># Convert to tall format</span></span>
+<span id="cb162-53"><a href="class-5-lotka-volterra-i-competition.html#cb162-53" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">melt</span>(df, <span class="at">id.vars =</span> <span class="st">&quot;time&quot;</span>)</span>
+<span id="cb162-54"><a href="class-5-lotka-volterra-i-competition.html#cb162-54" tabindex="-1"></a><span class="fu">colnames</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;pop&quot;</span>, <span class="st">&quot;size&quot;</span>)</span>
+<span id="cb162-55"><a href="class-5-lotka-volterra-i-competition.html#cb162-55" tabindex="-1"></a>  </span>
+<span id="cb162-56"><a href="class-5-lotka-volterra-i-competition.html#cb162-56" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb162-57"><a href="class-5-lotka-volterra-i-competition.html#cb162-57" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> time <span class="sc">/</span> stepSize, <span class="co"># We multiply time by stepSize to convert back to years</span></span>
+<span id="cb162-58"><a href="class-5-lotka-volterra-i-competition.html#cb162-58" tabindex="-1"></a>               <span class="at">y =</span> size, </span>
+<span id="cb162-59"><a href="class-5-lotka-volterra-i-competition.html#cb162-59" tabindex="-1"></a>               <span class="at">color =</span> pop)) <span class="sc">+</span></span>
+<span id="cb162-60"><a href="class-5-lotka-volterra-i-competition.html#cb162-60" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb162-61"><a href="class-5-lotka-volterra-i-competition.html#cb162-61" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time (Generations)&quot;</span>, </span>
+<span id="cb162-62"><a href="class-5-lotka-volterra-i-competition.html#cb162-62" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Population Size&quot;</span>,</span>
+<span id="cb162-63"><a href="class-5-lotka-volterra-i-competition.html#cb162-63" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Population&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb162-64"><a href="class-5-lotka-volterra-i-competition.html#cb162-64" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="04_lotkaVoletrra/img/LV_continuous_equilibrium.png" /></p>
+<p>Note that when both populations coexist, they do not hit their carrying capacities:</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="class-5-lotka-volterra-i-competition.html#cb163-1" tabindex="-1"></a><span class="co"># Initialize conditions</span></span>
+<span id="cb163-2"><a href="class-5-lotka-volterra-i-competition.html#cb163-2" tabindex="-1"></a><span class="co"># Population Sizes</span></span>
+<span id="cb163-3"><a href="class-5-lotka-volterra-i-competition.html#cb163-3" tabindex="-1"></a>N1 <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb163-4"><a href="class-5-lotka-volterra-i-competition.html#cb163-4" tabindex="-1"></a>N2 <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb163-5"><a href="class-5-lotka-volterra-i-competition.html#cb163-5" tabindex="-1"></a></span>
+<span id="cb163-6"><a href="class-5-lotka-volterra-i-competition.html#cb163-6" tabindex="-1"></a><span class="co"># Carrying Capacities</span></span>
+<span id="cb163-7"><a href="class-5-lotka-volterra-i-competition.html#cb163-7" tabindex="-1"></a>K1 <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb163-8"><a href="class-5-lotka-volterra-i-competition.html#cb163-8" tabindex="-1"></a>K2 <span class="ot">&lt;-</span> <span class="dv">900</span></span>
+<span id="cb163-9"><a href="class-5-lotka-volterra-i-competition.html#cb163-9" tabindex="-1"></a></span>
+<span id="cb163-10"><a href="class-5-lotka-volterra-i-competition.html#cb163-10" tabindex="-1"></a><span class="co"># Interaction parameters between pops</span></span>
+<span id="cb163-11"><a href="class-5-lotka-volterra-i-competition.html#cb163-11" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb163-12"><a href="class-5-lotka-volterra-i-competition.html#cb163-12" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
+<span id="cb163-13"><a href="class-5-lotka-volterra-i-competition.html#cb163-13" tabindex="-1"></a></span>
+<span id="cb163-14"><a href="class-5-lotka-volterra-i-competition.html#cb163-14" tabindex="-1"></a><span class="co"># Growth rates</span></span>
+<span id="cb163-15"><a href="class-5-lotka-volterra-i-competition.html#cb163-15" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb163-16"><a href="class-5-lotka-volterra-i-competition.html#cb163-16" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fl">1.3</span></span>
+<span id="cb163-17"><a href="class-5-lotka-volterra-i-competition.html#cb163-17" tabindex="-1"></a></span>
+<span id="cb163-18"><a href="class-5-lotka-volterra-i-competition.html#cb163-18" tabindex="-1"></a><span class="co"># Simulation time</span></span>
+<span id="cb163-19"><a href="class-5-lotka-volterra-i-competition.html#cb163-19" tabindex="-1"></a>nYears <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb163-20"><a href="class-5-lotka-volterra-i-competition.html#cb163-20" tabindex="-1"></a></span>
+<span id="cb163-21"><a href="class-5-lotka-volterra-i-competition.html#cb163-21" tabindex="-1"></a><span class="co"># Vectors to store population sizes</span></span>
+<span id="cb163-22"><a href="class-5-lotka-volterra-i-competition.html#cb163-22" tabindex="-1"></a>n1_list <span class="ot">&lt;-</span> <span class="fu">c</span>(N1)</span>
+<span id="cb163-23"><a href="class-5-lotka-volterra-i-competition.html#cb163-23" tabindex="-1"></a>n2_list <span class="ot">&lt;-</span> <span class="fu">c</span>(N2)</span>
+<span id="cb163-24"><a href="class-5-lotka-volterra-i-competition.html#cb163-24" tabindex="-1"></a></span>
+<span id="cb163-25"><a href="class-5-lotka-volterra-i-competition.html#cb163-25" tabindex="-1"></a><span class="co"># Initialize variables to store population size for the logistic model</span></span>
+<span id="cb163-26"><a href="class-5-lotka-volterra-i-competition.html#cb163-26" tabindex="-1"></a><span class="co"># We start at the same point as the LV model</span></span>
+<span id="cb163-27"><a href="class-5-lotka-volterra-i-competition.html#cb163-27" tabindex="-1"></a>N1_logistic <span class="ot">&lt;-</span> N1</span>
+<span id="cb163-28"><a href="class-5-lotka-volterra-i-competition.html#cb163-28" tabindex="-1"></a>N2_logistic <span class="ot">&lt;-</span> N2 </span>
+<span id="cb163-29"><a href="class-5-lotka-volterra-i-competition.html#cb163-29" tabindex="-1"></a></span>
+<span id="cb163-30"><a href="class-5-lotka-volterra-i-competition.html#cb163-30" tabindex="-1"></a><span class="co"># Lists to store </span></span>
+<span id="cb163-31"><a href="class-5-lotka-volterra-i-competition.html#cb163-31" tabindex="-1"></a>n1_list_logistic <span class="ot">&lt;-</span> <span class="fu">c</span>(N1_logistic)</span>
+<span id="cb163-32"><a href="class-5-lotka-volterra-i-competition.html#cb163-32" tabindex="-1"></a>n2_list_logistic <span class="ot">&lt;-</span> <span class="fu">c</span>(N2_logistic)</span>
+<span id="cb163-33"><a href="class-5-lotka-volterra-i-competition.html#cb163-33" tabindex="-1"></a></span>
+<span id="cb163-34"><a href="class-5-lotka-volterra-i-competition.html#cb163-34" tabindex="-1"></a><span class="co"># StepSize</span></span>
+<span id="cb163-35"><a href="class-5-lotka-volterra-i-competition.html#cb163-35" tabindex="-1"></a>stepSize <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb163-36"><a href="class-5-lotka-volterra-i-competition.html#cb163-36" tabindex="-1"></a></span>
+<span id="cb163-37"><a href="class-5-lotka-volterra-i-competition.html#cb163-37" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(nYears<span class="sc">/</span>step)){</span>
+<span id="cb163-38"><a href="class-5-lotka-volterra-i-competition.html#cb163-38" tabindex="-1"></a>  <span class="co"># Calculate LV dynamics</span></span>
+<span id="cb163-39"><a href="class-5-lotka-volterra-i-competition.html#cb163-39" tabindex="-1"></a>  N1_future <span class="ot">&lt;-</span> N1 <span class="sc">+</span> r1 <span class="sc">*</span> N1 <span class="sc">*</span> ((K1 <span class="sc">-</span> N1 <span class="sc">-</span> alpha <span class="sc">*</span> N2)<span class="sc">/</span>K1) <span class="sc">*</span> step</span>
+<span id="cb163-40"><a href="class-5-lotka-volterra-i-competition.html#cb163-40" tabindex="-1"></a>  N2_future <span class="ot">&lt;-</span> N2 <span class="sc">+</span> r2 <span class="sc">*</span> N2 <span class="sc">*</span> ((K2 <span class="sc">-</span> N2 <span class="sc">-</span> beta <span class="sc">*</span> N1)<span class="sc">/</span>K2) <span class="sc">*</span> step</span>
+<span id="cb163-41"><a href="class-5-lotka-volterra-i-competition.html#cb163-41" tabindex="-1"></a>  </span>
+<span id="cb163-42"><a href="class-5-lotka-volterra-i-competition.html#cb163-42" tabindex="-1"></a>  <span class="co"># Update N1 and N2</span></span>
+<span id="cb163-43"><a href="class-5-lotka-volterra-i-competition.html#cb163-43" tabindex="-1"></a>  N1 <span class="ot">&lt;-</span> N1_future</span>
+<span id="cb163-44"><a href="class-5-lotka-volterra-i-competition.html#cb163-44" tabindex="-1"></a>  N2 <span class="ot">&lt;-</span> N2_future</span>
+<span id="cb163-45"><a href="class-5-lotka-volterra-i-competition.html#cb163-45" tabindex="-1"></a>  </span>
+<span id="cb163-46"><a href="class-5-lotka-volterra-i-competition.html#cb163-46" tabindex="-1"></a>  <span class="co"># Save to list </span></span>
+<span id="cb163-47"><a href="class-5-lotka-volterra-i-competition.html#cb163-47" tabindex="-1"></a>  n1_list <span class="ot">&lt;-</span> <span class="fu">c</span>(n1_list, N1)</span>
+<span id="cb163-48"><a href="class-5-lotka-volterra-i-competition.html#cb163-48" tabindex="-1"></a>  n2_list <span class="ot">&lt;-</span> <span class="fu">c</span>(n2_list, N2)</span>
+<span id="cb163-49"><a href="class-5-lotka-volterra-i-competition.html#cb163-49" tabindex="-1"></a>  </span>
+<span id="cb163-50"><a href="class-5-lotka-volterra-i-competition.html#cb163-50" tabindex="-1"></a>  <span class="co"># Calculate logistic dynamics</span></span>
+<span id="cb163-51"><a href="class-5-lotka-volterra-i-competition.html#cb163-51" tabindex="-1"></a>  N1_logistic <span class="ot">&lt;-</span> N1_logistic <span class="sc">+</span> r1 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> N1_logistic<span class="sc">/</span>K1) <span class="sc">*</span> N1 <span class="sc">*</span> stepSize</span>
+<span id="cb163-52"><a href="class-5-lotka-volterra-i-competition.html#cb163-52" tabindex="-1"></a>  N2_logistic <span class="ot">&lt;-</span> N2_logistic <span class="sc">+</span> r2 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> N2_logistic<span class="sc">/</span>K2) <span class="sc">*</span> N2 <span class="sc">*</span> stepSize</span>
+<span id="cb163-53"><a href="class-5-lotka-volterra-i-competition.html#cb163-53" tabindex="-1"></a>  </span>
+<span id="cb163-54"><a href="class-5-lotka-volterra-i-competition.html#cb163-54" tabindex="-1"></a>  <span class="co"># Save to list</span></span>
+<span id="cb163-55"><a href="class-5-lotka-volterra-i-competition.html#cb163-55" tabindex="-1"></a>  n1_list_logistic <span class="ot">&lt;-</span> <span class="fu">c</span>(n1_list_logistic, N1_logistic)</span>
+<span id="cb163-56"><a href="class-5-lotka-volterra-i-competition.html#cb163-56" tabindex="-1"></a>  n2_list_logistic <span class="ot">&lt;-</span> <span class="fu">c</span>(n2_list_logistic, N2_logistic)</span>
+<span id="cb163-57"><a href="class-5-lotka-volterra-i-competition.html#cb163-57" tabindex="-1"></a>}</span>
+<span id="cb163-58"><a href="class-5-lotka-volterra-i-competition.html#cb163-58" tabindex="-1"></a></span>
+<span id="cb163-59"><a href="class-5-lotka-volterra-i-competition.html#cb163-59" tabindex="-1"></a><span class="co"># Store LV data as a data frame</span></span>
+<span id="cb163-60"><a href="class-5-lotka-volterra-i-competition.html#cb163-60" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb163-61"><a href="class-5-lotka-volterra-i-competition.html#cb163-61" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="fu">length</span>(n1_list)),</span>
+<span id="cb163-62"><a href="class-5-lotka-volterra-i-competition.html#cb163-62" tabindex="-1"></a>  <span class="at">n1 =</span> n1_list,</span>
+<span id="cb163-63"><a href="class-5-lotka-volterra-i-competition.html#cb163-63" tabindex="-1"></a>  <span class="at">n2 =</span> n2_list</span>
+<span id="cb163-64"><a href="class-5-lotka-volterra-i-competition.html#cb163-64" tabindex="-1"></a>)</span>
+<span id="cb163-65"><a href="class-5-lotka-volterra-i-competition.html#cb163-65" tabindex="-1"></a></span>
+<span id="cb163-66"><a href="class-5-lotka-volterra-i-competition.html#cb163-66" tabindex="-1"></a><span class="co"># Reorganize to a tall dataframe</span></span>
+<span id="cb163-67"><a href="class-5-lotka-volterra-i-competition.html#cb163-67" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">melt</span>(df, <span class="at">id.vars =</span> <span class="st">&quot;time&quot;</span>)</span>
+<span id="cb163-68"><a href="class-5-lotka-volterra-i-competition.html#cb163-68" tabindex="-1"></a><span class="fu">colnames</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;pop&quot;</span>, <span class="st">&quot;size&quot;</span>)</span>
+<span id="cb163-69"><a href="class-5-lotka-volterra-i-competition.html#cb163-69" tabindex="-1"></a><span class="co"># Add a column with the model name</span></span>
+<span id="cb163-70"><a href="class-5-lotka-volterra-i-competition.html#cb163-70" tabindex="-1"></a>df[<span class="st">&quot;Model&quot;</span>] <span class="ot">=</span> <span class="st">&quot;Lotka-Volterra&quot;</span> </span>
+<span id="cb163-71"><a href="class-5-lotka-volterra-i-competition.html#cb163-71" tabindex="-1"></a></span>
+<span id="cb163-72"><a href="class-5-lotka-volterra-i-competition.html#cb163-72" tabindex="-1"></a><span class="co"># Store Logistic data as a data frame</span></span>
+<span id="cb163-73"><a href="class-5-lotka-volterra-i-competition.html#cb163-73" tabindex="-1"></a>df_logistic <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb163-74"><a href="class-5-lotka-volterra-i-competition.html#cb163-74" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="fu">length</span>(n1_list_logistic)),</span>
+<span id="cb163-75"><a href="class-5-lotka-volterra-i-competition.html#cb163-75" tabindex="-1"></a>  <span class="at">n1 =</span> n1_list_logistic,</span>
+<span id="cb163-76"><a href="class-5-lotka-volterra-i-competition.html#cb163-76" tabindex="-1"></a>  <span class="at">n2 =</span> n2_list_logistic</span>
+<span id="cb163-77"><a href="class-5-lotka-volterra-i-competition.html#cb163-77" tabindex="-1"></a>)</span>
+<span id="cb163-78"><a href="class-5-lotka-volterra-i-competition.html#cb163-78" tabindex="-1"></a></span>
+<span id="cb163-79"><a href="class-5-lotka-volterra-i-competition.html#cb163-79" tabindex="-1"></a><span class="co"># Reorganize to a tall dataframe</span></span>
+<span id="cb163-80"><a href="class-5-lotka-volterra-i-competition.html#cb163-80" tabindex="-1"></a>df_logistic <span class="ot">&lt;-</span> <span class="fu">melt</span>(df_logistic, <span class="at">id.vars =</span> <span class="st">&quot;time&quot;</span>)</span>
+<span id="cb163-81"><a href="class-5-lotka-volterra-i-competition.html#cb163-81" tabindex="-1"></a><span class="fu">colnames</span>(df_logistic) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;pop&quot;</span>, <span class="st">&quot;size&quot;</span>)</span>
+<span id="cb163-82"><a href="class-5-lotka-volterra-i-competition.html#cb163-82" tabindex="-1"></a><span class="co"># Add a column with the model name</span></span>
+<span id="cb163-83"><a href="class-5-lotka-volterra-i-competition.html#cb163-83" tabindex="-1"></a>df_logistic[<span class="st">&quot;Model&quot;</span>] <span class="ot">=</span> <span class="st">&quot;Logistic&quot;</span></span>
+<span id="cb163-84"><a href="class-5-lotka-volterra-i-competition.html#cb163-84" tabindex="-1"></a></span>
+<span id="cb163-85"><a href="class-5-lotka-volterra-i-competition.html#cb163-85" tabindex="-1"></a><span class="co"># Combine LV and logistic dataframes into one for plotting</span></span>
+<span id="cb163-86"><a href="class-5-lotka-volterra-i-competition.html#cb163-86" tabindex="-1"></a>df_plot <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df, df_logistic)</span>
+<span id="cb163-87"><a href="class-5-lotka-volterra-i-competition.html#cb163-87" tabindex="-1"></a></span>
+<span id="cb163-88"><a href="class-5-lotka-volterra-i-competition.html#cb163-88" tabindex="-1"></a><span class="co"># Reorganize the factor levels of our plotting data</span></span>
+<span id="cb163-89"><a href="class-5-lotka-volterra-i-competition.html#cb163-89" tabindex="-1"></a><span class="co"># This determines which population is plotted in dotted lines</span></span>
+<span id="cb163-90"><a href="class-5-lotka-volterra-i-competition.html#cb163-90" tabindex="-1"></a>df_plot<span class="sc">$</span>Model <span class="ot">&lt;-</span> <span class="fu">factor</span>(df_plot<span class="sc">$</span>Model, </span>
+<span id="cb163-91"><a href="class-5-lotka-volterra-i-competition.html#cb163-91" tabindex="-1"></a>                      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Lotka-Volterra&quot;</span>, <span class="st">&quot;Logistic&quot;</span>))</span>
+<span id="cb163-92"><a href="class-5-lotka-volterra-i-competition.html#cb163-92" tabindex="-1"></a>  </span>
+<span id="cb163-93"><a href="class-5-lotka-volterra-i-competition.html#cb163-93" tabindex="-1"></a><span class="fu">ggplot</span>(df_plot, <span class="fu">aes</span>(<span class="at">x =</span> time <span class="sc">/</span> stepSize,</span>
+<span id="cb163-94"><a href="class-5-lotka-volterra-i-competition.html#cb163-94" tabindex="-1"></a>                    <span class="at">y =</span> size,</span>
+<span id="cb163-95"><a href="class-5-lotka-volterra-i-competition.html#cb163-95" tabindex="-1"></a>                    <span class="at">color =</span> pop, </span>
+<span id="cb163-96"><a href="class-5-lotka-volterra-i-competition.html#cb163-96" tabindex="-1"></a>                    <span class="at">linetype =</span> Model)) <span class="sc">+</span></span>
+<span id="cb163-97"><a href="class-5-lotka-volterra-i-competition.html#cb163-97" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb163-98"><a href="class-5-lotka-volterra-i-competition.html#cb163-98" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time (Generations)&quot;</span>, </span>
+<span id="cb163-99"><a href="class-5-lotka-volterra-i-competition.html#cb163-99" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Population Size&quot;</span>,</span>
+<span id="cb163-100"><a href="class-5-lotka-volterra-i-competition.html#cb163-100" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Population&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb163-101"><a href="class-5-lotka-volterra-i-competition.html#cb163-101" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="04_lotkaVoletrra/img/LV_and_logistic.png" /></p>
+<div id="equilibirum-from-multiplt-starting-points" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Equilibirum from multiplt starting points<a href="class-5-lotka-volterra-i-competition.html#equilibirum-from-multiplt-starting-points" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now, starting from multiple conditions:</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="class-5-lotka-volterra-i-competition.html#cb164-1" tabindex="-1"></a><span class="co"># Initialize conditions</span></span>
+<span id="cb164-2"><a href="class-5-lotka-volterra-i-competition.html#cb164-2" tabindex="-1"></a><span class="co"># Carrying Capacities</span></span>
+<span id="cb164-3"><a href="class-5-lotka-volterra-i-competition.html#cb164-3" tabindex="-1"></a>K1 <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb164-4"><a href="class-5-lotka-volterra-i-competition.html#cb164-4" tabindex="-1"></a>K2 <span class="ot">&lt;-</span> <span class="dv">700</span></span>
+<span id="cb164-5"><a href="class-5-lotka-volterra-i-competition.html#cb164-5" tabindex="-1"></a></span>
+<span id="cb164-6"><a href="class-5-lotka-volterra-i-competition.html#cb164-6" tabindex="-1"></a><span class="co"># Interaction parameters between pops</span></span>
+<span id="cb164-7"><a href="class-5-lotka-volterra-i-competition.html#cb164-7" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.3</span></span>
+<span id="cb164-8"><a href="class-5-lotka-volterra-i-competition.html#cb164-8" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.6</span></span>
+<span id="cb164-9"><a href="class-5-lotka-volterra-i-competition.html#cb164-9" tabindex="-1"></a></span>
+<span id="cb164-10"><a href="class-5-lotka-volterra-i-competition.html#cb164-10" tabindex="-1"></a><span class="co"># Growth Rates</span></span>
+<span id="cb164-11"><a href="class-5-lotka-volterra-i-competition.html#cb164-11" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb164-12"><a href="class-5-lotka-volterra-i-competition.html#cb164-12" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fl">1.3</span></span>
+<span id="cb164-13"><a href="class-5-lotka-volterra-i-competition.html#cb164-13" tabindex="-1"></a></span>
+<span id="cb164-14"><a href="class-5-lotka-volterra-i-competition.html#cb164-14" tabindex="-1"></a><span class="co"># Length of population</span></span>
+<span id="cb164-15"><a href="class-5-lotka-volterra-i-competition.html#cb164-15" tabindex="-1"></a>nYears <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb164-16"><a href="class-5-lotka-volterra-i-competition.html#cb164-16" tabindex="-1"></a></span>
+<span id="cb164-17"><a href="class-5-lotka-volterra-i-competition.html#cb164-17" tabindex="-1"></a></span>
+<span id="cb164-18"><a href="class-5-lotka-volterra-i-competition.html#cb164-18" tabindex="-1"></a><span class="co"># Lists to store population sizes, trial numbers, and time within each trial</span></span>
+<span id="cb164-19"><a href="class-5-lotka-volterra-i-competition.html#cb164-19" tabindex="-1"></a>n1_all_trials <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb164-20"><a href="class-5-lotka-volterra-i-competition.html#cb164-20" tabindex="-1"></a>n2_all_trials <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb164-21"><a href="class-5-lotka-volterra-i-competition.html#cb164-21" tabindex="-1"></a>trialNumber <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb164-22"><a href="class-5-lotka-volterra-i-competition.html#cb164-22" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb164-23"><a href="class-5-lotka-volterra-i-competition.html#cb164-23" tabindex="-1"></a></span>
+<span id="cb164-24"><a href="class-5-lotka-volterra-i-competition.html#cb164-24" tabindex="-1"></a><span class="co"># Step Size</span></span>
+<span id="cb164-25"><a href="class-5-lotka-volterra-i-competition.html#cb164-25" tabindex="-1"></a>step <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb164-26"><a href="class-5-lotka-volterra-i-competition.html#cb164-26" tabindex="-1"></a></span>
+<span id="cb164-27"><a href="class-5-lotka-volterra-i-competition.html#cb164-27" tabindex="-1"></a><span class="co"># Number of trials we are running</span></span>
+<span id="cb164-28"><a href="class-5-lotka-volterra-i-competition.html#cb164-28" tabindex="-1"></a>nTrials <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb164-29"><a href="class-5-lotka-volterra-i-competition.html#cb164-29" tabindex="-1"></a></span>
+<span id="cb164-30"><a href="class-5-lotka-volterra-i-competition.html#cb164-30" tabindex="-1"></a><span class="co"># Run simulation</span></span>
+<span id="cb164-31"><a href="class-5-lotka-volterra-i-competition.html#cb164-31" tabindex="-1"></a><span class="cf">for</span> (trial <span class="cf">in</span> <span class="fu">seq</span>(nTrials)){</span>
+<span id="cb164-32"><a href="class-5-lotka-volterra-i-competition.html#cb164-32" tabindex="-1"></a>  <span class="co"># Randomly generate starting population sizes</span></span>
+<span id="cb164-33"><a href="class-5-lotka-volterra-i-competition.html#cb164-33" tabindex="-1"></a>  N1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq</span>(K1), <span class="dv">1</span>)</span>
+<span id="cb164-34"><a href="class-5-lotka-volterra-i-competition.html#cb164-34" tabindex="-1"></a>  N2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq</span>(K2), <span class="dv">1</span>)</span>
+<span id="cb164-35"><a href="class-5-lotka-volterra-i-competition.html#cb164-35" tabindex="-1"></a>  </span>
+<span id="cb164-36"><a href="class-5-lotka-volterra-i-competition.html#cb164-36" tabindex="-1"></a>  <span class="co"># Create a list for population sizes</span></span>
+<span id="cb164-37"><a href="class-5-lotka-volterra-i-competition.html#cb164-37" tabindex="-1"></a>  n1_list <span class="ot">&lt;-</span> <span class="fu">c</span>(N1)</span>
+<span id="cb164-38"><a href="class-5-lotka-volterra-i-competition.html#cb164-38" tabindex="-1"></a>  n2_list <span class="ot">&lt;-</span> <span class="fu">c</span>(N2)</span>
+<span id="cb164-39"><a href="class-5-lotka-volterra-i-competition.html#cb164-39" tabindex="-1"></a>  </span>
+<span id="cb164-40"><a href="class-5-lotka-volterra-i-competition.html#cb164-40" tabindex="-1"></a>  <span class="co"># Run the simulation</span></span>
+<span id="cb164-41"><a href="class-5-lotka-volterra-i-competition.html#cb164-41" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(nYears<span class="sc">/</span>step)){</span>
+<span id="cb164-42"><a href="class-5-lotka-volterra-i-competition.html#cb164-42" tabindex="-1"></a>    <span class="co"># Calculate population size</span></span>
+<span id="cb164-43"><a href="class-5-lotka-volterra-i-competition.html#cb164-43" tabindex="-1"></a>    N1_future <span class="ot">&lt;-</span> N1 <span class="sc">+</span> r1 <span class="sc">*</span> N1 <span class="sc">*</span> ((K1 <span class="sc">-</span> N1 <span class="sc">-</span> alpha <span class="sc">*</span> N2)<span class="sc">/</span>K1) <span class="sc">*</span> step</span>
+<span id="cb164-44"><a href="class-5-lotka-volterra-i-competition.html#cb164-44" tabindex="-1"></a>    N2_future <span class="ot">&lt;-</span> N2 <span class="sc">+</span> r2 <span class="sc">*</span> N2 <span class="sc">*</span> ((K2 <span class="sc">-</span> N2 <span class="sc">-</span> beta <span class="sc">*</span> N1)<span class="sc">/</span>K2) <span class="sc">*</span> step</span>
+<span id="cb164-45"><a href="class-5-lotka-volterra-i-competition.html#cb164-45" tabindex="-1"></a>    </span>
+<span id="cb164-46"><a href="class-5-lotka-volterra-i-competition.html#cb164-46" tabindex="-1"></a>    N1 <span class="ot">&lt;-</span> N1_future</span>
+<span id="cb164-47"><a href="class-5-lotka-volterra-i-competition.html#cb164-47" tabindex="-1"></a>    N2 <span class="ot">&lt;-</span> N2_future</span>
+<span id="cb164-48"><a href="class-5-lotka-volterra-i-competition.html#cb164-48" tabindex="-1"></a>    </span>
+<span id="cb164-49"><a href="class-5-lotka-volterra-i-competition.html#cb164-49" tabindex="-1"></a>    <span class="co"># Add to lists</span></span>
+<span id="cb164-50"><a href="class-5-lotka-volterra-i-competition.html#cb164-50" tabindex="-1"></a>    n1_list <span class="ot">&lt;-</span> <span class="fu">c</span>(n1_list, N1)</span>
+<span id="cb164-51"><a href="class-5-lotka-volterra-i-competition.html#cb164-51" tabindex="-1"></a>    n2_list <span class="ot">&lt;-</span> <span class="fu">c</span>(n2_list, N2)</span>
+<span id="cb164-52"><a href="class-5-lotka-volterra-i-competition.html#cb164-52" tabindex="-1"></a>  }</span>
+<span id="cb164-53"><a href="class-5-lotka-volterra-i-competition.html#cb164-53" tabindex="-1"></a>  </span>
+<span id="cb164-54"><a href="class-5-lotka-volterra-i-competition.html#cb164-54" tabindex="-1"></a>  <span class="co"># Add simulation results to overall results</span></span>
+<span id="cb164-55"><a href="class-5-lotka-volterra-i-competition.html#cb164-55" tabindex="-1"></a>  n1_all_trials <span class="ot">&lt;-</span> <span class="fu">c</span>(n1_all_trials, n1_list)</span>
+<span id="cb164-56"><a href="class-5-lotka-volterra-i-competition.html#cb164-56" tabindex="-1"></a>  n2_all_trials <span class="ot">&lt;-</span> <span class="fu">c</span>(n2_all_trials, n2_list)</span>
+<span id="cb164-57"><a href="class-5-lotka-volterra-i-competition.html#cb164-57" tabindex="-1"></a>  trialNumber <span class="ot">&lt;-</span> <span class="fu">c</span>(trialNumber, <span class="fu">rep</span>(trial, <span class="at">time =</span> <span class="fu">length</span>(n1_list)))</span>
+<span id="cb164-58"><a href="class-5-lotka-volterra-i-competition.html#cb164-58" tabindex="-1"></a>  time <span class="ot">&lt;-</span> <span class="fu">c</span>(time, <span class="fu">seq</span>(<span class="fu">length</span>(n1_list)))</span>
+<span id="cb164-59"><a href="class-5-lotka-volterra-i-competition.html#cb164-59" tabindex="-1"></a>}</span>
+<span id="cb164-60"><a href="class-5-lotka-volterra-i-competition.html#cb164-60" tabindex="-1"></a></span>
+<span id="cb164-61"><a href="class-5-lotka-volterra-i-competition.html#cb164-61" tabindex="-1"></a><span class="co"># Store as data frame</span></span>
+<span id="cb164-62"><a href="class-5-lotka-volterra-i-competition.html#cb164-62" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb164-63"><a href="class-5-lotka-volterra-i-competition.html#cb164-63" tabindex="-1"></a>  <span class="at">n1 =</span> n1_all_trials, </span>
+<span id="cb164-64"><a href="class-5-lotka-volterra-i-competition.html#cb164-64" tabindex="-1"></a>  <span class="at">n2 =</span> n2_all_trials,</span>
+<span id="cb164-65"><a href="class-5-lotka-volterra-i-competition.html#cb164-65" tabindex="-1"></a>  <span class="at">trial =</span> trialNumber,</span>
+<span id="cb164-66"><a href="class-5-lotka-volterra-i-competition.html#cb164-66" tabindex="-1"></a>  <span class="at">time =</span> time</span>
+<span id="cb164-67"><a href="class-5-lotka-volterra-i-competition.html#cb164-67" tabindex="-1"></a>)</span>
+<span id="cb164-68"><a href="class-5-lotka-volterra-i-competition.html#cb164-68" tabindex="-1"></a></span>
+<span id="cb164-69"><a href="class-5-lotka-volterra-i-competition.html#cb164-69" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb164-70"><a href="class-5-lotka-volterra-i-competition.html#cb164-70" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> n1, </span>
+<span id="cb164-71"><a href="class-5-lotka-volterra-i-competition.html#cb164-71" tabindex="-1"></a>               <span class="at">y =</span> n2, </span>
+<span id="cb164-72"><a href="class-5-lotka-volterra-i-competition.html#cb164-72" tabindex="-1"></a>               <span class="at">color =</span> <span class="fu">factor</span>(trial), <span class="co"># Factor lets R know that trial is a category, not a continuous number</span></span>
+<span id="cb164-73"><a href="class-5-lotka-volterra-i-competition.html#cb164-73" tabindex="-1"></a>               <span class="at">alpha =</span> time)) <span class="sc">+</span> <span class="co"># Transparency is controlled by time within trial - dark points are the last times within a trial</span></span>
+<span id="cb164-74"><a href="class-5-lotka-volterra-i-competition.html#cb164-74" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span> </span>
+<span id="cb164-75"><a href="class-5-lotka-volterra-i-competition.html#cb164-75" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color=</span><span class="st">&quot;none&quot;</span>, </span>
+<span id="cb164-76"><a href="class-5-lotka-volterra-i-competition.html#cb164-76" tabindex="-1"></a>         <span class="at">alpha =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span> <span class="co"># Remove color and transparency scales</span></span>
+<span id="cb164-77"><a href="class-5-lotka-volterra-i-competition.html#cb164-77" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;N1&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb164-78"><a href="class-5-lotka-volterra-i-competition.html#cb164-78" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;N2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb164-79"><a href="class-5-lotka-volterra-i-competition.html#cb164-79" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+
+</div>
+</div>
+<!-- </div> -->
+<hr>
+<center> 
+  <div class="footer">
+      All illustrations <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY. </a>
+      <br>
+      All other materials <a href= "https://creativecommons.org/licenses/by/4.0/"> CC-BY </a> unless noted otherwise.
+  </div>
+</center>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="class-3-exponential-growth-and-age-structure.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-guidebook.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
