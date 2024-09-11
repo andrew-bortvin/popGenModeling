@@ -169,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="class-5-lotka-volterra-i-competition.html"><a href="class-5-lotka-volterra-i-competition.html"><i class="fa fa-check"></i><b>3.3</b> Class 5: Lotka-Volterra I: Competition</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="class-5-lotka-volterra-i-competition.html"><a href="class-5-lotka-volterra-i-competition.html#equilibirum-from-multiplt-starting-points"><i class="fa fa-check"></i><b>3.3.1</b> Equilibirum from multiplt starting points</a></li>
+<li class="chapter" data-level="3.3.1" data-path="class-5-lotka-volterra-i-competition.html"><a href="class-5-lotka-volterra-i-competition.html#equilibirum-from-multiple-starting-points"><i class="fa fa-check"></i><b>3.3.1</b> Equilibirum from multiple starting points</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="r-guidebook.html"><a href="r-guidebook.html"><i class="fa fa-check"></i><b>4</b> R Guidebook</a>
@@ -547,8 +547,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb163-100"><a href="class-5-lotka-volterra-i-competition.html#cb163-100" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Population&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb163-101"><a href="class-5-lotka-volterra-i-competition.html#cb163-101" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="04_lotkaVoletrra/img/LV_and_logistic.png" /></p>
-<div id="equilibirum-from-multiplt-starting-points" class="section level3 hasAnchor" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Equilibirum from multiplt starting points<a href="class-5-lotka-volterra-i-competition.html#equilibirum-from-multiplt-starting-points" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="equilibirum-from-multiple-starting-points" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Equilibirum from multiple starting points<a href="class-5-lotka-volterra-i-competition.html#equilibirum-from-multiple-starting-points" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now, starting from multiple conditions:</p>
 <div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="class-5-lotka-volterra-i-competition.html#cb164-1" tabindex="-1"></a><span class="co"># Initialize conditions</span></span>
 <span id="cb164-2"><a href="class-5-lotka-volterra-i-competition.html#cb164-2" tabindex="-1"></a><span class="co"># Carrying Capacities</span></span>
@@ -577,7 +577,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb164-25"><a href="class-5-lotka-volterra-i-competition.html#cb164-25" tabindex="-1"></a>step <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
 <span id="cb164-26"><a href="class-5-lotka-volterra-i-competition.html#cb164-26" tabindex="-1"></a></span>
 <span id="cb164-27"><a href="class-5-lotka-volterra-i-competition.html#cb164-27" tabindex="-1"></a><span class="co"># Number of trials we are running</span></span>
-<span id="cb164-28"><a href="class-5-lotka-volterra-i-competition.html#cb164-28" tabindex="-1"></a>nTrials <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb164-28"><a href="class-5-lotka-volterra-i-competition.html#cb164-28" tabindex="-1"></a>nTrials <span class="ot">&lt;-</span> <span class="dv">300</span></span>
 <span id="cb164-29"><a href="class-5-lotka-volterra-i-competition.html#cb164-29" tabindex="-1"></a></span>
 <span id="cb164-30"><a href="class-5-lotka-volterra-i-competition.html#cb164-30" tabindex="-1"></a><span class="co"># Run simulation</span></span>
 <span id="cb164-31"><a href="class-5-lotka-volterra-i-competition.html#cb164-31" tabindex="-1"></a><span class="cf">for</span> (trial <span class="cf">in</span> <span class="fu">seq</span>(nTrials)){</span>

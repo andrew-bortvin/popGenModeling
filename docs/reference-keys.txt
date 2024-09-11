@@ -35,7 +35,7 @@ comparison-to-real-data
 age-structure
 the-leslie-matrix
 class-5-lotka-volterra-i-competition
-equilibirum-from-multiplt-starting-points
+equilibirum-from-multiple-starting-points
 r-guidebook
 data-types
 variables
