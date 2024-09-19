@@ -12,7 +12,7 @@ library(reshape2)
 library(ggplot2)
 ```
 
-# Class 7: Infectious Diseases 
+## Class 7: Infectious Diseases 
 
 Before getting into any biology, let's learn about making our own functions. Throughout the course, we've made use of R functions such as `print()`, `c()`, and `ggplot()`; defining our own functions allows us to 
 
@@ -292,7 +292,11 @@ ggplot(SEIR_data, aes(x = S, y = I)) +
 
 ![](img/SEIR_path.png)
 
+### SEIHFR
 
+You aren't responsible for being able to reproduce the code below, but I showed this model in class and am including the code below. 
+
+The SEIHFR model was developed to model Ebola outbreaks. In addition to the categories of individuals included in the SEIR model, it also considers: 
 
 
 
