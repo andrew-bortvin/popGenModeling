@@ -1,0 +1,871 @@
+---
+title: "Infectious Diseases Drafts"
+author: "Andrew Bortvin"
+date: "2024-09-13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(reshape2)
+library(statnet)
+```
+
+Implementation of the basic SIR model:
+
+Closed epidemic (birth = death = 0)
+
+```{r}
+# Initialize simulation parameters
+S <- 100 # Susceptible 
+I <- 1 # Infected
+R <- 0 # Recovered 
+mu <- 0.00 # Birth rate, which also equals death rate 
+B <- 3 # Infectiveness parameters - think of as duration of interactions
+gamma <- 1 # Recovery rate 
+
+N <- sum(S,I,R) # total population size 
+
+simTime <- 30
+step <- 0.01
+
+# Lists to store values of S, I, R
+sList <- c()
+iList <- c()
+rList <- c()
+
+for (time in seq(simTime/step)){
+  # Calculate rates of change
+  
+  # Change in number of susceptible 
+  # First term: Births from all ages - deaths of S population
+  # Second term: Fraction of S that become R
+  dS <- (mu * (N - S) - B * I * S / N) * step
+  
+  # Change in number of infected
+  # First term: Conversion of susceptible into infected (same as above)
+  # Second term: Deaths and recoveries of infected individuals
+  dI <- (B * I * S / N - (mu + gamma) * I) * step
+  
+  # Change in number of recovered
+  # First term - number of recovered - note similarity but not complete identity with second term of I equation
+  # Second term: Death of recovered individuals
+  dR <- (gamma *I - mu * R) * step
+  
+  # Update population sizes
+  S <- S + dS
+  I <- I + dI
+  R <- R + dR
+  
+  # Update population size 
+  N <- sum(S,I,R)
+  
+  # Store to list
+  sList <- c(sList, S)
+  iList <- c(iList, I)
+  rList <- c(rList, R)
+}
+
+# Store results in df
+df <- data.frame(
+  time = seq(length(sList)) * step,
+  S = sList, 
+  I = iList,
+  R = rList
+)
+
+# Convert to tall format
+df <- melt(df, id.vars = "time")
+colnames(df) <- c("Time", "Population", "Size")
+
+ggplot(df, aes(x = Time,
+               y = Size,
+               color = Population)) + 
+  geom_line() +
+  labs(y = "Population Size") +
+  theme_bw() 
+```
+
+Defining as a function: 
+
+```{r}
+SIR <- function(S, I, R, mu, B, gamma, simTime, step){
+  N <- sum(S,I,R) # total population size 
+  
+  # Lists to store values of S, I, R
+  sList <- c()
+  iList <- c()
+  rList <- c()
+  
+  for (time in seq(simTime/step)){
+    # Calculate rates of change
+    
+    # Change in number of susceptible 
+    # First term: Births from all ages - deaths of S population
+    # Second term: Fraction of S that become R
+    dS <- (mu * (N - S) - B * I * S / N) * step
+    
+    # Change in number of infected
+    # First term: Conversion of susceptible into infected (same as above)
+    # Second term: Deaths and recoveries of infected individuals
+    dI <- (B * I * S / N - (mu + gamma) * I) * step
+    
+    # Change in number of recovered
+    # First term - number of recovered - note similarity but not complete identity with second term of I equation
+    # Second term: Death of recovered individuals
+    dR <- (gamma *I - mu * R) * step
+    
+    # Update population sizes
+    S <- S + dS
+    I <- I + dI
+    R <- R + dR
+    
+    # Update population size 
+    N <- sum(S,I,R)
+    
+    # Store to list
+    sList <- c(sList, S)
+    iList <- c(iList, I)
+    rList <- c(rList, R)
+  }
+  
+  # Store results in df
+  df <- data.frame(
+    time = seq(length(sList)) * step,
+    S = sList, 
+    I = iList,
+    R = rList
+  )
+  
+  return(df)
+}
+```
+
+
+Running with a non-zero birth/death rate (open epidemic): 
+```{r}
+# Initialize simulation parameters
+S <- 100 # Susceptible 
+I <- 1 # Infected
+R <- 0 # Recovered 
+mu <- 0.05 # Birth rate, which also equals death rate 
+B <- 3 # Infectiveness parameters - think of as duration of interactions
+gamma <- 1 # Recovery rate 
+
+simTime <- 40
+step <- 0.001
+
+SIR_data <- SIR(S, I, R, mu, B, gamma, simTime, step)
+
+# Convert to tall format
+SIR_data <- melt(SIR_data, id.vars = "time")
+colnames(SIR_data) <- c("Time", "Population", "Size")
+
+ggplot(SIR_data, aes(x = Time,
+               y = Size,
+               color = Population)) + 
+  geom_line() +
+  labs(y = "Population Size") +
+  theme_bw() 
+```
+
+Running with a non-zero birth/death rate (open epidemic): 
+```{r}
+# Initialize simulation parameters
+S <- 19 # Susceptible 
+I <- 4 # Infected
+R <- 0 # Recovered 
+mu <- 0.05 # Birth rate, which also equals death rate 
+B <- 2.76 # Infectiveness parameters - think of as duration of interactions
+gamma <- 0.8 # Recovery rate 
+
+simTime <- 50 
+step <- 0.01
+
+SIR_data <- SIR(S, I, R, mu, B, gamma, simTime, step)
+
+# Convert to tall format
+SIR_data <- melt(SIR_data, id.vars = "time")
+colnames(SIR_data) <- c("Time", "Population", "Size")
+
+ggplot(SIR_data, aes(x = Time,
+               y = Size,
+               color = Population)) + 
+  geom_line() +
+  labs(y = "Population Size") +
+  theme_bw() 
+```
+
+## With Fractions: 
+
+```{r}
+SIR_fractions <- function(S, I, R, mu, B, gamma, simTime, step){
+  N <- 1 # total population size 
+  
+  # Lists to store values of S, I, R
+  sList <- c(S)
+  iList <- c(I)
+  rList <- c(R)
+  
+  for (time in seq(simTime/step)){
+    # Calculate rates of change
+    
+    # Change in number of susceptible 
+    # First term: Births from all ages - deaths of S population
+    # Second term: Fraction of S that become R
+    dS <- (mu * (N - S) - B * I * S / N) * step
+    
+    # Change in number of infected
+    # First term: Conversion of susceptible into infected (same as above)
+    # Second term: Deaths and recoveries of infected individuals
+    dI <- (B * I * S / N - (mu + gamma) * I) * step
+    
+    # Change in number of recovered
+    # First term - number of recovered - note similarity but not complete identity with second term of I equation
+    # Second term: Death of recovered individuals
+    dR <- (gamma * I - mu * R) * step
+    
+    # Update population sizes
+    S <- S + dS
+    I <- I + dI
+    R <- R + dR
+    
+    # Update population size based on number dead
+    N <- sum(S, I, R)
+    
+    # Store to list
+    sList <- c(sList, S)
+    iList <- c(iList, I)
+    rList <- c(rList, R)
+  }
+  
+  # Store results in df
+  df <- data.frame(
+    time = seq(length(sList)) * step,
+    S = sList, 
+    I = iList,
+    R = rList
+  )
+  
+  return(df)
+}
+
+```
+
+```{r}
+# Initialize simulation parameters
+S <- 0.19 # Susceptible 
+I <- 0.01 # Infected
+R <- 0.8 # Recovered 
+mu <-  1/(50 * 52) # Birth rate, which also equals death rate 
+B <- 2 # Infectiveness parameters - think of as duration of interactions
+gamma <- 0.5 # Recovery rate 
+
+simTime <- 52 * 100
+step <- 0.1
+
+SIR_data <- SIR_fractions(S, I, R, mu, B, gamma, simTime, step)
+
+# Convert to tall format
+SIR_data_tall <- melt(SIR_data, id.vars = "time")
+colnames(SIR_data_tall) <- c("Time", "Population", "Size")
+
+ggplot(SIR_data_tall, aes(x = Time,
+               y = Size,
+               color = Population)) +
+  geom_line() +
+  labs(y = "Population Size") +
+  theme_bw()
+
+
+
+ggplot(SIR_data_tall[SIR_data_tall$Population == "I", ], aes(x = Time * step,
+               y = Size,
+               color = Population)) +
+  geom_line() +
+  labs(y = "Population Size") +
+  theme_bw()
+```
+
+```{r}
+ggplot(data = SIR_data, aes(x = S, y= I)) + 
+  geom_path() + 
+  theme_classic()
+```
+
+# SEIR
+
+```{r}
+SEIR_fractions <- function(S, E, I, R, mu, B, gamma, sigma, alpha, p, simTime, step){
+  N <- 1 # total population size 
+  
+  # Lists to store values of S, I, R
+  sList <- c(S)
+  eList <- c(E)
+  iList <- c(I)
+  rList <- c(R)
+  
+  for (time in seq(simTime/step)){
+    # Calculate rates of change
+    
+    # Change in number of susceptible 
+    # First term: Births from all ages - deaths of S population
+    # Second term: Fraction of S that become R
+    # We still care about I here because I dictates the number of
+    # individuals that get infected
+    # We multiply N by (1-p) to reflect that only those not vaccinated at birth can be susceptible 
+    dS <- (mu * (N * (1-p) - S) - B * I * S / N) * step
+    
+    # Change in number exposed
+    dE <- (B * I * S / N - (mu + sigma) * E) * step
+    
+    # Change in number of infected
+    # First term: Conversion of exposed into infected (same as above)
+    # Second term: Deaths and recoveries of infected individuals
+    dI <- (sigma * E - (mu + gamma + alpha) * I) * step
+    
+    # Change in number of recovered
+    # First term - number of recovered - note similarity but not complete identity with second term of I equation
+    # Second term: Death of recovered individuals
+    # Third term: fraction of new births that are vaccinated - vaccinated births go directly into the R category 
+    dR <- (gamma * I - mu * R + mu * N * p) * step
+    
+    # Update population sizes
+    S <- S + dS
+    E <- E + dE
+    I <- I + dI
+    R <- R + dR
+    
+    # Update population size based on number dead
+    N <- sum(S, E, I, R)
+    
+    # Store to list
+    sList <- c(sList, S)
+    eList <- c(eList, E)
+    iList <- c(iList, I)
+    rList <- c(rList, R)
+  }
+  
+  # Store results in df
+  df <- data.frame(
+    time = seq(length(sList)) * step,
+    S = sList, 
+    E = eList, 
+    I = iList,
+    R = rList
+  )
+  
+  return(df)
+}
+```
+
+```{r}
+# Initialize simulation parameters
+S <- 0.19 # Susceptible 
+E <- 0.0  # Exposed
+E <- 0.01  # Infected
+R <- 0.8 # Recovered 
+mu <-  1/(50 * 52) # Birth rate, which also equals death rate 
+B <- 2 # Infectiveness parameters - think of as duration of interactions
+sigma <- 0.2 # Length that exposed stay exposed prior to becoming infected
+gamma <- 0.5 # Recovery rate 
+p <- 0.2 # Vaccination rate at birth 
+alpha <- 0.1 # Mortality rate of infected individuals
+
+simTime <- 52 * 100
+step <- 0.1
+
+SEIR_data <- SEIR_fractions(S, E, I, R, mu, B, gamma, sigma, alpha, p, simTime, step)
+
+# Convert to tall format
+SEIR_data_tall <- melt(SEIR_data, id.vars = "time")
+colnames(SEIR_data_tall) <- c("Time", "Population", "Size")
+
+ggplot(SEIR_data_tall, aes(x = Time * step / 52,
+               y = Size,
+               color = Population)) +
+  geom_line() +
+  labs(y = "Population Size") +
+  theme_bw()
+
+```
+
+```{r}
+ggplot(SEIR_data_tall[SEIR_data_tall$Population == "I" | SEIR_data_tall$Population == "E", ], aes(x = Time * step,
+               y = Size,
+               color = Population)) +
+  geom_line() +
+  labs(y = "Proportion of Population Infected") +
+  theme_bw()
+```
+
+```{r}
+ggplot(data = SEIR_data, aes(x = S, y= R)) + 
+  geom_path() + 
+  theme_classic()
+```
+
+```{r}
+ggplot(data = SEIR_data, aes(x = S, y= E)) + 
+  geom_path() + 
+  geom_path(data = SEIR_data, 
+            aes(x = S, y = I),
+            color = "plum") + 
+  theme_classic()
+```
+
+```{r}
+ggplot(data = SEIR_data, aes(x = S, y= E + I)) + 
+  geom_path() + 
+  theme_classic()
+```
+
+# SEIHFR
+
+Model for Ebola transmission. Not a linear path from start to end - good to write this one out explicitly. Categories in the model:
+
+- S: Susceptible
+- E: Exposed
+- I: Infected 
+- H: Infected in hospital 
+- F: Dead and not yet buried
+- R: Removed (dead and buried, or immune)
+
+```{r}
+SEIHFR_fractions <- function(S, E, I, H, Funeral, R, # F spelled out due to protected terms 
+                             Bs, Be, Bi, Bh, Bf, # All non-removed classes have beta parameters 
+                             gammaH, gammaF, gammaR, # Progression rate from infection to hospitalization, death, or recovery
+                             # 1/gamma is the time to each of those fates
+                             theta, # Θ - proportion infected that are hospitalized
+                             lambda, #Λ - proportion of the sick that will die
+                             etaF, etaR,  # η - Progression from hospitalization to death or recovery
+                             chi, mu, # time to burial
+                             simTime, step){
+  N <- 1 # total population size 
+  
+  # Lists to store values of S, I, R
+  sList <- c(S)
+  eList <- c(E)
+  iList <- c(I)
+  hList <- c(H)
+  fList <- c(Funeral)
+  rList <- c(R)
+  
+  for (time in seq(simTime/step)){
+    # Calculate rates of change
+    
+    # Change in number of susceptible 
+    # Interactions of susceptible individuals with Infected, Hospitalized, and dead individuals
+    dS <- (mu * (N * (1-p) - S)-(Bi * I + Bh * H + Bf * Funeral) * S / N) * step
+    
+    # Change in number exposed 
+    # First term: number of susceptible individuals that get exposed
+    # Same as dS with opposite sign
+    # Second term: number of exposed individuals that proceed to being infected
+    dE <- ((Bi * I + Bh * H + Bf * Funeral) * S / N - sigma * E) * step
+    
+    # Change in number of infected
+    # First term: number of exposed that become infected
+    # Second term: progression from infection to hospitalization 
+    # Third term: Recovery
+    # Fourth term: Death
+    dI <- (sigma * E - theta * gammaH * I - 
+             (1 - theta) * (1 - lambda) * gammaR * I - 
+             (1 - theta) * lambda * gammaF * I) * step
+    
+    # Change in the number hospitalized
+    # First term: Progression from infection to hospitalization
+    # Second term: Progression from hospitalization to death 
+    # Third term: 
+    dH <- (theta * gammaH * I - # infection to hospitalization
+             lambda * etaF * H - # hospitalization to death
+             (1 - lambda) * etaR * H) * step # hospitalization to recovery 
+    
+    # Change in number dead and unburied
+    # First term: Progression from infection to death
+    dFuneral <- ((1 - theta) * lambda * gammaF * I + # Infection to death. I think this is a typo in the textbook
+                   lambda * etaF * H - # hospitalization to death
+                   chi * Funeral
+                 ) * step
+    
+    
+    # Change in number of recovered
+ 
+    dR <- ((1 - theta) * (1 - lambda) * gammaR * I + # infected recover
+          (1 - lambda) * etaR * H # Recovery
+          + chi * Funeral) * step # burial
+    
+    # Update population sizes
+    S <- S + dS
+    E <- E + dE
+    I <- I + dI
+    H <- H + dH
+    Funeral <- Funeral + dFuneral
+    R <- R + dR
+    
+    # Update population size based on number dead
+    N <- sum(S, E, I, H, Funeral, R)
+    
+    # Store to list
+    sList <- c(sList, S)
+    eList <- c(eList, E)
+    iList <- c(iList, I)
+    hList <- c(hList, H)
+    fList <- c(fList, Funeral)
+    rList <- c(rList, R)
+  }
+  
+  # Store results in df
+  df <- data.frame(
+    time = seq(length(sList)) * step,
+    S = sList, 
+    E = eList, 
+    I = iList,
+    H = hList,
+    Funeral = fList,
+    R = rList
+  )
+  
+  return(df)
+}
+```
+
+```{r}
+# Initialize simulation parameters
+S <- 0.99 # Susceptible 
+E <- 0.0  # Exposed
+I <- 0.01  # Infected
+H <- 0
+Funeral <- 0 
+R <- 0.0 # Recovered 
+Bi <- 0.588
+Bh <- 0.794
+Bf <- 7.653
+gammaH <- 1/5
+gammaF <- 1/9.6
+gammaR <- 1/10
+etaF <- 1/4.6
+etaR <- 1/5
+theta <- 0.80
+lambda <- 0.81
+chi <- 0.5
+mu <-  1/(50 * 52)
+sigma <- 1/7 # Length that exposed stay exposed prior to becoming infected
+
+
+simTime <- 52 * 30
+step <- 0.1
+
+SEIHFR_data <- SEIHFR_fractions(S, E, I, H, Funeral, R, 
+                 Bs, Be, Bi, Bh, Bf,
+                 gammaH, gammaF, gammaR, 
+                 theta,lambda, 
+                 etaF, etaR,
+                 chi, mu,
+                 simTime, step)
+
+
+# Convert to tall format
+SEIHFR_data_tall <- melt(SEIHFR_data, id.vars = "time")
+colnames(SEIHFR_data_tall) <- c("Time", "Population", "Size")
+
+ggplot(SEIHFR_data_tall[SEIHFR_data_tall$Population != "R", ], aes(x = Time * step / 52,
+               y = Size,
+               color = Population)) +
+  geom_line() +
+  labs(y = "Population Size") +
+  theme_bw()
+```
+
+```{r}
+ggplot(SEIHFR_data_tall[SEIHFR_data_tall$Population == "I" | SEIHFR_data_tall$Population == "E" | SEIHFR_data_tall$Population == "H" , ], aes(x = Time * step,
+               y = Size,
+               color = Population)) +
+  geom_line() +
+  labs(y = "Proportion of Population Infected") +
+  theme_bw()
+```
+
+```{r}
+ggplot(data = SEIHFR_data, aes(x = S, y= R)) + 
+  geom_path() + 
+  theme_classic()
+```
+
+```{r}
+ggplot(data = SEIHFR_data, aes(x = S, y= E + I + H)) + 
+  geom_path() + 
+  theme_classic()
+```
+
+# Networks
+
+```{r}
+ringlattice <- function(N, K){
+  CM = toeplitz(c(0, rep(1, K), rep(0, N - 2 * K - 1), rep(1, K)))
+  class(CM) = "cm"
+  return(CM)
+}
+```
+
+```{r}
+plot.cm=function(CM){ 
+  N=dim(CM)[1]
+  theta=seq(0,2*pi,length=N+1) 
+  x=cos(theta[1:N])
+  y=sin(theta[1:N])
+  symbols(x,y, fg=0, circles=rep(1, N),
+          inches=0.1, bg=1, xlab="", ylab="") 
+  segx1=as.vector(matrix(x, ncol=length(x),
+                         nrow=length(x), byrow=TRUE)) 
+  segx2=as.vector(matrix(x, ncol=length(x),
+                         nrow=length(x), byrow=FALSE)) 
+  segy1=as.vector(matrix(y, ncol=length(x),
+                         nrow=length(x), byrow=TRUE)) 
+  segy2=as.vector(matrix(y, ncol=length(x),
+                         nrow=length(x), byrow=FALSE)) 
+  segments(segx1,segy1, segx2, segy2, lty=as.vector(CM))
+}
+```
+
+```{r}
+cm = ringlattice(N = 20, K = 4)
+plot(cm)
+```
+
+Barabasi-Albert Networks
+
+```{r}
+BarabasiAlbert <- function(N, K){
+  CM=matrix(0, ncol=N, nrow=N) 
+  CM[1,2]=1
+  CM[2,1]=1
+  for(i in 3:N){
+    probs=apply(CM, 1, sum) 
+    link=unique(sample(c(1:N)[-i],
+                       size=min(c(K, i-1)), prob=probs[-i])) 
+    CM[i, link]=CM[link, i]=1
+    }
+  class(CM)="cm" 
+  return(CM)
+}
+```
+
+```{r}
+cm <- BarabasiAlbert(20, 4)
+plot(cm)
+```
+
+```{r}
+NetworkSIR=function(CM,tau,gamma){
+  #generate SIR epidemic on a CM-network
+  #CM = contact matrix
+  #tau = probability of infection across an edge #gamma = probability of removal per time step 
+  N=dim(CM)[1]
+  I=matrix(rep(0,N),nrow=N,ncol=1) #First infecteds 
+  S=matrix(rep(1,N),nrow=N,ncol=1) #First susceptibles 
+  R=matrix(rep(0,N),nrow=N,ncol=1) #First removed 
+  I1=sample(1:N, size=1)#Pick first random infected 
+  I[I1,1]=1
+  S[I1,1]=0
+  t=1
+  while(sum(I[,t-1])>0 | t==1){
+      t=t+1
+      infneigh=CM%*%I[,t-1]
+      pinf=1-(1-tau)^infneigh 
+      newI=rbinom(N, S[,t-1], pinf) 
+      newR=rbinom(N, I[,t-1], gamma) 
+      nextS=S[,t-1]-newI 
+      nextI=I[,t-1]+newI-newR 
+      nextR=R[,t-1]+newR
+      I=cbind(I, nextI) 
+      S=cbind(S, nextS) 
+      R=cbind(R, nextR)
+  }
+  res=list(I=I,S=S,R=R) 
+  class(res)="netSIR" 
+  return(res)
+}
+```
+
+```{r}
+summary.netSIR=function(x){ 
+  t=dim(x$S)[2] 
+  S=apply(x$S,2,sum) 
+  I=apply(x$I,2,sum)
+  R=apply(x$R,2,sum) 
+  res=data.frame(S=S,I=I,R=R) 
+  return(res)
+}
+
+plot.netSIR=function(x){ 
+  y=summary(x)
+  plot(y$S, type="b", xlab="time", ylab="") 
+  lines(y$I, type="b", col="red") 
+  lines(y$R, type="b", col="blue") 
+  legend("right", legend=c("S", "I", "R"),
+         lty=c(1,1,1), pch=c(1,1,1),
+         col=c("black", "red", "blue")) 
+}
+```
+
+```{r}
+cm <- BarabasiAlbert(N = 75, K = 3)
+sim <- NetworkSIR(cm,.06,0.08)
+plot.netSIR(sim)
+```
+
+```{r}
+cmg <- cm
+inf=ifelse(apply(sim$I, 1, sum)>0,2,1)
+nwt=network(cmg, directed=FALSE)
+plot(nwt, vertex.col=inf)
+```
+
+# Seasonality
+
+```{r}
+SIR_recurrence <- function(S, I, R, mu, B, gamma, omega, simTime, step){
+  N <- 1 # total population size 
+  
+  # Lists to store values of S, I, R
+  sList <- c(S)
+  iList <- c(I)
+  rList <- c(R)
+  
+  for (time in seq(simTime/step)){
+    # Calculate rates of change
+    
+    # Change in number of susceptible 
+    # First term: Births from all ages - deaths of S population
+    # Second term: Fraction of S that become R
+    dS <- (mu * (N - S) - B * I * S / N + omega * R) * step
+    
+    # Change in number of infected
+    # First term: Conversion of susceptible into infected (same as above)
+    # Second term: Deaths and recoveries of infected individuals
+    dI <- (B * I * S / N - (mu + gamma) * I) * step
+    
+    # Change in number of recovered
+    # First term - number of recovered - note similarity but not complete identity with second term of I equation
+    # Second term: Death of recovered individuals
+    dR <- (gamma * I - mu * R - omega * R) * step
+    
+    # Update population sizes
+    S <- S + dS
+    I <- I + dI
+    R <- R + dR
+    
+    # Update population size based on number dead
+    N <- sum(S, I, R)
+    
+    # Store to list
+    sList <- c(sList, S)
+    iList <- c(iList, I)
+    rList <- c(rList, R)
+  }
+  
+  # Store results in df
+  df <- data.frame(
+    time = seq(length(sList)) * step,
+    S = sList, 
+    I = iList,
+    R = rList
+  )
+  
+  return(df)
+}
+```
+
+```{r}
+# Initialize simulation parameters
+S <- 0.99 # Susceptible 
+I <- 0.01 # Infected
+R <- 0 # Recovered 
+mu <-  1/(50 * 52) # Birth rate, which also equals death rate 
+B <- 4 # Infectiveness parameters - think of as duration of interactions
+gamma <- 1 # Recovery rate 
+omgea <- 0.03
+
+simTime <- 52 * 3
+step <- 0.1
+
+SIR_data <- SIR_recurrence(S, I, R, mu, B, gamma, omgea, simTime, step)
+
+# Convert to tall format
+SIR_data_tall <- melt(SIR_data, id.vars = "time")
+colnames(SIR_data_tall) <- c("Time", "Population", "Size")
+
+ggplot(SIR_data_tall, aes(x = Time,
+               y = Size,
+               color = Population)) +
+  geom_line() +
+  labs(y = "Population Size") +
+  theme_bw()
+
+
+
+ggplot(SIR_data_tall[SIR_data_tall$Population == "I", ], aes(x = Time * step,
+               y = Size,
+               color = Population)) +
+  geom_line() +
+  labs(y = "Population Size") +
+  theme_bw()
+
+```
+
+Ways to make this more exciting: 
+
+* Periodicity in the infection rate? Seasonality? To what extent is this realistic? 
+* See textobook p 29 for concrete explanation of R0 as a function of B and gamma
+* Seasonal SEIR
+* Age groups in SEIR
+
+* Also - look into Lotka-Volterra parasitism
+
+BI/N term in S(E)IR is the Force of Infection - per capita rate of exposure to infection 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

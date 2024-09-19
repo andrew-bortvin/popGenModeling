@@ -1,0 +1,270 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+
+```{r, eval=FALSE}
+library(ggplot2)
+library(reshape2)
+```
+
+```{r, echo=FALSE}
+library(ggplot2)
+```
+
+# Class 7: Infectious Diseases 
+
+Before getting into any biology, let's learn about making our own functions. Throughout the course, we've made use of R functions such as `print()`, `c()`, and `ggplot()`; defining our own functions allows us to 
+
+Defining our own functions allows us to perform actions over and over on multiple sets of inputs. 
+
+Below, let's practice creating a function that takes one input, a list, and returns the number of things in it:
+
+```{r}
+# A vector containing the contents of my fridge 
+refrigerator <- c("Apples", "Pears", "Bread", "Eggs", "Cheddar",
+                  "Brie", "Lettuce", "Shallots", "Cabbage")
+
+# The function definition 
+countFood <- function(fridge){ # Fridge is a local variable - it does not exist outside the function 
+  numItems <- length(fridge)
+  print(paste("I have", numItems, "things in my fridge."))
+}
+
+# Two more fridges 
+myFriendsPantry <- c("olives")
+fridge <- c("veal", "steak", "halloumi")
+
+# Run the fridge function on all three sets of inputs: 
+countFood(refrigerator)
+countFood(myFriendsPantry)
+countFood(fridge)
+```
+
+The `countFood()` function prints out a value, but doesn't actually store anything to memory. Very often, we want to use the output from our function for downstream analysis. To save the oputput of our function, we need to include a `return()` statement.
+
+For example, the function below generates a poly A tail sequence by pasting together a series of `"A"`'s, taking as input the length of the sequence to return: 
+
+```{r}
+# Define function
+polyAtail <- function(length){
+  polyA <- rep("A", times = length) # Create a vector of A's
+
+  return(paste(polyA, collapse = "")) # Convert that vector into a string
+}
+
+# Run polyAtail() function on two inputs
+polyA <- polyAtail(63)
+polyA2 <- polyAtail(17)
+
+# Print results
+print(polyA)
+print(polyA2)
+```
+
+### The SIR Model
+
+In the function below, we implement the simplest form of the SIR model as :
+
+```{r}
+SIR <- function(S, I, R, # Starting number of individuals, as a fraction of total population size
+                mu, B, gamma, # death/birth rate, contact lengths, recovery rate
+                simTime, step){
+  
+  # Initialize total population size
+  N <- 1
+  
+  # lists to store population sizes
+  sList <- c(S)
+  iList <- c(I)
+  rList <- c(R)
+  
+  # loop through times
+  for (time in seq(simTime/step)){
+    # Calculate rates of change 
+    
+    dS <- (mu * (N - S) - B * I * S / N) * step
+    dI <- (B * I * S / N - (mu + gamma) * I) * step
+    dR <- (gamma * I - mu * R) * step
+    
+    # Update population sizes based on rate of change
+    S <- S + dS
+    I <- I + dI 
+    R <- R + dR
+    
+    # Update lists
+    sList <- c(sList, S)
+    iList <- c(iList, I)
+    rList <- c(rList, R)
+  }
+  # Store results to data frame
+  df <- data.frame(
+    time = seq(length(sList)) * step,
+    S = sList, 
+    I = iList,
+    R = rList
+  )
+  
+  return(df)
+}
+```
+
+The function above returns a data frame containing time and population size for individuals of all categories.
+
+We would also like to plot our data. Since we may want to do this over and over again for different inputs, it also makes sense to plot through a function. Notice that because we just want to create a plot here, we don't need to save anything to memory. Therefore, this function does not have a `return()` statement: 
+
+```{r, eval=FALSE}
+# Define plotting function 
+plotSIR <- function(SIR_data){
+  # Convert to tall format
+  SIR_data_tall <- melt(SIR_data, id.vars = "time")
+  # Fix the column names
+  colnames(SIR_data_tall) <- c("Time", "Population", "Size")
+  
+  # Plot, coloring by population 
+  ggplot(SIR_data_tall, aes(x = Time,
+                            y = Size, 
+                            color = Population)) + 
+    geom_line() + 
+    theme_bw()
+}
+```
+
+We can also make a function to just plot the infected individuals. This is identical to the function above, except that 
+
+```{r, eval=FALSE}
+# Define plotting function 
+plotInfected<- function(SIR_data){
+  # Convert to tall format
+  SIR_data_tall <- melt(SIR_data, id.vars = "time")
+  # Fix the column names
+  colnames(SIR_data_tall) <- c("Time", "Population", "Size")
+  
+  # Plot, coloring by population 
+  ggplot(SIR_data_tall[SIR_data_tall$Population == "I", ], aes(x = Time,
+                            y = Size, 
+                            color = Population)) + 
+    geom_line() + 
+    theme_bw() 
+}
+```
+
+
+Now that we've defined our function, we can run it on a set of data: 
+```{r}
+S <- 0.19
+I <- 0.01
+R <- 0.8
+mu <- 1/(50 * 52)
+B <- 2 # Contact lengths 
+gamma <- 0.5 # Recovery rate 
+
+simTime <- 52 * 100
+step <- 0.1
+
+SIR_data <- SIR(S, I, R, mu, B, gamma,simTime, step)
+plotSIR(SIR_data)
+```
+
+```{r}
+plotInfected(SIR_data)
+```
+
+```{r}
+SIR_data_tall <- melt(SIR_data, id.vars = "time")
+colnames(SIR_data_tall) <- c("Time", "Population", "Size")
+
+ggplot(data=SIR_data, aes(x = S, y = I)) +
+  geom_path() +theme_classic()
+```
+
+```{r}
+SEIR <- function(S, E, I, R, # Starting number of individuals
+                mu, B, gamma, sigma, alpha, p, # death/birth rate, contact lengths, recovery rate, disease progression rate, death rate from disease, vaccination proportion
+                simTime, step){
+  N <- 1
+  
+  # lists to store population sizes
+  sList <- c(S)
+  eList <- c(E)
+  iList <- c(I)
+  rList <- c(R)
+  
+  # loop through times
+  for (time in seq(simTime/step)){
+    # Calculate rates of change 
+    
+    dS <- (mu * (N * (1-p) - S) - B * I * S / N) * step
+    dE <- (B * I * S / N - (mu + sigma) * E) * step
+    dI <- (sigma * E - (mu + gamma + alpha) * I) * step
+    dR <- (gamma * I - mu * R + mu * N * p) * step
+    
+    S <- S + dS
+    E <- E + dE 
+    I <- I + dI 
+    R <- R + dR
+    
+    # Update lists
+    sList <- c(sList, S)
+    eList <- c(eList, E)
+    iList <- c(iList, I)
+    rList <- c(rList, R)
+    
+    N <- sum(S, E, I, R)
+  }
+  # Store results to data frame
+  df <- data.frame(
+    time = seq(length(sList)) * step,
+    S = sList, 
+    E = eList, 
+    I = iList,
+    R = rList
+  )
+  
+  return(df)
+}
+```
+
+```{r}
+S <- 0.19
+E <- 0.0
+I <- 0.01
+R <- 0.8
+mu <- 1/(50 * 52)
+B <- 2 # Contact lengths 
+sigma <- 0.2
+gamma <- 0.5 # Recovery rate 
+alpha <- 0.1
+p <- 0.2
+
+simTime <- 52 * 50
+step <- 0.1
+
+SEIR_data <- SEIR(S, E, I, R, mu, B, gamma, sigma, alpha, p, simTime, step)
+plotSIR(SEIR_data)
+```
+
+```{r}
+ggplot(SEIR_data, aes(x = S, y = I)) +
+  geom_path() + 
+  geom_path(data = SEIR_data, aes(x = S, y = E), color = "plum") + 
+  theme_classic()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
