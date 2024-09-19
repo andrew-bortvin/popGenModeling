@@ -64,7 +64,7 @@ print(polyA2)
 
 ### The SIR Model
 
-In the function below, we implement the simplest form of the SIR model as :
+In the function below, we implement the simplest form of the SIR model. The SIR model tracks the numbers of **S**usceptible, **I**nfected, and **R**ecovered individuals in a population, assuming a constant birth/death rate. :
 
 ```{r}
 SIR <- function(S, I, R, # Starting number of individuals, as a fraction of total population size
@@ -130,7 +130,7 @@ plotSIR <- function(SIR_data){
 }
 ```
 
-We can also make a function to just plot the infected individuals. This is identical to the function above, except that 
+We can also make a function to just plot the infected individuals. This is identical to the function above, except that we subset our individuals while plotting (`SIR_data_tall[SIR_data_tall$Population == "I", ]`):
 
 ```{r, eval=FALSE}
 # Define plotting function 
@@ -149,13 +149,15 @@ plotInfected<- function(SIR_data){
 }
 ```
 
+Now that we've defined our functions, we can run them on a set of data: 
 
-Now that we've defined our function, we can run it on a set of data: 
-```{r}
+```{r, eval=FALSE}
+# Initial fraction of populations in each category
 S <- 0.19
 I <- 0.01
 R <- 0.8
-mu <- 1/(50 * 52)
+
+mu <- 1/(50 * 52) # Birth rate 
 B <- 2 # Contact lengths 
 gamma <- 0.5 # Recovery rate 
 
@@ -166,22 +168,41 @@ SIR_data <- SIR(S, I, R, mu, B, gamma,simTime, step)
 plotSIR(SIR_data)
 ```
 
-```{r}
+![](img/SIR_simple.png)
+
+```{r, eval=FALSE}
 plotInfected(SIR_data)
 ```
 
-```{r}
-SIR_data_tall <- melt(SIR_data, id.vars = "time")
-colnames(SIR_data_tall) <- c("Time", "Population", "Size")
+![](img/SIR_simple_I.png)
 
+As with other multi-population models, we can the trajectories of multiple populations as they relate to each other: 
+
+```{r, eval=FALSE}
 ggplot(data=SIR_data, aes(x = S, y = I)) +
   geom_path() +theme_classic()
 ```
 
-```{r}
+![](img/SIR_simple_phase.png)
+
+Note that in this model, there is a cyclical oscillation approaching an equilibrium as time goes on. The new spikes in case number are a result of new births in the population increasing the susceptible population. 
+
+### SEIR
+
+The SEIR model extends the standard SIR model by including a new phase - **E**xposed individuals. Exposed individuals have contracted the infection but are not yet symptomatic. 
+
+We've also added a couple new terms to make this model more realistic: 
+
+1. The parameter `p` now specifies the at birth vaccination rate. As a result, some fractions of individuals in each generation immediately enter the **R** category rather than **S** at birth. 
+
+2. The parameter `alpha` specifies the rate of death induced by the disease. This quantity of individuals is removed from the **I** population. Because `alpha` can in fact lead to population size change, we now need to recalculate `N` with each time step, reflecting the changing total population size. 
+
+```{r, eval=FALSE}
 SEIR <- function(S, E, I, R, # Starting number of individuals
                 mu, B, gamma, sigma, alpha, p, # death/birth rate, contact lengths, recovery rate, disease progression rate, death rate from disease, vaccination proportion
                 simTime, step){
+  
+  # Initialize the total population size (start at 100%)
   N <- 1
   
   # lists to store population sizes
@@ -193,12 +214,12 @@ SEIR <- function(S, E, I, R, # Starting number of individuals
   # loop through times
   for (time in seq(simTime/step)){
     # Calculate rates of change 
-    
-    dS <- (mu * (N * (1-p) - S) - B * I * S / N) * step
+    dS <- (mu * (N * (1-p) - S) - B * I * S / N) * step # (1-p) reflects vaccination
     dE <- (B * I * S / N - (mu + sigma) * E) * step
-    dI <- (sigma * E - (mu + gamma + alpha) * I) * step
-    dR <- (gamma * I - mu * R + mu * N * p) * step
+    dI <- (sigma * E - (mu + gamma + alpha) * I) * step 
+    dR <- (gamma * I - mu * R + mu * N * p) * step # mu * N * p reflects vaccination
     
+    # Update population sizes based on rates of change
     S <- S + dS
     E <- E + dE 
     I <- I + dI 
@@ -210,6 +231,7 @@ SEIR <- function(S, E, I, R, # Starting number of individuals
     iList <- c(iList, I)
     rList <- c(rList, R)
     
+    # Recalculate total population size
     N <- sum(S, E, I, R)
   }
   # Store results to data frame
@@ -225,33 +247,50 @@ SEIR <- function(S, E, I, R, # Starting number of individuals
 }
 ```
 
-```{r}
+Now, running on a population:
+
+```{r, eval=FALSE}
+# Initializing proportion of individuals in each population 
 S <- 0.19
 E <- 0.0
 I <- 0.01
 R <- 0.8
-mu <- 1/(50 * 52)
+
+mu <- 1/(50 * 52) # Birth rate
 B <- 2 # Contact lengths 
-sigma <- 0.2
+sigma <- 0.2 # Time spent exposed prior to symptoms 
 gamma <- 0.5 # Recovery rate 
-alpha <- 0.1
-p <- 0.2
+alpha <- 0.1 # Death rate from sickness 
+p <- 0.2 # At Birth Vaccination Rate
 
 simTime <- 52 * 50
 step <- 0.1
 
+# Run Simulation
 SEIR_data <- SEIR(S, E, I, R, mu, B, gamma, sigma, alpha, p, simTime, step)
+# Plot 
 plotSIR(SEIR_data)
 ```
 
-```{r}
+![](img/SEIR.png)
+
+Now, plotting just the infected population: 
+
+```{r, eval=FALSE}
+plotInfected(SEIR_data)
+```
+![](img/SEIR_I.png)
+
+And lastly, overlaying the infected and exposed populations on the same figure:
+
+```{r, eval=FALSE}
 ggplot(SEIR_data, aes(x = S, y = I)) +
   geom_path() + 
   geom_path(data = SEIR_data, aes(x = S, y = E), color = "plum") + 
   theme_classic()
 ```
 
-
+![](img/SEIR_path.png)
 
 
 
