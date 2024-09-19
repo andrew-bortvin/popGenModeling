@@ -405,7 +405,7 @@ SEIHFR <- function(S, E, I, H, Funeral, R, # F spelled out due to protected term
 
 Now running the simulation:
 
-```{r}
+```{r, eval=FALSE}
 # Initialize simulation parameters
 S <- 0.99 # Susceptible 
 E <- 0.0  # Exposed
@@ -431,6 +431,7 @@ etaR <- 1/5
 
 theta <- 0.80 # Hospitalization rate 
 lambda <- 0.81 # Death rate 
+# Time to burial
 chi <- 0.5
 mu <-  1/(50 * 52)
 sigma <- 1/7 # Length that exposed stay exposed prior to becoming infected
@@ -438,7 +439,7 @@ sigma <- 1/7 # Length that exposed stay exposed prior to becoming infected
 simTime <- 52 * 3
 step <- 0.1
 
-SEIHFR_data <- SEIHFR_fractions(S, E, I, H, Funeral, R, 
+SEIHFR_data <- SEIHFR(S, E, I, H, Funeral, R, 
                  Bs, Be, Bi, Bh, Bf,
                  gammaH, gammaF, gammaR, 
                  theta,lambda, 
@@ -456,19 +457,8 @@ ggplot(SEIHFR_data_tall[SEIHFR_data_tall$Population != "R", ], aes(x = Time * st
                color = Population)) +
   geom_line() +
   labs(y = "Population Size") +
-  theme_bw()
+  theme_bw() + 
+  xlab("Time")
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+![](06-Infectious-Diseases/img/SEIHFR.png)
