@@ -2,7 +2,7 @@
 ottrpal::set_knitr_image_path()
 ```
 
-## The Wright-Fisher Model I - Neutral Evolution
+## Class 9: The Wright-Fisher Model I - Neutral Evolution
 
 ```{r, eval=FALSE}
 library(ggplot2)
