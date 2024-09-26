@@ -40,7 +40,7 @@ class-7-infectious-diseases
 the-sir-model
 seir
 seihfr
-the-wright-fisher-model-i---neutral-evolution
+class-9-the-wright-fisher-model-i---neutral-evolution
 random-walks
 wright-fisher-simulation
 r-guidebook
