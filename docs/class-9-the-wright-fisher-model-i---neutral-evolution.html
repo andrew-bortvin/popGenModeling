@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.5 Class 9: The Wright-Fisher Model I - Neutral Evolution | Population Genetics Modeling</title>
   <meta name="description" content="Description of Course" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.5 Class 9: The Wright-Fisher Model I - Neutral Evolution | Population Genetics Modeling" />
   <meta property="og:type" content="book" />
@@ -267,7 +267,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-1" tabindex="-1"></a><span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">5</span>,</span>
 <span id="cb189-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-2" tabindex="-1"></a>      <span class="at">min =</span> <span class="dv">10</span>,</span>
 <span id="cb189-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-3" tabindex="-1"></a>      <span class="at">max =</span> <span class="dv">12</span>)</span></code></pre></div>
-<pre><code>## [1] 11.53847 10.85027 11.20427 11.12326 10.38034</code></pre>
+<pre><code>## [1] 10.29559 10.87872 10.79599 11.95987 11.30714</code></pre>
 <p>Now, the random walk function, taking as an argument the number of time steps to walk:</p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-1" tabindex="-1"></a>randomWalk <span class="ot">&lt;-</span> <span class="cf">function</span>(timeSteps){</span>
 <span id="cb191-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-2" tabindex="-1"></a>  <span class="co"># Initialize starting coordinates</span></span>
@@ -378,7 +378,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-1" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">3</span>,</span>
 <span id="cb196-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-2" tabindex="-1"></a>       <span class="at">size =</span> <span class="dv">10</span>, </span>
 <span id="cb196-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-3" tabindex="-1"></a>       <span class="at">p =</span> <span class="fl">0.8</span>)</span></code></pre></div>
-<pre><code>## [1] 6 7 6</code></pre>
+<pre><code>## [1]  7 10  9</code></pre>
 <p>For us, the number of trials is the number of chromosomes in the population and the success rate per trial is the frequency of our allele in the population.</p>
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-1" tabindex="-1"></a>WF <span class="ot">&lt;-</span> <span class="cf">function</span>(AF, popSize){</span>
 <span id="cb198-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-2" tabindex="-1"></a>  <span class="co"># Calculate the number of chromosomes in the population</span></span>
