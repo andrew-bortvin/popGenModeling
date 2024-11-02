@@ -211,6 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6.2" data-path="data-frames.html"><a href="data-frames.html#logical-indexing-2"><i class="fa fa-check"></i><b>4.6.2</b> Logical Indexing</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="plotting-1.html"><a href="plotting-1.html"><i class="fa fa-check"></i><b>4.7</b> Plotting</a></li>
+<li class="chapter" data-level="4.8" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>4.8</b> Linear Regression</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="lecture-slides.html"><a href="lecture-slides.html"><i class="fa fa-check"></i><b>5</b> Lecture Slides</a></li>
 <li class="chapter" data-level="" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i>Authors</a></li>
@@ -326,6 +327,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

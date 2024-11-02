@@ -62,4 +62,5 @@ data-frames
 subsetting-data-frames
 logical-indexing-2
 plotting-1
+linear-regression
 lecture-slides
