@@ -34,7 +34,7 @@ We can use the function `lm()` to implement a linear model.
 lm(formula = hwy ~ cty, data = mpg)
 ```
 
-This first argument, `formula` is what determines the variables we are regressing, with the tilde (~) sign separating dependent and independent variables. For example, the above formula asks to create a linear model where highway mileage is expressed as a function of city mileagle. In other words, we're doing the good old algebra $$y = mx + b$$, except here it's $$highway = m * city + Intercept$$.
+This first argument, `formula` is what determines the variables we are regressing, with the tilde (~) sign separating dependent and independent variables. For example, the above formula asks to create a linear model where highway mileage is expressed as a function of city mileage. In other words, we're doing the good old algebra $$y = mx + b$$ except here it's $$highway = m * city + Intercept$$.
 
 We can extract the intercept and coefficient as such: 
 
@@ -44,7 +44,37 @@ print(regression$coefficients[1])
 print(regression$coefficients[2])
 ```
 
+Let's add this to our plot:
+
+```{r}
+ggplot(mpg, aes(x = cty, 
+                y = hwy)) + 
+  xlab("City Mileage (mpg)") + 
+  ylab("Highway Mileage (mpg)") +
+  geom_point() +
+  theme_classic() +
+  geom_abline(slope = regression$coefficients[2], 
+              intercept = regression$coefficients[1])
+```
+
+Lastly, let's get some p values out from this. First, we get a summary of our model: 
+```{r}
+regression <- lm(formula = hwy ~ cty, data = mpg)
+sumRegression <- summary(regression)
+print(sumRegression)
+```
+
+From the `Coefficients`, we want to get the value of `Pr(>|t|)`. We can access `Coefficients` using the `$` operator: 
+
+```{r}
+print(sumRegression$coefficients)
+```
 
 
+And now we can index this to get our p value: 
 
+```{r}
+print(sumRegression$coefficients["cty", "Pr(>|t|)"])
+```
 
+This is a very low p value, reflecting the strongly non-zero slope of our regression line. 
