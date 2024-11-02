@@ -289,7 +289,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Coefficients:
 ## (Intercept)          cty  
 ##       0.892        1.337</code></pre>
-<p>This first argument, <code>formula</code> is what determines the variables we are regressing, with the tilde (~) sign separating dependent and independent variables. For example, the above formula asks to create a linear model where highway mileage is expressed as a function of city mileagle. In other words, we’re doing the good old algebra <span class="math display">\[y = mx + b\]</span>, except here it’s <span class="math display">\[highway = m * city + Intercept\]</span>.</p>
+<p>This first argument, <code>formula</code> is what determines the variables we are regressing, with the tilde (~) sign separating dependent and independent variables. For example, the above formula asks to create a linear model where highway mileage is expressed as a function of city mileage. In other words, we’re doing the good old algebra <span class="math display">\[y = mx + b\]</span> except here it’s <span class="math display">\[highway = m * city + Intercept\]</span>.</p>
 <p>We can extract the intercept and coefficient as such:</p>
 <div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="linear-regression.html#cb285-1" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> hwy <span class="sc">~</span> cty, <span class="at">data =</span> mpg)</span>
 <span id="cb285-2"><a href="linear-regression.html#cb285-2" tabindex="-1"></a><span class="fu">print</span>(regression<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span></code></pre></div>
@@ -298,6 +298,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="linear-regression.html#cb287-1" tabindex="-1"></a><span class="fu">print</span>(regression<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span></code></pre></div>
 <pre><code>##      cty 
 ## 1.337456</code></pre>
+<p>Let’s add this to our plot:</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="linear-regression.html#cb289-1" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> cty, </span>
+<span id="cb289-2"><a href="linear-regression.html#cb289-2" tabindex="-1"></a>                <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb289-3"><a href="linear-regression.html#cb289-3" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;City Mileage (mpg)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb289-4"><a href="linear-regression.html#cb289-4" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Highway Mileage (mpg)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb289-5"><a href="linear-regression.html#cb289-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb289-6"><a href="linear-regression.html#cb289-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb289-7"><a href="linear-regression.html#cb289-7" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> regression<span class="sc">$</span>coefficients[<span class="dv">2</span>], </span>
+<span id="cb289-8"><a href="linear-regression.html#cb289-8" tabindex="-1"></a>              <span class="at">intercept =</span> regression<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
+<p>Lastly, let’s get some p values out from this. First, we get a summary of our model:</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="linear-regression.html#cb290-1" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> hwy <span class="sc">~</span> cty, <span class="at">data =</span> mpg)</span>
+<span id="cb290-2"><a href="linear-regression.html#cb290-2" tabindex="-1"></a>sumRegression <span class="ot">&lt;-</span> <span class="fu">summary</span>(regression)</span>
+<span id="cb290-3"><a href="linear-regression.html#cb290-3" tabindex="-1"></a><span class="fu">print</span>(sumRegression)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = hwy ~ cty, data = mpg)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.3408 -1.2790  0.0214  1.0338  4.0461 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.89204    0.46895   1.902   0.0584 .  
+## cty          1.33746    0.02697  49.585   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.752 on 232 degrees of freedom
+## Multiple R-squared:  0.9138, Adjusted R-squared:  0.9134 
+## F-statistic:  2459 on 1 and 232 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>From the <code>Coefficients</code>, we want to get the value of <code>Pr(&gt;|t|)</code>. We can access <code>Coefficients</code> using the <code>$</code> operator:</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="linear-regression.html#cb292-1" tabindex="-1"></a><span class="fu">print</span>(sumRegression<span class="sc">$</span>coefficients)</span></code></pre></div>
+<pre><code>##              Estimate Std. Error   t value      Pr(&gt;|t|)
+## (Intercept) 0.8920411 0.46894568  1.902227  5.838000e-02
+## cty         1.3374556 0.02697315 49.584698 1.868307e-125</code></pre>
+<p>And now we can index this to get our p value:</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="linear-regression.html#cb294-1" tabindex="-1"></a><span class="fu">print</span>(sumRegression<span class="sc">$</span>coefficients[<span class="st">&quot;cty&quot;</span>, <span class="st">&quot;Pr(&gt;|t|)&quot;</span>])</span></code></pre></div>
+<pre><code>## [1] 1.868307e-125</code></pre>
+<p>This is a very low p value, reflecting the strongly non-zero slope of our regression line.</p>
 
 </div>
 <!-- </div> -->
