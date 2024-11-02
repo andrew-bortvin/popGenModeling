@@ -34,7 +34,15 @@ We can use the function `lm()` to implement a linear model.
 lm(formula = hwy ~ cty, data = mpg)
 ```
 
-This first argument, `formula` is what determines the variables we are regressing, with the tilde (~) sign separating dependent and independent variables. For example, the above formula asks to create a linear model where highway mileage is expressed as a function of city mileagle. In other words, we're doing the good old algebra $$y = mx + b$$, except here it's $$highway = m * city + Intercept$$
+This first argument, `formula` is what determines the variables we are regressing, with the tilde (~) sign separating dependent and independent variables. For example, the above formula asks to create a linear model where highway mileage is expressed as a function of city mileagle. In other words, we're doing the good old algebra $$y = mx + b$$, except here it's $$highway = m * city + Intercept$$.
+
+We can extract the intercept and coefficient as such: 
+
+```{r}
+regression <- lm(formula = hwy ~ cty, data = mpg)
+print(regression$coefficients[1])
+print(regression$coefficients[2])
+```
 
 
 
