@@ -1,0 +1,42 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+## Linear Regression
+
+Before doing GWAS, we're going to learn about using linear models in R.
+
+Loading a datset:
+
+```{r, echo = FALSE}
+data("mpg")
+summary(mpg)
+```
+
+There is now an object in memory called `mpg`, which is a dataframe with 11 variables.
+
+The mpg of cars in a city and the mpg on the highway are encoded in the columns `cty` and `hwy`, respectively. 
+
+First, plotting these out: 
+
+```{r}
+ggplot(mpg, aes(x = cty, 
+                y = hwy)) + 
+  xlab("City Mileage (mpg)") + 
+  ylab("Highway Mileage (mpg)") +
+  geom_point() +
+  theme_classic()
+```
+
+We can use the function `lm()` to implement a linear model. 
+
+```{r}
+lm(formula = hwy ~ cty, data = mpg)
+```
+
+This first argument, `formula` is what determines the variables we are regressing, with the tilde (~) sign separating dependent and independent variables. For example, the above formula asks to create a linear model where highway mileage is expressed as a function of city mileagle. In other words, we're doing the good old algebra $$y = mx + b$$, except here it's $$highway = m * city + Intercept$$
+
+
+
+
+
