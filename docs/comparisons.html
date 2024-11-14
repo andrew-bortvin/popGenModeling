@@ -175,7 +175,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="class-7-infectious-diseases.html"><a href="class-7-infectious-diseases.html#the-sir-model"><i class="fa fa-check"></i><b>3.4.1</b> The SIR Model</a></li>
 <li class="chapter" data-level="3.4.2" data-path="class-7-infectious-diseases.html"><a href="class-7-infectious-diseases.html#seir"><i class="fa fa-check"></i><b>3.4.2</b> SEIR</a></li>
-<li class="chapter" data-level="3.4.3" data-path="class-7-infectious-diseases.html"><a href="class-7-infectious-diseases.html#seihfr"><i class="fa fa-check"></i><b>3.4.3</b> SEIHFR</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="class-9-the-wright-fisher-model-i---neutral-evolution.html"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html"><i class="fa fa-check"></i><b>3.5</b> Class 9: The Wright-Fisher Model I - Neutral Evolution</a>
 <ul>
@@ -251,12 +250,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>• <code>&lt;</code> and <code>&gt;</code>: greater than, less than<br />
 • <code>&lt;=</code> and <code>&gt;=</code>: greater than or equal to, less than or equal to</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="comparisons.html#cb213-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fl">5.3</span> <span class="sc">&lt;</span> <span class="dv">17</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="comparisons.html#cb211-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fl">5.3</span> <span class="sc">&lt;</span> <span class="dv">17</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="comparisons.html#cb215-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">4</span> <span class="sc">&gt;=</span> (<span class="dv">8</span><span class="sc">/</span><span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="comparisons.html#cb213-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">4</span> <span class="sc">&gt;=</span> (<span class="dv">8</span><span class="sc">/</span><span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>• <code>==</code> checks if two values are equal. <code>!=</code> checks if two values are different.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="comparisons.html#cb217-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">2</span> <span class="sc">==</span> (<span class="dv">10</span> <span class="sc">-</span> <span class="dv">8</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="comparisons.html#cb215-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">2</span> <span class="sc">==</span> (<span class="dv">10</span> <span class="sc">-</span> <span class="dv">8</span>))</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Note that a single equals sign <code>=</code> can be used to assign values. However, a double equals sign <code>==</code> is used to compare values.</p>
 <div id="and-and-or" class="section level3 hasAnchor" number="4.4.1">
@@ -265,19 +264,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="and-1" class="section level4 hasAnchor" number="4.4.1.1">
 <h4><span class="header-section-number">4.4.1.1</span> AND<a href="comparisons.html#and-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>AND statements are represented using the operator <code>&amp;</code>. Two AND statements evaluate as <code>TRUE</code> only if <strong>both</strong> are <code>TRUE</code>. For example:</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="comparisons.html#cb219-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">&amp;</span> (<span class="dv">7</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="comparisons.html#cb217-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">&amp;</span> (<span class="dv">7</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">9</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>If <strong>either</strong> statement is <code>FALSE</code>, the entire expression is <code>FALSE</code>:</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="comparisons.html#cb221-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">&amp;</span> (<span class="dv">12</span> <span class="sc">==</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="comparisons.html#cb219-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">&amp;</span> (<span class="dv">12</span> <span class="sc">==</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 </div>
 <div id="or-1" class="section level4 hasAnchor" number="4.4.1.2">
 <h4><span class="header-section-number">4.4.1.2</span> OR<a href="comparisons.html#or-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>OR statements are represented using the operator <code>|</code>. Two OR statements evaluate as <code>TRUE</code> if <strong>either</strong> statement is <code>TRUE</code>. For example:</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="comparisons.html#cb223-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">|</span> (<span class="dv">7</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="comparisons.html#cb221-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">|</span> (<span class="dv">7</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">9</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>If <strong>either</strong> statement is <code>TRUE</code>, the entire expression is <code>TRUE</code>:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="comparisons.html#cb225-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">|</span> (<span class="dv">12</span> <span class="sc">==</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="comparisons.html#cb223-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">|</span> (<span class="dv">12</span> <span class="sc">==</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 
 </div>

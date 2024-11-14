@@ -175,7 +175,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="class-7-infectious-diseases.html"><a href="class-7-infectious-diseases.html#the-sir-model"><i class="fa fa-check"></i><b>3.4.1</b> The SIR Model</a></li>
 <li class="chapter" data-level="3.4.2" data-path="class-7-infectious-diseases.html"><a href="class-7-infectious-diseases.html#seir"><i class="fa fa-check"></i><b>3.4.2</b> SEIR</a></li>
-<li class="chapter" data-level="3.4.3" data-path="class-7-infectious-diseases.html"><a href="class-7-infectious-diseases.html#seihfr"><i class="fa fa-check"></i><b>3.4.3</b> SEIHFR</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="class-9-the-wright-fisher-model-i---neutral-evolution.html"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html"><i class="fa fa-check"></i><b>3.5</b> Class 9: The Wright-Fisher Model I - Neutral Evolution</a>
 <ul>
@@ -247,8 +246,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="class-9-the-wright-fisher-model-i---neutral-evolution" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Class 9: The Wright-Fisher Model I - Neutral Evolution<a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#class-9-the-wright-fisher-model-i---neutral-evolution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb188-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb188-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb188-2" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb186-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb186-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb186-2" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span></code></pre></div>
 <p>The Wright-Fisher model provides us with a simulation-based appraoch to examine the fluctuations in allele frequency across generations. This model makes a large number of assumptions about the nature of populations, including:</p>
 <ul>
 <li>Constant population size</li>
@@ -265,109 +264,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When simulating the random walk, we can generate random x and y displacements using the <code>runif()</code> function.</p>
 <p>The conventional arguments for <code>runif()</code> are <code>runif(n, min, max)</code>, with <code>n</code> being the number of random values to return and <code>min</code> and <code>max</code> being the upper and lower bounds.</p>
 <p>For example, 5 random numbers between 10 and 12:</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-1" tabindex="-1"></a><span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">5</span>,</span>
-<span id="cb189-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-2" tabindex="-1"></a>      <span class="at">min =</span> <span class="dv">10</span>,</span>
-<span id="cb189-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-3" tabindex="-1"></a>      <span class="at">max =</span> <span class="dv">12</span>)</span></code></pre></div>
-<pre><code>## [1] 10.93800 11.02206 10.71985 10.61480 11.17969</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb187-1" tabindex="-1"></a><span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">5</span>,</span>
+<span id="cb187-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb187-2" tabindex="-1"></a>      <span class="at">min =</span> <span class="dv">10</span>,</span>
+<span id="cb187-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb187-3" tabindex="-1"></a>      <span class="at">max =</span> <span class="dv">12</span>)</span></code></pre></div>
+<pre><code>## [1] 11.55804 10.00839 11.84552 11.19467 11.08795</code></pre>
 <p>Now, the random walk function, taking as an argument the number of time steps to walk:</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-1" tabindex="-1"></a>randomWalk <span class="ot">&lt;-</span> <span class="cf">function</span>(timeSteps){</span>
-<span id="cb191-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-2" tabindex="-1"></a>  <span class="co"># Initialize starting coordinates</span></span>
-<span id="cb191-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-3" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
-<span id="cb191-4"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-4" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb191-5"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-5" tabindex="-1"></a>  </span>
-<span id="cb191-6"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-6" tabindex="-1"></a>  <span class="co"># Vectors to store positions</span></span>
-<span id="cb191-7"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-7" tabindex="-1"></a>  x_positions <span class="ot">&lt;-</span> <span class="fu">c</span>(x)</span>
-<span id="cb191-8"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-8" tabindex="-1"></a>  y_positions <span class="ot">&lt;-</span> <span class="fu">c</span>(y)</span>
-<span id="cb191-9"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-9" tabindex="-1"></a>  </span>
-<span id="cb191-10"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-10" tabindex="-1"></a>  <span class="co"># Loop through require number of time steps</span></span>
-<span id="cb191-11"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-11" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(timeSteps)){</span>
-<span id="cb191-12"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-12" tabindex="-1"></a>    <span class="co"># Randomly update my x and y positions</span></span>
-<span id="cb191-13"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-13" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1</span>) <span class="co"># Can move between one unit left and one unit right </span></span>
-<span id="cb191-14"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-14" tabindex="-1"></a>    y <span class="ot">&lt;-</span> y <span class="sc">+</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb191-15"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-15" tabindex="-1"></a>    </span>
-<span id="cb191-16"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-16" tabindex="-1"></a>    <span class="co"># update lists</span></span>
-<span id="cb191-17"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-17" tabindex="-1"></a>    x_positions <span class="ot">&lt;-</span> <span class="fu">c</span>(x_positions, x)</span>
-<span id="cb191-18"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-18" tabindex="-1"></a>    y_positions <span class="ot">&lt;-</span> <span class="fu">c</span>(y_positions, y)</span>
-<span id="cb191-19"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-19" tabindex="-1"></a>  }</span>
-<span id="cb191-20"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-20" tabindex="-1"></a>  </span>
-<span id="cb191-21"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-21" tabindex="-1"></a>  <span class="co"># Combine into data frame</span></span>
-<span id="cb191-22"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-22" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb191-23"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-23" tabindex="-1"></a>    <span class="at">x =</span> x_positions, </span>
-<span id="cb191-24"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-24" tabindex="-1"></a>    <span class="at">y =</span> y_positions</span>
-<span id="cb191-25"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-25" tabindex="-1"></a>  )</span>
-<span id="cb191-26"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-26" tabindex="-1"></a>  </span>
-<span id="cb191-27"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-27" tabindex="-1"></a>  <span class="co"># Return the data frame to user</span></span>
-<span id="cb191-28"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-28" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
-<span id="cb191-29"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-29" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-1" tabindex="-1"></a>randomWalk <span class="ot">&lt;-</span> <span class="cf">function</span>(timeSteps){</span>
+<span id="cb189-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-2" tabindex="-1"></a>  <span class="co"># Initialize starting coordinates</span></span>
+<span id="cb189-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-3" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb189-4"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-4" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb189-5"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-5" tabindex="-1"></a>  </span>
+<span id="cb189-6"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-6" tabindex="-1"></a>  <span class="co"># Vectors to store positions</span></span>
+<span id="cb189-7"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-7" tabindex="-1"></a>  x_positions <span class="ot">&lt;-</span> <span class="fu">c</span>(x)</span>
+<span id="cb189-8"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-8" tabindex="-1"></a>  y_positions <span class="ot">&lt;-</span> <span class="fu">c</span>(y)</span>
+<span id="cb189-9"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-9" tabindex="-1"></a>  </span>
+<span id="cb189-10"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-10" tabindex="-1"></a>  <span class="co"># Loop through require number of time steps</span></span>
+<span id="cb189-11"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-11" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(timeSteps)){</span>
+<span id="cb189-12"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-12" tabindex="-1"></a>    <span class="co"># Randomly update my x and y positions</span></span>
+<span id="cb189-13"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-13" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1</span>) <span class="co"># Can move between one unit left and one unit right </span></span>
+<span id="cb189-14"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-14" tabindex="-1"></a>    y <span class="ot">&lt;-</span> y <span class="sc">+</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb189-15"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-15" tabindex="-1"></a>    </span>
+<span id="cb189-16"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-16" tabindex="-1"></a>    <span class="co"># update lists</span></span>
+<span id="cb189-17"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-17" tabindex="-1"></a>    x_positions <span class="ot">&lt;-</span> <span class="fu">c</span>(x_positions, x)</span>
+<span id="cb189-18"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-18" tabindex="-1"></a>    y_positions <span class="ot">&lt;-</span> <span class="fu">c</span>(y_positions, y)</span>
+<span id="cb189-19"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-19" tabindex="-1"></a>  }</span>
+<span id="cb189-20"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-20" tabindex="-1"></a>  </span>
+<span id="cb189-21"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-21" tabindex="-1"></a>  <span class="co"># Combine into data frame</span></span>
+<span id="cb189-22"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-22" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb189-23"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-23" tabindex="-1"></a>    <span class="at">x =</span> x_positions, </span>
+<span id="cb189-24"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-24" tabindex="-1"></a>    <span class="at">y =</span> y_positions</span>
+<span id="cb189-25"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-25" tabindex="-1"></a>  )</span>
+<span id="cb189-26"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-26" tabindex="-1"></a>  </span>
+<span id="cb189-27"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-27" tabindex="-1"></a>  <span class="co"># Return the data frame to user</span></span>
+<span id="cb189-28"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-28" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
+<span id="cb189-29"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb189-29" tabindex="-1"></a>}</span></code></pre></div>
 <p>We can run this function once and plot the path taken:</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-1" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">randomWalk</span>(<span class="dv">100</span>) </span>
-<span id="cb192-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-2" tabindex="-1"></a></span>
-<span id="cb192-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-3" tabindex="-1"></a><span class="fu">ggplot</span>(path, <span class="fu">aes</span>(<span class="at">x =</span> x,</span>
-<span id="cb192-4"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-4" tabindex="-1"></a>               <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb192-5"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-5" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span> </span>
-<span id="cb192-6"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;X&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb192-7"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-7" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb192-8"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb190-1" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">randomWalk</span>(<span class="dv">100</span>) </span>
+<span id="cb190-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb190-2" tabindex="-1"></a></span>
+<span id="cb190-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb190-3" tabindex="-1"></a><span class="fu">ggplot</span>(path, <span class="fu">aes</span>(<span class="at">x =</span> x,</span>
+<span id="cb190-4"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb190-4" tabindex="-1"></a>               <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb190-5"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb190-5" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span> </span>
+<span id="cb190-6"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb190-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;X&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb190-7"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb190-7" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb190-8"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb190-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
 <p>Because there is randomness in this model, no one iteration of the random walk is sufficient to describe the overall behavior of the system.</p>
 <p>However, we can easily run our model multiple times:</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-1" tabindex="-1"></a><span class="co"># Run once</span></span>
-<span id="cb193-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-2" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">randomWalk</span>(<span class="dv">100</span>) </span>
-<span id="cb193-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-3" tabindex="-1"></a><span class="co"># Add a column keeping track of the trial number</span></span>
-<span id="cb193-4"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-4" tabindex="-1"></a>path[<span class="st">&quot;trial&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb193-5"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-5" tabindex="-1"></a></span>
-<span id="cb193-6"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-6" tabindex="-1"></a><span class="co"># Run 999 more times</span></span>
-<span id="cb193-7"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-7" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">999</span>)){ <span class="co"># Note that we start with trial 2</span></span>
-<span id="cb193-8"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-8" tabindex="-1"></a>  <span class="co"># temporary data frame to store each iteration of the results</span></span>
-<span id="cb193-9"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-9" tabindex="-1"></a>  toAdd <span class="ot">&lt;-</span> <span class="fu">randomWalk</span>(<span class="dv">100</span>) </span>
-<span id="cb193-10"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-10" tabindex="-1"></a>  toAdd[<span class="st">&quot;trial&quot;</span>] <span class="ot">&lt;-</span> i </span>
-<span id="cb193-11"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-11" tabindex="-1"></a>  </span>
-<span id="cb193-12"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-12" tabindex="-1"></a>  <span class="co"># add to path data frame </span></span>
-<span id="cb193-13"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-13" tabindex="-1"></a>  path <span class="ot">&lt;-</span> <span class="fu">rbind</span>(path, toAdd)</span>
-<span id="cb193-14"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-14" tabindex="-1"></a>}</span>
-<span id="cb193-15"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-15" tabindex="-1"></a></span>
-<span id="cb193-16"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-16" tabindex="-1"></a><span class="co"># Plot the paths taken in each trial  </span></span>
-<span id="cb193-17"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-17" tabindex="-1"></a><span class="fu">ggplot</span>(path, <span class="fu">aes</span>(<span class="at">x =</span> x,</span>
-<span id="cb193-18"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-18" tabindex="-1"></a>               <span class="at">y =</span> y,</span>
-<span id="cb193-19"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-19" tabindex="-1"></a>               <span class="at">color =</span> <span class="fu">factor</span>(trial))) <span class="sc">+</span> <span class="co"># trial number converted to factor to make this into discrete categories</span></span>
-<span id="cb193-20"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-20" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">alpha =</span> <span class="fl">0.08</span>) <span class="sc">+</span> <span class="co"># Reducing the opacity</span></span>
-<span id="cb193-21"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb193-22"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-22" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;X&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb193-23"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-23" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb193-24"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb193-24" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># We remove the color legend, since it takes up the whole plotting space</span></span></code></pre></div>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-1" tabindex="-1"></a><span class="co"># Run once</span></span>
+<span id="cb191-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-2" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">randomWalk</span>(<span class="dv">100</span>) </span>
+<span id="cb191-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-3" tabindex="-1"></a><span class="co"># Add a column keeping track of the trial number</span></span>
+<span id="cb191-4"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-4" tabindex="-1"></a>path[<span class="st">&quot;trial&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb191-5"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-5" tabindex="-1"></a></span>
+<span id="cb191-6"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-6" tabindex="-1"></a><span class="co"># Run 999 more times</span></span>
+<span id="cb191-7"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-7" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">999</span>)){ <span class="co"># Note that we start with trial 2</span></span>
+<span id="cb191-8"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-8" tabindex="-1"></a>  <span class="co"># temporary data frame to store each iteration of the results</span></span>
+<span id="cb191-9"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-9" tabindex="-1"></a>  toAdd <span class="ot">&lt;-</span> <span class="fu">randomWalk</span>(<span class="dv">100</span>) </span>
+<span id="cb191-10"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-10" tabindex="-1"></a>  toAdd[<span class="st">&quot;trial&quot;</span>] <span class="ot">&lt;-</span> i </span>
+<span id="cb191-11"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-11" tabindex="-1"></a>  </span>
+<span id="cb191-12"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-12" tabindex="-1"></a>  <span class="co"># add to path data frame </span></span>
+<span id="cb191-13"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-13" tabindex="-1"></a>  path <span class="ot">&lt;-</span> <span class="fu">rbind</span>(path, toAdd)</span>
+<span id="cb191-14"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-14" tabindex="-1"></a>}</span>
+<span id="cb191-15"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-15" tabindex="-1"></a></span>
+<span id="cb191-16"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-16" tabindex="-1"></a><span class="co"># Plot the paths taken in each trial  </span></span>
+<span id="cb191-17"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-17" tabindex="-1"></a><span class="fu">ggplot</span>(path, <span class="fu">aes</span>(<span class="at">x =</span> x,</span>
+<span id="cb191-18"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-18" tabindex="-1"></a>               <span class="at">y =</span> y,</span>
+<span id="cb191-19"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-19" tabindex="-1"></a>               <span class="at">color =</span> <span class="fu">factor</span>(trial))) <span class="sc">+</span> <span class="co"># trial number converted to factor to make this into discrete categories</span></span>
+<span id="cb191-20"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-20" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">alpha =</span> <span class="fl">0.08</span>) <span class="sc">+</span> <span class="co"># Reducing the opacity</span></span>
+<span id="cb191-21"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb191-22"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-22" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;X&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb191-23"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-23" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb191-24"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb191-24" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># We remove the color legend, since it takes up the whole plotting space</span></span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
 <p>Each individual run is quite faint here, but you can see that in total they all cluster around the center. If we care about the ultimate expected position of the particle given an arbitrary run time, we can summarize this with a histogram:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-1" tabindex="-1"></a><span class="co"># Vectors to store final positions</span></span>
-<span id="cb194-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-2" tabindex="-1"></a>finalX <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb194-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-3" tabindex="-1"></a>finalY <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb194-4"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-4" tabindex="-1"></a></span>
-<span id="cb194-5"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-5" tabindex="-1"></a><span class="co"># Run simulation 1000 times</span></span>
-<span id="cb194-6"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-6" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">1000</span>)){</span>
-<span id="cb194-7"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-7" tabindex="-1"></a>  <span class="co"># Run the simulation</span></span>
-<span id="cb194-8"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-8" tabindex="-1"></a>  toAdd <span class="ot">&lt;-</span> <span class="fu">randomWalk</span>(<span class="dv">100</span>) </span>
-<span id="cb194-9"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-9" tabindex="-1"></a>  </span>
-<span id="cb194-10"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-10" tabindex="-1"></a>  <span class="co"># Get the final coordinates and add to vectors</span></span>
-<span id="cb194-11"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-11" tabindex="-1"></a>  finalX <span class="ot">&lt;-</span> <span class="fu">c</span>(finalX, </span>
-<span id="cb194-12"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-12" tabindex="-1"></a>              toAdd<span class="sc">$</span>x[<span class="fu">nrow</span>(toAdd)]) <span class="co"># Final x</span></span>
-<span id="cb194-13"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-13" tabindex="-1"></a>  finalY <span class="ot">&lt;-</span> <span class="fu">c</span>(finalY, </span>
-<span id="cb194-14"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-14" tabindex="-1"></a>              toAdd<span class="sc">$</span>y[<span class="fu">nrow</span>(toAdd)]) <span class="co"># Final y</span></span>
-<span id="cb194-15"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-15" tabindex="-1"></a>}</span>
-<span id="cb194-16"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-16" tabindex="-1"></a></span>
-<span id="cb194-17"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-17" tabindex="-1"></a><span class="co"># Convert to df</span></span>
-<span id="cb194-18"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-18" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb194-19"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-19" tabindex="-1"></a>  <span class="at">x =</span> finalX, </span>
-<span id="cb194-20"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-20" tabindex="-1"></a>  <span class="at">y =</span> finalY</span>
-<span id="cb194-21"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-21" tabindex="-1"></a>)</span>
-<span id="cb194-22"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-22" tabindex="-1"></a></span>
-<span id="cb194-23"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-23" tabindex="-1"></a><span class="co"># Plot as a histogram</span></span>
-<span id="cb194-24"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-24" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
-<span id="cb194-25"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-25" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> finalX), <span class="at">fill =</span> <span class="st">&quot;plum&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb194-26"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-26" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> finalY), <span class="at">fill =</span> <span class="st">&quot;turquoise&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb194-27"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-27" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Position at at Time Step 100&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb194-28"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-28" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-1" tabindex="-1"></a><span class="co"># Vectors to store final positions</span></span>
+<span id="cb192-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-2" tabindex="-1"></a>finalX <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb192-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-3" tabindex="-1"></a>finalY <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb192-4"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-4" tabindex="-1"></a></span>
+<span id="cb192-5"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-5" tabindex="-1"></a><span class="co"># Run simulation 1000 times</span></span>
+<span id="cb192-6"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-6" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">1000</span>)){</span>
+<span id="cb192-7"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-7" tabindex="-1"></a>  <span class="co"># Run the simulation</span></span>
+<span id="cb192-8"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-8" tabindex="-1"></a>  toAdd <span class="ot">&lt;-</span> <span class="fu">randomWalk</span>(<span class="dv">100</span>) </span>
+<span id="cb192-9"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-9" tabindex="-1"></a>  </span>
+<span id="cb192-10"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-10" tabindex="-1"></a>  <span class="co"># Get the final coordinates and add to vectors</span></span>
+<span id="cb192-11"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-11" tabindex="-1"></a>  finalX <span class="ot">&lt;-</span> <span class="fu">c</span>(finalX, </span>
+<span id="cb192-12"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-12" tabindex="-1"></a>              toAdd<span class="sc">$</span>x[<span class="fu">nrow</span>(toAdd)]) <span class="co"># Final x</span></span>
+<span id="cb192-13"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-13" tabindex="-1"></a>  finalY <span class="ot">&lt;-</span> <span class="fu">c</span>(finalY, </span>
+<span id="cb192-14"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-14" tabindex="-1"></a>              toAdd<span class="sc">$</span>y[<span class="fu">nrow</span>(toAdd)]) <span class="co"># Final y</span></span>
+<span id="cb192-15"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-15" tabindex="-1"></a>}</span>
+<span id="cb192-16"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-16" tabindex="-1"></a></span>
+<span id="cb192-17"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-17" tabindex="-1"></a><span class="co"># Convert to df</span></span>
+<span id="cb192-18"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-18" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb192-19"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-19" tabindex="-1"></a>  <span class="at">x =</span> finalX, </span>
+<span id="cb192-20"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-20" tabindex="-1"></a>  <span class="at">y =</span> finalY</span>
+<span id="cb192-21"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-21" tabindex="-1"></a>)</span>
+<span id="cb192-22"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-22" tabindex="-1"></a></span>
+<span id="cb192-23"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-23" tabindex="-1"></a><span class="co"># Plot as a histogram</span></span>
+<span id="cb192-24"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-24" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
+<span id="cb192-25"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-25" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> finalX), <span class="at">fill =</span> <span class="st">&quot;plum&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb192-26"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-26" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> finalY), <span class="at">fill =</span> <span class="st">&quot;turquoise&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb192-27"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-27" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Position at at Time Step 100&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb192-28"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb192-28" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
 <p>Confirming our observations from the above figure, the random walk centers around the starting position. Now with these techinques under our belt, we’re ready to simulate the Wright-Fisher model.</p>
 </div>
 <div id="wright-fisher-simulation" class="section level3 hasAnchor" number="3.5.2">
@@ -376,75 +375,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the random walk, displacement was drawn from the uniform distribution and the magnitude was equally likely to be any value between the min and the max. Here, since we are modelling many independent reproduction events, each of which has a probability of passing our allele to the next generation, we will instead use the binomial formula to draw the number of copies of our allele.</p>
 <p>Drawing from the binomial formula can be done using the <code>rbinom()</code> function. Normal use of the <code>rbinom()</code> function takes three parameters: <code>rbinom(n, size, p)</code>, with <code>n</code> being the number of values to draw, <code>size</code> being the number of trials, and <code>p</code> being the likelihood of success for each individual trial.</p>
 <p>For example, 3 binomial values, with 10 trials each and a success rate of 80%:</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-1" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">3</span>,</span>
-<span id="cb196-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-2" tabindex="-1"></a>       <span class="at">size =</span> <span class="dv">10</span>, </span>
-<span id="cb196-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-3" tabindex="-1"></a>       <span class="at">p =</span> <span class="fl">0.8</span>)</span></code></pre></div>
-<pre><code>## [1] 10  9  8</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-1" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">3</span>,</span>
+<span id="cb194-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-2" tabindex="-1"></a>       <span class="at">size =</span> <span class="dv">10</span>, </span>
+<span id="cb194-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb194-3" tabindex="-1"></a>       <span class="at">p =</span> <span class="fl">0.8</span>)</span></code></pre></div>
+<pre><code>## [1] 8 9 9</code></pre>
 <p>For us, the number of trials is the number of chromosomes in the population and the success rate per trial is the frequency of our allele in the population.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-1" tabindex="-1"></a>WF <span class="ot">&lt;-</span> <span class="cf">function</span>(AF, popSize){</span>
-<span id="cb198-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-2" tabindex="-1"></a>  <span class="co"># Calculate the number of chromosomes in the population</span></span>
-<span id="cb198-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-3" tabindex="-1"></a>  nChrom <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> popSize </span>
-<span id="cb198-4"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-4" tabindex="-1"></a>  </span>
-<span id="cb198-5"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-5" tabindex="-1"></a>  <span class="co"># Create a list to store allele frequencies across time </span></span>
-<span id="cb198-6"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-6" tabindex="-1"></a>  AFs <span class="ot">&lt;-</span> <span class="fu">c</span>(AF)</span>
-<span id="cb198-7"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-7" tabindex="-1"></a>  </span>
-<span id="cb198-8"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-8" tabindex="-1"></a>  <span class="cf">while</span> (AF <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> AF <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
-<span id="cb198-9"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-9" tabindex="-1"></a>    <span class="co"># Get number of copies of my allele in next generation </span></span>
-<span id="cb198-10"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-10" tabindex="-1"></a>    nAlleleNextGen <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, </span>
-<span id="cb198-11"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-11" tabindex="-1"></a>                             <span class="at">size =</span> nChrom, </span>
-<span id="cb198-12"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-12" tabindex="-1"></a>                             <span class="at">p =</span> AF)</span>
-<span id="cb198-13"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-13" tabindex="-1"></a>    </span>
-<span id="cb198-14"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-14" tabindex="-1"></a>    <span class="co"># Convert to allele frequency</span></span>
-<span id="cb198-15"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-15" tabindex="-1"></a>    AF <span class="ot">&lt;-</span> nAlleleNextGen <span class="sc">/</span> nChrom</span>
-<span id="cb198-16"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-16" tabindex="-1"></a>    </span>
-<span id="cb198-17"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-17" tabindex="-1"></a>    <span class="co"># Add to list</span></span>
-<span id="cb198-18"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-18" tabindex="-1"></a>    AFs <span class="ot">&lt;-</span> <span class="fu">c</span>(AFs, AF)</span>
-<span id="cb198-19"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-19" tabindex="-1"></a>    </span>
-<span id="cb198-20"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-20" tabindex="-1"></a>  }</span>
-<span id="cb198-21"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-21" tabindex="-1"></a>  </span>
-<span id="cb198-22"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-22" tabindex="-1"></a>  <span class="co"># Combined into data frame </span></span>
-<span id="cb198-23"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-23" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb198-24"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-24" tabindex="-1"></a>    <span class="at">time =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">length</span>(AFs) <span class="sc">-</span> <span class="dv">1</span>), </span>
-<span id="cb198-25"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-25" tabindex="-1"></a>    <span class="at">AF =</span> AFs</span>
-<span id="cb198-26"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-26" tabindex="-1"></a>  )</span>
-<span id="cb198-27"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-27" tabindex="-1"></a>  </span>
-<span id="cb198-28"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-28" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
-<span id="cb198-29"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-29" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-1" tabindex="-1"></a>WF <span class="ot">&lt;-</span> <span class="cf">function</span>(AF, popSize){</span>
+<span id="cb196-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-2" tabindex="-1"></a>  <span class="co"># Calculate the number of chromosomes in the population</span></span>
+<span id="cb196-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-3" tabindex="-1"></a>  nChrom <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> popSize </span>
+<span id="cb196-4"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-4" tabindex="-1"></a>  </span>
+<span id="cb196-5"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-5" tabindex="-1"></a>  <span class="co"># Create a list to store allele frequencies across time </span></span>
+<span id="cb196-6"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-6" tabindex="-1"></a>  AFs <span class="ot">&lt;-</span> <span class="fu">c</span>(AF)</span>
+<span id="cb196-7"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-7" tabindex="-1"></a>  </span>
+<span id="cb196-8"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-8" tabindex="-1"></a>  <span class="cf">while</span> (AF <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> AF <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
+<span id="cb196-9"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-9" tabindex="-1"></a>    <span class="co"># Get number of copies of my allele in next generation </span></span>
+<span id="cb196-10"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-10" tabindex="-1"></a>    nAlleleNextGen <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, </span>
+<span id="cb196-11"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-11" tabindex="-1"></a>                             <span class="at">size =</span> nChrom, </span>
+<span id="cb196-12"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-12" tabindex="-1"></a>                             <span class="at">p =</span> AF)</span>
+<span id="cb196-13"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-13" tabindex="-1"></a>    </span>
+<span id="cb196-14"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-14" tabindex="-1"></a>    <span class="co"># Convert to allele frequency</span></span>
+<span id="cb196-15"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-15" tabindex="-1"></a>    AF <span class="ot">&lt;-</span> nAlleleNextGen <span class="sc">/</span> nChrom</span>
+<span id="cb196-16"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-16" tabindex="-1"></a>    </span>
+<span id="cb196-17"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-17" tabindex="-1"></a>    <span class="co"># Add to list</span></span>
+<span id="cb196-18"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-18" tabindex="-1"></a>    AFs <span class="ot">&lt;-</span> <span class="fu">c</span>(AFs, AF)</span>
+<span id="cb196-19"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-19" tabindex="-1"></a>    </span>
+<span id="cb196-20"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-20" tabindex="-1"></a>  }</span>
+<span id="cb196-21"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-21" tabindex="-1"></a>  </span>
+<span id="cb196-22"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-22" tabindex="-1"></a>  <span class="co"># Combined into data frame </span></span>
+<span id="cb196-23"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-23" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb196-24"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-24" tabindex="-1"></a>    <span class="at">time =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">length</span>(AFs) <span class="sc">-</span> <span class="dv">1</span>), </span>
+<span id="cb196-25"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-25" tabindex="-1"></a>    <span class="at">AF =</span> AFs</span>
+<span id="cb196-26"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-26" tabindex="-1"></a>  )</span>
+<span id="cb196-27"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-27" tabindex="-1"></a>  </span>
+<span id="cb196-28"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-28" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
+<span id="cb196-29"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb196-29" tabindex="-1"></a>}</span></code></pre></div>
 <p>Running this once:</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb199-1" tabindex="-1"></a>AF <span class="ot">&lt;-</span> <span class="fu">WF</span>(<span class="fl">0.5</span>, <span class="dv">1000</span>)</span>
-<span id="cb199-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb199-2" tabindex="-1"></a></span>
-<span id="cb199-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb199-3" tabindex="-1"></a><span class="fu">ggplot</span>(AF, <span class="fu">aes</span>(<span class="at">x =</span> time,</span>
-<span id="cb199-4"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb199-4" tabindex="-1"></a>               <span class="at">y =</span> AF)) <span class="sc">+</span></span>
-<span id="cb199-5"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb199-5" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb199-6"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb199-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb199-7"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb199-7" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) </span></code></pre></div>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb197-1" tabindex="-1"></a>AF <span class="ot">&lt;-</span> <span class="fu">WF</span>(<span class="fl">0.5</span>, <span class="dv">1000</span>)</span>
+<span id="cb197-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb197-2" tabindex="-1"></a></span>
+<span id="cb197-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb197-3" tabindex="-1"></a><span class="fu">ggplot</span>(AF, <span class="fu">aes</span>(<span class="at">x =</span> time,</span>
+<span id="cb197-4"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb197-4" tabindex="-1"></a>               <span class="at">y =</span> AF)) <span class="sc">+</span></span>
+<span id="cb197-5"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb197-5" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb197-6"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb197-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb197-7"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb197-7" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) </span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
 <p>Multiple iterations of the model:</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-1" tabindex="-1"></a><span class="co"># Run the model once</span></span>
-<span id="cb200-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-2" tabindex="-1"></a>AF <span class="ot">&lt;-</span> <span class="fu">WF</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">200</span>, <span class="dv">100</span>)</span>
-<span id="cb200-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-3" tabindex="-1"></a><span class="co"># Add a column to keep track of trial number </span></span>
-<span id="cb200-4"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-4" tabindex="-1"></a>AF[<span class="st">&quot;trial&quot;</span>] <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb200-5"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-5" tabindex="-1"></a></span>
-<span id="cb200-6"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-6" tabindex="-1"></a><span class="co"># Run 499 more times</span></span>
-<span id="cb200-7"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-7" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">500</span>)){</span>
-<span id="cb200-8"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-8" tabindex="-1"></a>  <span class="co"># Temporary df to store current trial</span></span>
-<span id="cb200-9"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-9" tabindex="-1"></a>  toAdd <span class="ot">&lt;-</span> <span class="fu">WF</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">200</span>, <span class="dv">100</span>)</span>
-<span id="cb200-10"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-10" tabindex="-1"></a>  toAdd[<span class="st">&quot;trial&quot;</span>] <span class="ot">&lt;-</span> i <span class="co"># Add trial number</span></span>
-<span id="cb200-11"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-11" tabindex="-1"></a>  </span>
-<span id="cb200-12"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-12" tabindex="-1"></a>  <span class="co"># Add to overall df</span></span>
-<span id="cb200-13"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-13" tabindex="-1"></a>  AF <span class="ot">&lt;-</span> <span class="fu">rbind</span>(AF, toAdd)</span>
-<span id="cb200-14"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-14" tabindex="-1"></a>}</span>
-<span id="cb200-15"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-15" tabindex="-1"></a></span>
-<span id="cb200-16"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-16" tabindex="-1"></a></span>
-<span id="cb200-17"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-17" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb200-18"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-18" tabindex="-1"></a><span class="fu">ggplot</span>(AF, <span class="fu">aes</span>(<span class="at">x =</span> time,</span>
-<span id="cb200-19"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-19" tabindex="-1"></a>               <span class="at">y =</span> AF, </span>
-<span id="cb200-20"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-20" tabindex="-1"></a>               <span class="at">group =</span> <span class="fu">factor</span>(trial))) <span class="sc">+</span></span>
-<span id="cb200-21"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-21" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb200-22"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-22" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb200-23"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-23" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb200-24"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb200-24" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-1" tabindex="-1"></a><span class="co"># Run the model once</span></span>
+<span id="cb198-2"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-2" tabindex="-1"></a>AF <span class="ot">&lt;-</span> <span class="fu">WF</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">200</span>, <span class="dv">100</span>)</span>
+<span id="cb198-3"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-3" tabindex="-1"></a><span class="co"># Add a column to keep track of trial number </span></span>
+<span id="cb198-4"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-4" tabindex="-1"></a>AF[<span class="st">&quot;trial&quot;</span>] <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb198-5"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-5" tabindex="-1"></a></span>
+<span id="cb198-6"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-6" tabindex="-1"></a><span class="co"># Run 499 more times</span></span>
+<span id="cb198-7"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-7" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">500</span>)){</span>
+<span id="cb198-8"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-8" tabindex="-1"></a>  <span class="co"># Temporary df to store current trial</span></span>
+<span id="cb198-9"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-9" tabindex="-1"></a>  toAdd <span class="ot">&lt;-</span> <span class="fu">WF</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">200</span>, <span class="dv">100</span>)</span>
+<span id="cb198-10"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-10" tabindex="-1"></a>  toAdd[<span class="st">&quot;trial&quot;</span>] <span class="ot">&lt;-</span> i <span class="co"># Add trial number</span></span>
+<span id="cb198-11"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-11" tabindex="-1"></a>  </span>
+<span id="cb198-12"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-12" tabindex="-1"></a>  <span class="co"># Add to overall df</span></span>
+<span id="cb198-13"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-13" tabindex="-1"></a>  AF <span class="ot">&lt;-</span> <span class="fu">rbind</span>(AF, toAdd)</span>
+<span id="cb198-14"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-14" tabindex="-1"></a>}</span>
+<span id="cb198-15"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-15" tabindex="-1"></a></span>
+<span id="cb198-16"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-16" tabindex="-1"></a></span>
+<span id="cb198-17"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-17" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb198-18"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-18" tabindex="-1"></a><span class="fu">ggplot</span>(AF, <span class="fu">aes</span>(<span class="at">x =</span> time,</span>
+<span id="cb198-19"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-19" tabindex="-1"></a>               <span class="at">y =</span> AF, </span>
+<span id="cb198-20"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-20" tabindex="-1"></a>               <span class="at">group =</span> <span class="fu">factor</span>(trial))) <span class="sc">+</span></span>
+<span id="cb198-21"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-21" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb198-22"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-22" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb198-23"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-23" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb198-24"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html#cb198-24" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
 
 </div>
 </div>

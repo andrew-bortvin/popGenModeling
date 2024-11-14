@@ -175,7 +175,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="class-7-infectious-diseases.html"><a href="class-7-infectious-diseases.html#the-sir-model"><i class="fa fa-check"></i><b>3.4.1</b> The SIR Model</a></li>
 <li class="chapter" data-level="3.4.2" data-path="class-7-infectious-diseases.html"><a href="class-7-infectious-diseases.html#seir"><i class="fa fa-check"></i><b>3.4.2</b> SEIR</a></li>
-<li class="chapter" data-level="3.4.3" data-path="class-7-infectious-diseases.html"><a href="class-7-infectious-diseases.html#seihfr"><i class="fa fa-check"></i><b>3.4.3</b> SEIHFR</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="class-9-the-wright-fisher-model-i---neutral-evolution.html"><a href="class-9-the-wright-fisher-model-i---neutral-evolution.html"><i class="fa fa-check"></i><b>3.5</b> Class 9: The Wright-Fisher Model I - Neutral Evolution</a>
 <ul>
@@ -273,15 +272,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There is now an object in memory called <code>mpg</code>, which is a dataframe with 11 variables.</p>
 <p>The mpg of cars in a city and the mpg on the highway are encoded in the columns <code>cty</code> and <code>hwy</code>, respectively.</p>
 <p>First, plotting these out:</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="linear-regression.html#cb282-1" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> cty, </span>
-<span id="cb282-2"><a href="linear-regression.html#cb282-2" tabindex="-1"></a>                <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
-<span id="cb282-3"><a href="linear-regression.html#cb282-3" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;City Mileage (mpg)&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb282-4"><a href="linear-regression.html#cb282-4" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Highway Mileage (mpg)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb282-5"><a href="linear-regression.html#cb282-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb282-6"><a href="linear-regression.html#cb282-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="linear-regression.html#cb280-1" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> cty, </span>
+<span id="cb280-2"><a href="linear-regression.html#cb280-2" tabindex="-1"></a>                <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb280-3"><a href="linear-regression.html#cb280-3" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;City Mileage (mpg)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb280-4"><a href="linear-regression.html#cb280-4" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Highway Mileage (mpg)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb280-5"><a href="linear-regression.html#cb280-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb280-6"><a href="linear-regression.html#cb280-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
 <p>We can use the function <code>lm()</code> to implement a linear model.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="linear-regression.html#cb283-1" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula =</span> hwy <span class="sc">~</span> cty, <span class="at">data =</span> mpg)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="linear-regression.html#cb281-1" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula =</span> hwy <span class="sc">~</span> cty, <span class="at">data =</span> mpg)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = hwy ~ cty, data = mpg)
@@ -291,27 +290,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##       0.892        1.337</code></pre>
 <p>This first argument, <code>formula</code> is what determines the variables we are regressing, with the tilde (~) sign separating dependent and independent variables. For example, the above formula asks to create a linear model where highway mileage is expressed as a function of city mileage. In other words, we’re doing the good old algebra <span class="math display">\[y = mx + b\]</span> except here it’s <span class="math display">\[highway = m * city + Intercept\]</span>.</p>
 <p>We can extract the intercept and coefficient as such:</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="linear-regression.html#cb285-1" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> hwy <span class="sc">~</span> cty, <span class="at">data =</span> mpg)</span>
-<span id="cb285-2"><a href="linear-regression.html#cb285-2" tabindex="-1"></a><span class="fu">print</span>(regression<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="linear-regression.html#cb283-1" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> hwy <span class="sc">~</span> cty, <span class="at">data =</span> mpg)</span>
+<span id="cb283-2"><a href="linear-regression.html#cb283-2" tabindex="-1"></a><span class="fu">print</span>(regression<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##   0.8920411</code></pre>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="linear-regression.html#cb287-1" tabindex="-1"></a><span class="fu">print</span>(regression<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="linear-regression.html#cb285-1" tabindex="-1"></a><span class="fu">print</span>(regression<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span></code></pre></div>
 <pre><code>##      cty 
 ## 1.337456</code></pre>
 <p>Let’s add this to our plot:</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="linear-regression.html#cb289-1" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> cty, </span>
-<span id="cb289-2"><a href="linear-regression.html#cb289-2" tabindex="-1"></a>                <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
-<span id="cb289-3"><a href="linear-regression.html#cb289-3" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;City Mileage (mpg)&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb289-4"><a href="linear-regression.html#cb289-4" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Highway Mileage (mpg)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb289-5"><a href="linear-regression.html#cb289-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb289-6"><a href="linear-regression.html#cb289-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb289-7"><a href="linear-regression.html#cb289-7" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> regression<span class="sc">$</span>coefficients[<span class="dv">2</span>], </span>
-<span id="cb289-8"><a href="linear-regression.html#cb289-8" tabindex="-1"></a>              <span class="at">intercept =</span> regression<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span></code></pre></div>
-<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="linear-regression.html#cb287-1" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> cty, </span>
+<span id="cb287-2"><a href="linear-regression.html#cb287-2" tabindex="-1"></a>                <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb287-3"><a href="linear-regression.html#cb287-3" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;City Mileage (mpg)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb287-4"><a href="linear-regression.html#cb287-4" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Highway Mileage (mpg)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb287-5"><a href="linear-regression.html#cb287-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb287-6"><a href="linear-regression.html#cb287-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb287-7"><a href="linear-regression.html#cb287-7" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> regression<span class="sc">$</span>coefficients[<span class="dv">2</span>], </span>
+<span id="cb287-8"><a href="linear-regression.html#cb287-8" tabindex="-1"></a>              <span class="at">intercept =</span> regression<span class="sc">$</span>coefficients[<span class="dv">1</span>])</span></code></pre></div>
+<p><img src="resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/resources/images/popGenModeling_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 <p>Lastly, let’s get some p values out from this. First, we get a summary of our model:</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="linear-regression.html#cb290-1" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> hwy <span class="sc">~</span> cty, <span class="at">data =</span> mpg)</span>
-<span id="cb290-2"><a href="linear-regression.html#cb290-2" tabindex="-1"></a>sumRegression <span class="ot">&lt;-</span> <span class="fu">summary</span>(regression)</span>
-<span id="cb290-3"><a href="linear-regression.html#cb290-3" tabindex="-1"></a><span class="fu">print</span>(sumRegression)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="linear-regression.html#cb288-1" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> hwy <span class="sc">~</span> cty, <span class="at">data =</span> mpg)</span>
+<span id="cb288-2"><a href="linear-regression.html#cb288-2" tabindex="-1"></a>sumRegression <span class="ot">&lt;-</span> <span class="fu">summary</span>(regression)</span>
+<span id="cb288-3"><a href="linear-regression.html#cb288-3" tabindex="-1"></a><span class="fu">print</span>(sumRegression)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = hwy ~ cty, data = mpg)
@@ -331,12 +330,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.9138, Adjusted R-squared:  0.9134 
 ## F-statistic:  2459 on 1 and 232 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>From the <code>Coefficients</code>, we want to get the value of <code>Pr(&gt;|t|)</code>. We can access <code>Coefficients</code> using the <code>$</code> operator:</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="linear-regression.html#cb292-1" tabindex="-1"></a><span class="fu">print</span>(sumRegression<span class="sc">$</span>coefficients)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="linear-regression.html#cb290-1" tabindex="-1"></a><span class="fu">print</span>(sumRegression<span class="sc">$</span>coefficients)</span></code></pre></div>
 <pre><code>##              Estimate Std. Error   t value      Pr(&gt;|t|)
 ## (Intercept) 0.8920411 0.46894568  1.902227  5.838000e-02
 ## cty         1.3374556 0.02697315 49.584698 1.868307e-125</code></pre>
 <p>And now we can index this to get our p value:</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="linear-regression.html#cb294-1" tabindex="-1"></a><span class="fu">print</span>(sumRegression<span class="sc">$</span>coefficients[<span class="st">&quot;cty&quot;</span>, <span class="st">&quot;Pr(&gt;|t|)&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="linear-regression.html#cb292-1" tabindex="-1"></a><span class="fu">print</span>(sumRegression<span class="sc">$</span>coefficients[<span class="st">&quot;cty&quot;</span>, <span class="st">&quot;Pr(&gt;|t|)&quot;</span>])</span></code></pre></div>
 <pre><code>## [1] 1.868307e-125</code></pre>
 <p>This is a very low p value, reflecting the strongly non-zero slope of our regression line.</p>
 

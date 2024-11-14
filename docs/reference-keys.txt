@@ -39,7 +39,6 @@ equilibirum-from-multiple-starting-points
 class-7-infectious-diseases
 the-sir-model
 seir
-seihfr
 class-9-the-wright-fisher-model-i---neutral-evolution
 random-walks
 wright-fisher-simulation
